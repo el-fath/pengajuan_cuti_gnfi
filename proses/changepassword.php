@@ -1,6 +1,6 @@
 <?php
 
-	include '../admin/koneksi.php';
+	include '../koneksi.php';
 	$id_pegawai = $_GET['id_pegawai'];
 	$option = ['cost' => 10,];
 	$passwordlama = $_POST['passwordlama'];

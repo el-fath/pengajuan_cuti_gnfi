@@ -78,8 +78,8 @@ $tgl_sah = $temp['tgl_sah'];
                                             <br>
                                             <br>
                                               <tr>
-                                                <td style="padding-left: 120px"><strong><?php echo $temp['nama_pegawai']; ?></strong></td>
-                                                <td style="padding-left: 300px"><strong><?php echo $temp['disahkan']; ?></strong></td>
+                                                <td style="padding-left: 90px"><strong><?php echo $temp['nama_pegawai']; ?></strong></td>
+                                                <td style="padding-left: 280px"><strong><?php echo $temp['disahkan']; ?></strong></td>
                                               </tr>
                                             </table>
                                             <br>

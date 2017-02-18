@@ -1,4 +1,3 @@
 <div id="footer">
-        Rochman El-fath | Arek Ganteng
-         
-    </div>
+	<center>Rochman El-fath | Arek Ganteng</center>
+</div>
