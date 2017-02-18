@@ -60,6 +60,10 @@
        <div class="container">
            <div class="row g-pad-bottom" >
                  <h1 class="g-pad-bottom"><i class="fa fa-crosshairs"></i> DATA MASTER </h1>
+                 <?php
+            if(isset($_GET['id_pcuti'])){
+            include "cetak_men.php";
+            }?>
                     <ul class="portfolio-items col-3">
                         <li class="portfolio-item">
                             <div class="item-main">
@@ -422,6 +426,7 @@
             </div>
             <!--Body-->
             <div class="modal-body">
+            
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -455,7 +460,7 @@
                             <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
                             <td><?php echo $tmp['alasan']; ?></td>
                             <td><?php echo $tmp['status']; ?></td>
-                            <td align='center'><a href='data_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>'><button class='btn btn-success btn-sm' data-toggle='modal' data-id = '$tmp['id_pcuti']' data-target='#myModal'>Detail</button></a></td>
+                            <td align='center'><a href='index.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>'><button class='btn btn-success btn-sm'>Detail</button></a></td>
                         </tr>
                      <?php }}else{ ?>
                       <tr>
