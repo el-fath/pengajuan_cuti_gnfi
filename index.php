@@ -316,7 +316,7 @@
                     <tr>
                         <th>Foto (Max:1mb)</th>
                         <th><input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();">
-                          <img id="image-preview" class="form-control" style="width: 200px; height: 200px;" src="<?php echo'assets/img/img/'.$temp['foto']; ?>"></th>
+                          <img id="image-preview" class="form-control" style="width: 200px; height: 200px;" src="<?php echo'admin/img/'.$temp['foto']; ?>"></th>
                     </tr>
                 </table>
             </div>
