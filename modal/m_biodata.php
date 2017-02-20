@@ -1,7 +1,7 @@
 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <td rowspan="9"> <img src="<?php echo'assets/img/img/'.$r['foto']; ?>" style="width: 280px; height: 300px"></td>
+                            <td rowspan="9"> <img src="<?php echo'admin/img/'.$r['foto']; ?>" style="width: 280px; height: 300px"></td>
                         </tr>
                         <tr>
                             <td><strong>ID Pegawai</strong></td>

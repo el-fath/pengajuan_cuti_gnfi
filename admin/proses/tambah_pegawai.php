@@ -1,22 +1,24 @@
 <?php 
 	include '../koneksi.php';
-	$option = ['cost' => 10,];
-	$id_pegawai = $_POST['id_pegawai'];
-	$nama_pegawai = $_POST['nama_pegawai'];
-	$id_jabatan = $_POST['id_jabatan'];
-	$jenis_kelamin = $_POST['jenis_kelamin'];
-	$email = $_POST['email'];
+	$option 		= ['cost' => 10,];
+	$id_pegawai 	= $_POST['id_pegawai'];
+	$nama_pegawai 	= $_POST['nama_pegawai'];
+	$id_jabatan 	= $_POST['id_jabatan'];
+	$jenis_kelamin 	= $_POST['jenis_kelamin'];
+	$email 			= $_POST['email'];
 	$alamat_pegawai = $_POST['alamat_pegawai'];
 	$telpon_pegawai = $_POST['telpon_pegawai'];
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$username 		= $_POST['username'];
+	$password 		= $_POST['password'];
 	$status_pegawai = $_POST['status_pegawai'];	
-	$hash = password_hash("$password", PASSWORD_DEFAULT, $option);
+	$hash 			= password_hash("$password", PASSWORD_DEFAULT, $option);
 	$file 			= $_FILES["foto"]["name"];
+	$pic_loc 		= $_FILES['foto']['tmp_name'];
 	$target_dir 	= "../img/";
   	$target_file 	= $target_dir . basename($_FILES["foto"]["name"]);
   	$uploadOk 		= 1;
   	$imageFileType 	= pathinfo($target_file,PATHINFO_EXTENSION);
+  	move_uploaded_file($pic_loc,$target_dir.$file);
 
 	// Periksa ukuran file================================================
 	if($_FILES["foto"]["name"] != ""){

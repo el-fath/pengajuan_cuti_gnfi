@@ -10,10 +10,12 @@
 	$telpon_pegawai = $_POST['telpon_pegawai'];
 	$status_pegawai	= $_POST['status_pegawai'];
 	$file 			= $_FILES["foto"]["name"];
+	$pic_loc 		= $_FILES['foto']['tmp_name'];
 	$target_dir 	= "../img/";
   	$target_file 	= $target_dir . basename($_FILES["foto"]["name"]);
   	$uploadOk 		= 1;
   	$imageFileType 	= pathinfo($target_file,PATHINFO_EXTENSION);
+  	move_uploaded_file($pic_loc,$target_dir.$file);
 
 	// Periksa ukuran file================================================
 	if($_FILES["foto"]["name"] != ""){
