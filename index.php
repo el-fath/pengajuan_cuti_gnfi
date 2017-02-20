@@ -43,13 +43,19 @@
         <div class="row text-center">
             <div  class="col-md-12" >
                 <div class="col-md-12">
-                <img src="assets/img/gnfi.png" style="width: 180px; height: 65px;" alt="">                   
+                <img src="assets/img/gnfi.png" style="width: 350px; height: 95px;" alt="">                   
                 </div>
                 <h3 class="head-last col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?></h3>
             </div>
             <div class="col-md-12 col-sm-12">
                 <a  href="#port-sec">
-                    <i class="glyphicon glyphicon-fire fa-5x go-marg"></i> 
+                <?php  
+                   $id_pegawai = $_SESSION['id_pegawai'];
+                   $sql = mysqli_query($conn,"SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
+                   while ($b = mysqli_fetch_assoc($sql)) {
+                ?>
+                <img src="<?php echo"admin/img/".$b['foto']; ?>" alt="..." class="img-circle profile_img" style="width: 300px; height: 300px">
+                <?php } ?>
                 </a>
             </div>
         </div>
@@ -557,23 +563,24 @@
 
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY  -->
-    <script src="assets/plugins/jquery-1.10.2.js"></script>
+<!--     <script src="jquery-2.2.2.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- BOOTSTRAP CORE SCRIPT   -->
     <script src="assets/plugins/bootstrap.min.js"></script>  
      <!-- ISOTOPE SCRIPT   -->
-    <script src="assets/plugins/jquery.isotope.min.js"></script>
+  <!--   <script src="assets/plugins/jquery.isotope.min.js"></script> -->
     <!-- PRETTY PHOTO SCRIPT   -->
     <script src="assets/plugins/jquery.prettyPhoto.js"></script>    
     <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
     <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
-<!-- polyfiller file to detect and load polyfills -->
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
-<script>
-  webshims.setOptions('waitReady', false);
-  webshims.setOptions('forms-ext', {types: 'date'});
-  webshims.polyfill('forms forms-ext');
-</script>
+    <!-- polyfiller file to detect and load polyfills -->
+    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+    <script>
+      webshims.setOptions('waitReady', false);
+      webshims.setOptions('forms-ext', {types: 'date'});
+      webshims.polyfill('forms forms-ext');
+    </script>
     <script>
     function previewImage() {
         document.getElementById("image-preview").style.display = "block";
