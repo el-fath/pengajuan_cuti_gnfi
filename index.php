@@ -41,23 +41,22 @@
     <div id="home-sec">
     <div class="container"  >
         <div class="row text-center">
-            <div  class="col-md-12" >
+            <div  class="col-md-12 col-sm-12" >
                 <div class="col-md-12">
-                <img src="assets/img/gnfi.png" style="width: 350px; height: 95px;" alt="">                   
+                <!-- <img src="assets/img/gnfi.png" style="width: 350px; height: 110px;" alt="">                    -->
                 </div>
-                <h3 class="head-last col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?></h3>
-            </div>
-            <div class="col-md-12 col-sm-12">
                 <a  href="#port-sec">
                 <?php  
                    $id_pegawai = $_SESSION['id_pegawai'];
                    $sql = mysqli_query($conn,"SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
                    while ($b = mysqli_fetch_assoc($sql)) {
                 ?>
-                <img src="<?php echo"admin/img/".$b['foto']; ?>" alt="..." class="img-circle profile_img" style="width: 300px; height: 300px">
+                <img src="<?php echo"admin/img/".$b['foto']; ?>" alt="..." class="img-circle profile_img" style="width: 200px; height: 200px">
                 <?php } ?>
                 </a>
             </div>
+                <h3 class="head-last col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?></h3>
+
         </div>
     </div>
     </div>
