@@ -16,7 +16,7 @@
     <title>FREE  BOOTSTRAP TEMPLATE - Relax </title>
     <!--REQUIRED STYLE SHEETS-->
     <!-- BOOTSTRAP CORE STYLE CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLE CSS -->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <!--ANIMATED FONTAWESOME STYLE CSS -->
@@ -573,7 +573,7 @@
     <script src="assets/plugins/jquery.prettyPhoto.js"></script>    
     <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
-    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+  <!--   <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script> -->
     <!-- polyfiller file to detect and load polyfills -->
     <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
     <script>
