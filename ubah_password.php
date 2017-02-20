@@ -30,7 +30,7 @@
 								<input class="form-control" placeholder="PASSWORD LAMA" name="passwordlama" type="hidden" value="<?php echo $temp['password'] ?>">
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Masukkan Password Baru" name="passwordbaru" type="password" value="">
+								<input class="form-control" placeholder="Masukkan Password Baru" name="passwordbaru" type="password" value="" required="">
 							</div>
 							
 						<input type="submit"  class="btn btn-primary btn-block" value="UBAH PASSWORD" />

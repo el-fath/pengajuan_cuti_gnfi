@@ -27,7 +27,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><strong>List Data Cuti Pegawai</strong></h2>
+                    <h2><strong>List Data Pengajuan Cuti Pegawai</strong></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -72,7 +72,7 @@
                         <th colspan="3"><center>ACTION</center></th>
                       </tr>  
                       <?php 
-                           $limit = 10;  
+                          $limit = 10;  
                           if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
                           $start_from = ($page-1) * $limit; 
                           $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, alasan , jatah_cuti, lama_cuti

@@ -44,4 +44,4 @@
 	echo "<script>alert('Mohon Maaf proses edit tidak berhasil')</script>";
 	}
 ?>
-<meta http-equiv="refresh" content="0;URL=../edit_pegawai.php" />
+<meta http-equiv="refresh" content="0;URL=../list_pegawai.php" />

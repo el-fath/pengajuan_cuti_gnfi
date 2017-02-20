@@ -42,9 +42,10 @@
     <div class="container"  >
         <div class="row text-center">
             <div  class="col-md-12" >
-                <span class="head-main" >Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?></span>
-                <h2 class="head-sub-main">Download And Get Relaxed</h2>
-                <h3 class="head-last col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">Lorem ipsum dolor sit ametLorem</h3>
+                <div class="col-md-12">
+                <img src="assets/img/gnfi.png" style="width: 180px; height: 65px;" alt="">                   
+                </div>
+                <h3 class="head-last col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?></h3>
             </div>
             <div class="col-md-12 col-sm-12">
                 <a  href="#port-sec">
@@ -60,10 +61,10 @@
        <div class="container">
            <div class="row g-pad-bottom" >
                  <h1 class="g-pad-bottom"><i class="fa fa-crosshairs"></i> DATA MASTER </h1>
-                 <?php
-            if(isset($_GET['id_pcuti'])){
-            include "cetak_men.php";
-            }?>
+                    <?php
+                    if(isset($_GET['id_pcuti'])){
+                    include "cetak_men.php";
+                    }?>
                     <ul class="portfolio-items col-3">
                         <li class="portfolio-item">
                             <div class="item-main">
@@ -307,7 +308,7 @@
                         <th><input class="form-control col-md-7 col-xs-12" type="tel" name="telpon_pegawai" value="<?php echo $temp['telpon_pegawai']; ?>"></th>
                     </tr>
                     <tr>
-                        <th>Username</th>
+                        <th>Foto (Max:1mb)</th>
                         <th><input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();">
                           <img id="image-preview" class="form-control" style="width: 200px; height: 200px;" src="<?php echo'assets/img/img/'.$temp['foto']; ?>"></th>
                     </tr>

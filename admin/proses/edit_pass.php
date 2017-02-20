@@ -12,4 +12,4 @@ if ($b) {
 }
 
 ?>
-<meta http-equiv="refresh" content="0;URL=../edit_pegawai.php" />
+<meta http-equiv="refresh" content="0;URL=../list_pegawai.php" />

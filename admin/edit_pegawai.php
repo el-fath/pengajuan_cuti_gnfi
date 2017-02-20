@@ -1,41 +1,43 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
  <html>
  <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <title></title>
    <link rel="stylesheet" href="">
-   <link href="vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+   <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-   
+  
+    <!-- bootstrap-daterangepicker -->
     <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
  </head>
  <body>
-   <?php include 'header.php'; ?>
-   <?php include 'koneksi.php'; ?>
-   <div class="container body">
-     <div class="main_container">
-               <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-            <div class="clearfix"></div>
+ <?php include 'header.php'; ?>
+ <?php include 'koneksi.php'; ?>
+ <!-- page content -->
+ <div class="container body">
+   <div class="main_container">
+      <div class="right_col" role="main">
+          <!-- top tiles -->
+
+          <!-- /top tiles -->
+
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>FORM EDIT PEGAWAI</h2>
-                    <ul class="nav navbar-right panel_toolbox">
+                    <h2><strong>Form Edit Profil Pegawai</strong></h2>
+                   <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <br />
                     <?php  
                         $id_pegawai=$_GET['id_pegawai'];
                         $sql="SELECT * FROM pegawai WHERE id_pegawai='$id_pegawai'";
@@ -124,7 +126,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">FOTO</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">FOTO (Max:1mb)</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();">
                           <br>
@@ -146,26 +148,26 @@
                 </div>
               </div>
             </div>
-     </div>
-   </div>
 
-  <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2>FORM GANTI PASSWORD</h2>
-          <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
+             <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><strong>Form Edit Password Pegawai</strong></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
           <form action="proses/edit_pass.php" method="POST" class="form-horizontal form-label-left" accept-charset="utf-8">
             <div class="form-group">
               <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">MASUKKAN PASSWORD BARU</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input class="form-control col-md-7 col-xs-12" type="hidden" name="id_pegawai" value="<?php echo $temp['id_pegawai']; ?>">
-                <input class="form-control col-md-7 col-xs-12" type="password" name="password" value="">
+                <input class="form-control col-md-7 col-xs-12" type="password" name="password" value="" required="">
               </div>
             </div>
             <div class="form-group">
@@ -177,17 +179,22 @@
             </div>
           </form>           
         </div>
-      </div>
-  </div>     
-  </div>
+                </div>
+              </div>
+            </div>
+            
+        
+      
+ 
   <script src="vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
   
-    <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="build/js/custom.min.js"></script>
+
     <script>
     function previewImage() {
         document.getElementById("image-preview").style.display = "block";
@@ -201,7 +208,7 @@
     </script>
     <script type="text/javascript">
     function validasi_input(form){
-       pola_username=/^[a-zA-Z0-9\_\-]{6,100}$/;
+       pola_username=/^[a-zA-Z0-9\_\-]{4,100}$/;
        if (!pola_username.test(form.username.value)){
           alert ('Username minimal 6 karakter dan hanya boleh Huruf atau Angka!');
           form.username.focus();
@@ -211,4 +218,4 @@
     }
     </script>
   </body>
-  </html>
+</html>

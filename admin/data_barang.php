@@ -27,7 +27,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><strong>List Data Pengajuan Pegawai</strong></h2>
+                    <h2><strong>List Data Pengajuan Barang Dan Anggaran Pegawai</strong></h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -48,11 +48,16 @@
                         <th><strong>STATUS</strong></th>
                         <th colspan="3"><center>ACTION</center></th>
                       </tr>  
-                      <?php $no=0; 
+                      <?php 
+                        $no=0; 
+                          $limit = 10;  
+                          if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+                          $start_from = ($page-1) * $limit; 
                           $sql = "SELECT id_pbarang,status,nama_pegawai,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan 
                                   FROM pengadaan_barang
                                   INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
                                   INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
+                                  LIMIT $start_from, $limit
                                   ";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                           $num_rows = mysqli_num_rows($s);
@@ -88,6 +93,18 @@
                     </table>
 
                     </div>
+                    <?php  
+                      $sql = "SELECT COUNT(id_pbarang) FROM pengadaan_barang";  
+                      $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
+                      $row = mysqli_fetch_row($rs_result);  
+                      $total_records = $row[0];  
+                      $total_pages = ceil($total_records / $limit);  
+                      $pagLink = "<ul class='pagination'>";  
+                      for ($i=1; $i<=$total_pages; $i++) {  
+                                   $pagLink .= "<li><a href='data_barang.php?page=".$i."'>".$i."</a></li>";  
+                      };  
+                      echo $pagLink . "</ul";  
+                      ?>
                   </div>
                 </div>
               </div>

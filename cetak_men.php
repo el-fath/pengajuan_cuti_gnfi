@@ -20,7 +20,8 @@ $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 $temp=mysqli_fetch_array($s);
 $tgl_sah = $temp['tgl_sah'];
 ?>
-<div id="p1">
+<div class="table-responsive">
+  <div id="p1">
                                 <div class="modal-dialog" style="width: 700px;">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -79,11 +80,12 @@ $tgl_sah = $temp['tgl_sah'];
                                             <br>
                                               <tr>
                                                 <td style="padding-left: 90px"><strong><?php echo $temp['nama_pegawai']; ?></strong></td>
-                                                <td style="padding-left: 280px"><strong><?php echo $temp['disahkan']; ?></strong></td>
+                                                <td style="padding-left: 284px"><strong><?php echo $temp['disahkan']; ?></strong></td>
                                               </tr>
                                             </table>
                                             <br>
                                            </div>
+                                        </div>
                                         </div>
                                         </div>
                                         </div>

@@ -27,14 +27,9 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2><strong>Daftar Kategori </strong></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="col-md-6">
-                    <br />
                   <a href="#" class="btn btn-lg btn-primary" data-target="#modaladd" data-toggle="modal">Tambah Kategori</a>
                     <table class="table table-striped table-bordered table-hover" >
                       <tr>

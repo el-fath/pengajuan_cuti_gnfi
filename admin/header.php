@@ -79,9 +79,9 @@
                       <li><a href="list_jabatan.php">List Jabatan</a></li>
                       <li><a href="list_kategori.php">List Kategori Barang</a></li>
                       <li><a href="list_jenis_cuti.php">List Jenis Cuti</a></li>
-                      <li><a href="data_barang.php">Data Barang</a></li>
                       <li><a href="list_pegawai.php">Data Pegawai</a></li>
-                      <li><a href="data_cuti.php" title="">Data Cuti</a></li>
+                      <li><a href="data_barang.php">Data Pengajuan Barang</a></li>
+                      <li><a href="data_cuti.php" title="">Data Pengajuan Cuti</a></li>
                     </ul>
                   </li>
                 </ul>
