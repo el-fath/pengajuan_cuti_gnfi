@@ -190,8 +190,7 @@
                     </form>
                 </div>
                 <div class="col-md-6">
-                   <iframe class="cnt" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2999841.293321206!2d-75.80920404999999!3d42.75594204999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew+York!5e0!3m2!1sen!2s!4v1395313088825" s ></iframe>
-
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4706.090057308183!2d112.7207345313917!3d-7.316297066088966!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcc525d4393ca0d87!2sGood+News+From+Indonesia!5e0!3m2!1sid!2sid!4v1487565130333" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
