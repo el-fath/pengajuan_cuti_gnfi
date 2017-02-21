@@ -1,3 +1,3 @@
 <div id="footer">
-	<center></center>
+	<center>Good News From Indonesia</center>
 </div>
