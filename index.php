@@ -63,47 +63,45 @@
     <!--END HOME SECTION-->  
     <section>
         <div class="container">
-            <div class="row ">
-                <div class="text-center g-pad-bottom">
-                    <?php 
-                    $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='laki-laki'";
-                    $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                    $data = array();
-                    while ($row = mysqli_fetch_array($s)) {
-                    $data[] = $row;
-                    }
-                    $count = count($data);
-                    ?>
-                    <div class="col-md-4 col-sm-4">
-                            <i class="fa fa-male fa-5x faa-vertical animated c-main "></i>
-                            <h4>Team Pria <?php echo $count; ?> Orang</h4>
-                    </div>
-                    <?php 
-                    $id_pegawai = $_SESSION['id_pegawai'];
-                    $sql = "SELECT * FROM pegawai WHERE id_pegawai ='$id_pegawai'";
-                    $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                    while ($row = mysqli_fetch_assoc($s)) {
-                    ?>
-                    <div class="col-md-4 col-sm-4">
-                            <i class="fa fa-suitcase fa-5x faa-ring animated c-main "></i>
-                            <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
-                    </div>
-                    <?php 
-                    $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='perempuan'";
-                    $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                    $data = array();
-                    while ($row = mysqli_fetch_array($s)) {
-                    $data[] = $row;
-                    }
-                    $count = count($data);
-                    ?>
-                    <div class="col-md-4 col-sm-4">
-                            <i class="fa fa-female fa-5x faa-shake animated c-main "></i>
-                            <h4>Team Wanita <?php echo $count; ?> Orang</h4>
-                    </div>
+            <div class="text-center g-pad-bottom">
+                <?php 
+                $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='laki-laki'";
+                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                $data = array();
+                while ($row = mysqli_fetch_array($s)) {
+                $data[] = $row;
+                }
+                $count = count($data);
+                ?>
+                <div class="col-md-4 col-sm-4">
+                        <i class="fa fa-male fa-5x faa-vertical animated c-main "></i>
+                        <h4>Team Pria <?php echo $count; ?> Orang</h4>
                 </div>
-                  </div>
+                <?php 
+                $id_pegawai = $_SESSION['id_pegawai'];
+                $sql = "SELECT * FROM pegawai WHERE id_pegawai ='$id_pegawai'";
+                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                while ($row = mysqli_fetch_assoc($s)) {
+                ?>
+                <div class="col-md-4 col-sm-4">
+                        <i class="fa fa-suitcase fa-5x faa-ring animated c-main "></i>
+                        <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
                 </div>
+                <?php 
+                $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='perempuan'";
+                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                $data = array();
+                while ($row = mysqli_fetch_array($s)) {
+                $data[] = $row;
+                }
+                $count = count($data);
+                ?>
+                <div class="col-md-4 col-sm-4">
+                        <i class="fa fa-female fa-5x faa-shake animated c-main "></i>
+                        <h4>Team Wanita <?php echo $count; ?> Orang</h4>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- PORTFOLIO SECTION-->
    <section id="port-sec">
@@ -112,9 +110,8 @@
                     <?php
                     if(isset($_GET['id_pcuti'])){
                     include "cetak_men.php";
-                    }?>
-                    <ul class="portfolio-items col-3">
-                        <li class="portfolio-item">
+                    }?> <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/c1.jpg" alt="">
@@ -124,8 +121,10 @@
                                 </div>
                                 <h5>AJUKAN CUTI</h5>
                             </div>
-                        </li>                     
-                        <li class="portfolio-item">
+                        </div>
+                        </div>                     
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/87.jpg" alt="">
@@ -135,8 +134,10 @@
                                 </div>
                                 <h5>BIODATA</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/3.jpg" alt="">
@@ -146,8 +147,10 @@
                                 </div>
                                 <h5>AJUKAN BARANG ATAU ANGGARAN</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/tyu.jpg" alt="">
@@ -157,8 +160,10 @@
                                 </div>
                                 <h5>DATA CUTI</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/4.jpg" alt="">
@@ -168,8 +173,10 @@
                                 </div>
                                 <h5>EDIT BIODATA</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/5.jpg" alt="">
@@ -179,8 +186,8 @@
                                 </div>
                                 <h5>DATA BARANG DAN ANGGARAN</h5>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                        </div>
                 </div>
            </div>
        </div>
