@@ -215,6 +215,7 @@
             ?>
             <div class="modal-body">
             <form action="proses/tambah_cuti.php" method="POST" enctype="multipart/form-data">
+                <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
                         <th>Jenis Cuti</th>
@@ -241,6 +242,7 @@
                         <th><textarea class="form-control col-md-7 col-xs-12" name="alasan"></textarea></th>
                     </tr>
                 </table>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
