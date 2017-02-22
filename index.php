@@ -33,12 +33,12 @@
     <![endif]-->
     <link href="assets/css/ihover.css" rel="stylesheet" />
 </head>
-<body >
+<body>
     <<?php include 'header.php'; ?>
     <<?php include 'koneksi.php'; ?>
     <!--HOME SECTION-->
     <div id="home-sec">
-    <div class="container"  >
+    <div class="container" >
         <div class="row text-center">
             <div  class="col-md-12 col-sm-12" >
                 <div class="col-md-12">

@@ -6,11 +6,11 @@
     } else {
   ?>
 <!-- NAV SECTION -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-       
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"><!-- <img src="assets/img/gnfi.png" style="width: 180px; height: 65px;" alt=""> -->Good News</a>
+<div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top">        
+            <div class="navbar-header" >
+            <a class="navbar-brand" href="#" style="padding-top: 0px;"><img src="https://www.goodnewsfromindonesia.id/assets/front/main/logo-gnfi.png" alt="Good News from Indonesia"></a>
+               
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
