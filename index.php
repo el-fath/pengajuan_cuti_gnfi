@@ -113,7 +113,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/c1.jpg" alt="">
+                                    <img src="assets/img/98598-OLDMHL-591.jpg" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-primary" data-toggle="modal" data-target=".ajukan_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
@@ -126,7 +126,13 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/87.jpg" alt="">
+                                  <?php  
+                                       $id_pegawai = $_SESSION['id_pegawai'];
+                                       $sql = mysqli_query($conn,"SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
+                                       while ($b = mysqli_fetch_assoc($sql)) {
+                                    ?>
+                                    <img src="<?php echo "admin/img/".$b['foto']; ?>" alt="" style="width: 220px; height: 220px">
+                                     <?php } ?>
                                     <div class="overlay">
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".biodata"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
@@ -161,7 +167,7 @@
                             </div>
                         </div>
                         </div> 
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-4" style="margin-top: -285px;">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -174,7 +180,7 @@
                             </div>
                         </div>
                         </div> 
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-4" style="margin-top: -285px;">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -576,12 +582,12 @@
     <script src="assets/js/custom.js"></script>
   <!--   <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script> -->
     <!-- polyfiller file to detect and load polyfills -->
-    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+    <!-- <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
     <script>
       webshims.setOptions('waitReady', false);
       webshims.setOptions('forms-ext', {types: 'date'});
       webshims.polyfill('forms forms-ext');
-    </script>
+    </script> -->
     <script>
     function previewImage() {
         document.getElementById("image-preview").style.display = "block";
