@@ -158,7 +158,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/tyu.jpg" alt="">
+                                    <img src="assets/img/datacuti.png" alt="" style="width: 220px; height: 220px">
                                     <div class="overlay">
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".data_cuti"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
@@ -171,7 +171,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/4.jpg" alt="">
+                                    <img src="assets/img/4.jpg" alt="" >
                                     <div class="overlay">
                                         <button class="preview btn btn-warning" data-toggle="modal" data-target=".edit_biodata"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
@@ -184,7 +184,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/5.jpg" alt="">
+                                    <img src="assets/img/OIUH600.png" alt="" style="width: 220px; height: 220px">
                                     <div class="overlay">
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".data_barang"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
