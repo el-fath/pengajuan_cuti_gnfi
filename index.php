@@ -54,57 +54,22 @@
                 <?php } ?>
                 </a>
             </div>
-                <h3 class="head-last col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?></h3>
-
-        </div>
-    </div>
-    </div>
-    <!--END HOME SECTION-->  
-    <section>
-        <div class="container">
-            <div class="text-center g-pad-bottom">
-                <?php 
-                $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='laki-laki'";
-                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                $data = array();
-                while ($row = mysqli_fetch_array($s)) {
-                $data[] = $row;
-                }
-                $count = count($data);
-                ?>
-                <div class="col-md-4 col-sm-4">
-                        <i class="fa fa-male fa-5x faa-vertical animated c-main "></i>
-                        <h4>Team Pria <?php echo $count; ?> Orang</h4>
-                </div>
-                <?php 
+            <?php 
                 $id_pegawai = $_SESSION['id_pegawai'];
                 $sql = "SELECT * FROM pegawai WHERE id_pegawai ='$id_pegawai'";
                 $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                 while ($row = mysqli_fetch_assoc($s)) {
                 ?>
-                <div class="col-md-4 col-sm-4">
-                        <i class="fa fa-suitcase fa-5x faa-ring animated c-main "></i>
-                        <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
+                <div class="col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">
+                        <h4>Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?> Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
                 </div>
-                <?php 
-                $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='perempuan'";
-                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                $data = array();
-                while ($row = mysqli_fetch_array($s)) {
-                $data[] = $row;
-                }
-                $count = count($data);
-                ?>
-                <div class="col-md-4 col-sm-4">
-                        <i class="fa fa-female fa-5x faa-shake animated c-main "></i>
-                        <h4>Team Wanita <?php echo $count; ?> Orang</h4>
-                </div>
-            </div>
         </div>
-    </section>
+    </div>
+    </div>
+    <!--END HOME SECTION--> 
     <!-- PORTFOLIO SECTION-->
    <section id="port-sec">
-       <div class="container">
+       <div class="container-fluid">
            <div class="row g-pad-bottom" >
                     <?php
                     if(isset($_GET['id_pcuti'])){
@@ -131,7 +96,7 @@
                                        $sql = mysqli_query($conn,"SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
                                        while ($b = mysqli_fetch_assoc($sql)) {
                                     ?>
-                                    <img src="<?php echo "admin/img/".$b['foto']; ?>" alt="" style="width: 220px; height: 220px">
+                                    <img src="<?php echo "admin/img/".$b['foto']; ?>" alt="" style="width: 275px; height: 275px">
                                      <?php } ?>
                                     <div class="overlay">
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".biodata"><i class="glyphicon glyphicon-eye-open"></i></button>
@@ -158,7 +123,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/datacuti.png" alt="" style="width: 220px; height: 220px">
+                                    <img src="assets/img/datacuti.png" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".data_cuti"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
@@ -167,7 +132,7 @@
                             </div>
                         </div>
                         </div> 
-                        <div class="col-md-4 col-sm-4" style="margin-top: -285px;">
+                        <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -180,11 +145,11 @@
                             </div>
                         </div>
                         </div> 
-                        <div class="col-md-4 col-sm-4" style="margin-top: -285px;">
+                        <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/OIUH600.png" alt="" style="width: 220px; height: 220px">
+                                    <img src="assets/img/OIUH600.png" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".data_barang"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
