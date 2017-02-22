@@ -57,6 +57,7 @@
                                   FROM pengadaan_barang
                                   INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
                                   INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
+                                  ORDER BY tgl_pengajuan DESC
                                   LIMIT $start_from, $limit
                                   ";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));

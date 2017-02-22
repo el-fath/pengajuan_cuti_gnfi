@@ -103,7 +103,7 @@
                                   FROM permohonan_cuti
                                   INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
                                   INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
-                                  WHERE status = 'Belum dikonfirmasi'";
+                                  WHERE status = 'Belum dikonfirmasi' ORDER BY tgl_pengajuan DESC";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                           $num_rows = mysqli_num_rows($s);
                           if (!empty($num_rows)) {
@@ -176,7 +176,7 @@
                                   FROM pengadaan_barang
                                   INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
                                   INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
-                                  WHERE status = 'Belum dikonfirmasi'";
+                                  WHERE status = 'Belum dikonfirmasi' ORDER BY tgl_pengajuan DESC";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                           $num_rows = mysqli_num_rows($s);
                           if (!empty($num_rows)) {
