@@ -60,17 +60,57 @@
     </div>
     </div>
     <!--END HOME SECTION-->  
+    <section>
+        <div class="container">
+            <div class="text-center g-pad-bottom">
+                <?php 
+                $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='laki-laki'";
+                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                $data = array();
+                while ($row = mysqli_fetch_array($s)) {
+                $data[] = $row;
+                }
+                $count = count($data);
+                ?>
+                <div class="col-md-4 col-sm-4">
+                        <i class="fa fa-male fa-5x faa-vertical animated c-main "></i>
+                        <h4>Team Pria <?php echo $count; ?> Orang</h4>
+                </div>
+                <?php 
+                $id_pegawai = $_SESSION['id_pegawai'];
+                $sql = "SELECT * FROM pegawai WHERE id_pegawai ='$id_pegawai'";
+                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                while ($row = mysqli_fetch_assoc($s)) {
+                ?>
+                <div class="col-md-4 col-sm-4">
+                        <i class="fa fa-suitcase fa-5x faa-ring animated c-main "></i>
+                        <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
+                </div>
+                <?php 
+                $sql = "SELECT * FROM pegawai WHERE jenis_kelamin ='perempuan'";
+                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                $data = array();
+                while ($row = mysqli_fetch_array($s)) {
+                $data[] = $row;
+                }
+                $count = count($data);
+                ?>
+                <div class="col-md-4 col-sm-4">
+                        <i class="fa fa-female fa-5x faa-shake animated c-main "></i>
+                        <h4>Team Wanita <?php echo $count; ?> Orang</h4>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- PORTFOLIO SECTION-->
    <section id="port-sec">
        <div class="container">
            <div class="row g-pad-bottom" >
-                 <h1 class="g-pad-bottom"><i class="fa fa-crosshairs"></i> DATA MASTER </h1>
                     <?php
                     if(isset($_GET['id_pcuti'])){
                     include "cetak_men.php";
-                    }?>
-                    <ul class="portfolio-items col-3">
-                        <li class="portfolio-item">
+                    }?> <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/c1.jpg" alt="">
@@ -80,8 +120,10 @@
                                 </div>
                                 <h5>AJUKAN CUTI</h5>
                             </div>
-                        </li>                     
-                        <li class="portfolio-item">
+                        </div>
+                        </div>                     
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/87.jpg" alt="">
@@ -91,8 +133,10 @@
                                 </div>
                                 <h5>BIODATA</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/3.jpg" alt="">
@@ -102,8 +146,10 @@
                                 </div>
                                 <h5>AJUKAN BARANG ATAU ANGGARAN</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/tyu.jpg" alt="">
@@ -113,8 +159,10 @@
                                 </div>
                                 <h5>DATA CUTI</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/4.jpg" alt="">
@@ -124,8 +172,10 @@
                                 </div>
                                 <h5>EDIT BIODATA</h5>
                             </div>
-                        </li>
-                        <li class="portfolio-item">
+                        </div>
+                        </div> 
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
                                     <img src="assets/img/5.jpg" alt="">
@@ -135,64 +185,13 @@
                                 </div>
                                 <h5>DATA BARANG DAN ANGGARAN</h5>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                        </div>
                 </div>
            </div>
        </div>
    </section>
      <!-- END PORTFOLIO SECTION-->
-    <!--CONTACT SECTION-->
-    
-    <section  id="contact-sec">
-        <div class="container">
-             
-            <div class="row g-pad-bottom">
-                  <h1 class="g-pad-bottom">  <i class="fa fa-crosshairs"></i> INFO </h1>
-                
-                  
-                <div class="col-md-6 ">
-                    <h2>Lorem ipsum dolor sit amet</h2>
-                 
-                    <p>
-                         <strong> Address: </strong> &nbsp;Newyork City, Your Country, Pin-000000.  
-                        <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.              
-                    </p>
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6 ">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" required="required" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-md-6 ">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" required="required" placeholder="Email address">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 ">
-                                <div class="form-group">
-                                    <textarea name="message" id="message" required="required" class="form-control" rows="3" placeholder="Message"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Submit Request</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4706.090057308183!2d112.7207345313917!3d-7.316297066088966!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcc525d4393ca0d87!2sGood+News+From+Indonesia!5e0!3m2!1sid!2sid!4v1487565130333" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
 
 <!-- Large modal -->
 <div class="modal fade ajukan_cuti" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -215,6 +214,7 @@
             ?>
             <div class="modal-body">
             <form action="proses/tambah_cuti.php" method="POST" enctype="multipart/form-data">
+                <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
                         <th>Jenis Cuti</th>
@@ -241,6 +241,7 @@
                         <th><textarea class="form-control col-md-7 col-xs-12" name="alasan"></textarea></th>
                     </tr>
                 </table>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
@@ -271,6 +272,7 @@
             ?>
             <div class="modal-body">
             <form action="proses/edit_profil.php" method="POST" enctype="multipart/form-data" onsubmit="return validasi_input(this)">
+                <div class="table-responsive">                    
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
                         <th>Nama Pegawai</th>
@@ -316,6 +318,8 @@
                           <img id="image-preview" class="form-control" style="width: 200px; height: 200px;" src="<?php echo'admin/img/'.$temp['foto']; ?>"></th>
                     </tr>
                 </table>
+                </div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
