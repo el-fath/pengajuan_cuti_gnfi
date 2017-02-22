@@ -78,7 +78,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/98598-OLDMHL-591.jpg" alt="">
+                                    <img src="assets/img/98598-OLDMHL-591.jpg" alt="" style="height: 278px">
                                     <div class="overlay">
                                         <button class="preview btn btn-primary" data-toggle="modal" data-target=".ajukan_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
@@ -110,7 +110,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/3.jpg" alt="">
+                                    <img src="assets/img/OKQTLS0.jpg" alt="" style="height: 278px; width: 300px">
                                     <div class="overlay">
                                         <button class="preview btn btn-primary" data-toggle="modal" data-target=".ajukan_barang"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
