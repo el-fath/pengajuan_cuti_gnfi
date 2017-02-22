@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
+	<title>LOGIN WEB INTERNAL GNFI</title>
+	<link rel="shortcut icon" type="image/x-icon" href="1487735199.ico">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
