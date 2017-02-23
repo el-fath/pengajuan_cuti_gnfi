@@ -69,7 +69,7 @@
     <!--END HOME SECTION--> 
     <!-- PORTFOLIO SECTION-->
    <section id="port-sec">
-       <div class="container-fluid">
+       <div class="container">
            <div class="row g-pad-bottom" >
                     <?php
                     if(isset($_GET['id_pcuti'])){
@@ -96,7 +96,7 @@
                                        $sql = mysqli_query($conn,"SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
                                        while ($b = mysqli_fetch_assoc($sql)) {
                                     ?>
-                                    <img src="<?php echo "admin/img/".$b['foto']; ?>" alt="" style="width: 275px; height: 275px">
+                                    <img src="<?php echo "admin/img/".$b['foto']; ?>" alt="" style="width: 215px; height: 215px">
                                      <?php } ?>
                                     <div class="overlay">
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".biodata"><i class="glyphicon glyphicon-eye-open"></i></button>
