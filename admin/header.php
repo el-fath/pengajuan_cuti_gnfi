@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gentelella Alela! | </title>
-
+<link rel="shortcut icon" type="image/x-icon" href="../1487735199.ico">
     <!-- Bootstrap -->
   <!--   <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Font Awesome -->
