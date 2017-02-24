@@ -20,11 +20,18 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#port-sec">Data Master</a></li>
-                <li><a href="ubah_password.php?&id_pegawai=<?php echo $_SESSION['id_pegawai']; ?>">Ganti Password</a></li>
+                <li><a href="#port-sec">Daftar Menu</a></li>
+                <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span></span><?php echo $_SESSION['username']; ?><span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-cart" role="menu">
+                <li><a href=""><a href="ubah_password.php?&id_pegawai=<?php echo $_SESSION['id_pegawai']; ?>">Ganti Password</a></li>
+                <li><a href="#" data-toggle="modal" data-target=".biodata">Biodata</a></li>
+                <li><a href="#" data-toggle="modal" data-target=".edit_biodata">Edit Biodata</a></li>
                 <li><a href="proses/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-            </ul>
-        </div>   
+           </ul>
+           </li>
+           </ul>
+        </div>  
     </div>
 </div>
   <?php }?>
