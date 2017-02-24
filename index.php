@@ -61,7 +61,8 @@
                 while ($row = mysqli_fetch_assoc($s)) {
                 ?>
                 <div class="col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">
-                        <h4>Welcome To GNFI <?php session_start(); echo $_SESSION['username']; ?> Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
+                <h4>Welcome To Good News <?php echo $_SESSION['username']; ?></h4>
+                <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
                 </div>
         </div>
     </div>
