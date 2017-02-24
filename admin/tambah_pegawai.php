@@ -16,23 +16,21 @@
     <link href="build/css/custom.min.css" rel="stylesheet">
  </head>
  <body>
-   <?php include 'header.php'; ?>
+   
    <?php include 'koneksi.php'; ?>
-   <div class="container body">
+   <div class="container body" >
      <div class="main_container">
                <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
+            <div class="page-title" style="padding-top: 50px;  ">
             <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+            <div class="row" >
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <div class="x_panel" style=" box-shadow:  30px 10px 15px #888888;">
                   <div class="x_title">
-                    <h2>Form Tambah Pegawai</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
+                    <h1 align="center">Form Register Pegawai</h1>
+                   
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -148,6 +146,7 @@
                   </div>
                 </div>
               </div>
+              <div class="col-sm-2"></div>
             </div>
 
 

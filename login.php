@@ -71,6 +71,9 @@
 								</select>
 							</div>
 							<div class="form-group">
+								<a href="admin/tambah_pegawai.php">Register Pegawai</a>
+							</div>
+							<div class="form-group">
 						<input type="submit" name="login" class="btn btn-primary btn-block" value="Log me in" />
 						</fieldset>
 					</form>
