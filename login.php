@@ -6,7 +6,7 @@
 	<title>LOGIN WEB INTERNAL GNFI</title>
 	<link rel="shortcut icon" type="image/x-icon" href="1487735199.ico">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 </head>
 <body>
@@ -82,9 +82,9 @@
 		</div><!-- /.col-->
 	</div><!-- /.row -->	
 	</div><!-- container -->
- <script src="vendors/jquery/dist/jquery.min.js"></script>
+ <script src="admin/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	
 </body>
 </html>
