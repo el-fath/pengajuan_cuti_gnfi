@@ -10,7 +10,7 @@
 	$telpon_pegawai = $_POST['telpon_pegawai'];
 	$username 		= $_POST['username'];
 	$password 		= $_POST['password'];
-	$status_pegawai = $_POST['status_pegawai'];	
+	// $status_pegawai = $_POST['status_pegawai'];	
 	$hash 			= password_hash("$password", PASSWORD_DEFAULT, $option);
 	$file 			= $_FILES["foto"]["name"];
 	$pic_loc 		= $_FILES['foto']['tmp_name'];
@@ -41,9 +41,10 @@
 	// 	echo "<script>alert('karakter username hanya boleh a-z A-Z 0-9 tanpa spasi')</script>";
 	// } else {
 		
-		$sql = "INSERT INTO pegawai VALUES('$id_pegawai','$nama_pegawai','$id_jabatan','$jenis_kelamin','$email','$alamat_pegawai','$telpon_pegawai','$file','$username','$hash','14','$status_pegawai')";
+		$sql = "INSERT INTO pegawai VALUES('$id_pegawai','$nama_pegawai','$id_jabatan','$jenis_kelamin','$email','$alamat_pegawai','$telpon_pegawai','$file','$username','$hash','14','pegawai')";
 	 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 		if ($s == true && $uploadOk =='1') {
+			$z = mysqli_query($conn,"INSERT INTO pegawai_group VALUES('','$id_pegawai','','')") or die(mysqli_error());
 			echo "<script>alert('DATA BERHASIL DI TAMBAH )</script>";
 		}else {
 			echo "<script>alert('DATA GAGAL MASUK )</script>";

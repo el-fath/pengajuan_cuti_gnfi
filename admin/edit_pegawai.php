@@ -41,7 +41,8 @@
                   <div class="x_content">
                     <?php  
                         $id_pegawai=$_GET['id_pegawai'];
-                        $sql="SELECT * FROM pegawai WHERE id_pegawai='$id_pegawai'";
+                        $sql="SELECT  pegawai.id_pegawai,pegawai.nama_pegawai, pegawai.username,pegawai.status_pegawai,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email, pegawai.alamat_pegawai, pegawai_group.grup ,pegawai.telpon_pegawai, pegawai.foto 
+                              FROM pegawai, jabatan, pegawai_group  WHERE pegawai.id_pegawai='$id_pegawai'";
                         $query=mysqli_query($conn,$sql) or die (mysqli_error($conn));
                         $temp=mysqli_fetch_array($query);
                     ?>
@@ -68,7 +69,7 @@
                           <input type="text" name="username" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['username']; ?>" oninvalid="this.setCustomValidity('input hanya boleh a-z A-Z 1-9 tanpa spasi')">
                         </div>
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">STATUS</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div id="gender" class="btn-group" data-toggle="buttons">
@@ -79,6 +80,25 @@
                               <input type="radio" name="status_pegawai" value="pegawai" <?php if ($temp['status_pegawai']=='pegawai') {echo 'checked';} ?>/> Pegawai
                             </label>
                           </div>
+                        </div>
+                      </div> -->
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">IS A KOORDINATOR ?</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select name="is_coordinator" class="form-control">
+                            <option value="1">YES</option>
+                            <option value="0">NO</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">GROUP</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select name="group" class="form-control">
+                            <option value="IT">IT</option>
+                            <option value="REDAKSI">REDAKSI</option>
+                            <option value="CREATIVE">CREATIVE</option>
+                          </select>
                         </div>
                       </div>
                       <div class="form-group">

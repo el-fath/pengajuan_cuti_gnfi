@@ -9,13 +9,16 @@
 	$alamat_pegawai = $_POST['alamat_pegawai'];
 	$telpon_pegawai = $_POST['telpon_pegawai'];
 	$status_pegawai	= $_POST['status_pegawai'];
+	$group          = $_POST['group'];
+	$is_coordinator = $_POST['is_coordinator'];
 	$file 			= $_FILES["foto"]["name"];
-	$pic_loc 		= $_FILES['foto']['tmp_name'];
+	$pic_loc 		= $_FILES["foto"]["tmp_name"];
 	$target_dir 	= "../img/";
   	$target_file 	= $target_dir . basename($_FILES["foto"]["name"]);
   	$uploadOk 		= 1;
   	$imageFileType 	= pathinfo($target_file,PATHINFO_EXTENSION);
-  	move_uploaded_file($pic_loc,$target_dir.$file);
+	
+	move_uploaded_file($pic_loc,$target_dir.$file);
 
 	// Periksa ukuran file================================================
 	if($_FILES["foto"]["name"] != ""){
@@ -41,7 +44,9 @@
   	}
 	$b = mysqli_query($conn,$a) or die (mysqli_error());
 	if ($b == true && $uploadOk =='1'){
+		$z = mysqli_query($conn,"UPDATE pegawai_group SET grup='$group', is_coordinator='$is_coordinator' WHERE id_pegawai='$id_pegawai'") or die(mysqli_error($conn));
 	echo "<script>alert('Proses edit $nama_pegawai berhasil')</script>";
+
 	}else{
 	echo "<script>alert('Mohon Maaf proses edit tidak berhasil')</script>";
 	}

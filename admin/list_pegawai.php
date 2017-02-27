@@ -53,7 +53,7 @@
                         <th>JABATAN</th>
                         <th>JENIS KELAMIN</th>
                         <th>EMAIL</th>
-                       
+                        <th>GROUP</th>
                         <th>TELPON PEGAWAI</th>
                        
                        
@@ -64,7 +64,10 @@
                           $limit = 10;  
                           if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
                           $start_from = ($page-1) * $limit; 
-                          $sql = "SELECT id_pegawai,nama_pegawai,jabatan,jenis_kelamin,email,alamat_pegawai,telpon_pegawai,foto,jatah_cuti, username FROM pegawai INNER JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan LIMIT $start_from, $limit";
+                          $sql = "SELECT pegawai.id_pegawai,pegawai.nama_pegawai,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email,pegawai_group.grup,pegawai.alamat_pegawai,pegawai.telpon_pegawai,pegawai.foto,pegawai.jatah_cuti, pegawai.username FROM pegawai 
+                            LEFT JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
+                            LEFT JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan 
+                            LIMIT $start_from, $limit";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                           $num_rows = mysqli_num_rows($s);
                           if (!empty($num_rows)) {
@@ -78,7 +81,7 @@
                           <td><?php echo $tmp['jabatan']; ?></td>
                           <td><?php echo $tmp['jenis_kelamin']; ?></td>
                           <td><?php echo $tmp['email']; ?></td>
-                          
+                          <td><?php echo $tmp['grup']; ?></td>
                           <td><?php echo $tmp['telpon_pegawai']; ?></td>
                           <td align="center">
                             <a href="#" class="btn btn-xs btn-success open_modal" id="<?php echo $tmp['id_pegawai'] ?>"><i class="glyphicon glyphicon-list"></i></a>
