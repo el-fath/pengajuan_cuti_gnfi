@@ -31,8 +31,8 @@
   <body class="nav-md">
  <?php 
     session_start();
-    include 'koneksi.php';
-    if ($_SESSION['status_pegawai'] != 'admin') {
+    include '../admin/koneksi.php';
+    if ($_SESSION['is_coordinator'] != '1') {
       header('location:../login.php');
     } else {    
   ?>

@@ -6,15 +6,15 @@
    <title></title>
    <link rel="stylesheet" href="">
    <link rel="shortcut icon" type="image/x-icon" href="../1487735199.ico">
-   <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   
     <!-- bootstrap-daterangepicker -->
-    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="../admin/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="../admin/build/css/custom.min.css" rel="stylesheet">
  </head>
  <body>
  <?php include 'header.php'; ?>
@@ -268,14 +268,14 @@
         <!-- /page content -->
       
  
-  <script src="vendors/jquery/dist/jquery.min.js"></script>
+  <script src="../admin/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
   
 
     <!-- Custom Theme Scripts -->
-    <script src="build/js/custom.min.js"></script>
+    <script src="../admin/build/js/custom.min.js"></script>
 
     <script type="text/javascript">
     function confirmdel(delete_url) {
