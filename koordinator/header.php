@@ -41,7 +41,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><img src="img/gnfi_logo.png" style="width: 30px; height: 30px; padding-left: 5px;" alt=""> <span>GNFI Dashboard</span></a>
+              <a href="index.php" class="site_title"><img src="../admin/img/gnfi_logo.png" style="width: 30px; height: 30px; padding-left: 5px;" alt=""> <span>GNFI Dashboard</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -54,7 +54,7 @@
                $sql = mysqli_query($conn,"SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
                while ($b = mysqli_fetch_assoc($sql)) {
               ?>
-                <img src="<?php echo"img/".$b['foto']; ?>" alt="..." class="img-circle profile_img">
+                <img src="<?php echo"../admin/img/".$b['foto']; ?>" alt="..." class="img-circle profile_img">
                 <?php } ?>
               </div>
 
@@ -110,7 +110,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="../ubah_password.php?&id_pegawai=<?php echo $_SESSION['id_pegawai']; ?>">Ganti Password</a></li>
-                    <li><a href="proses/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="../admin/proses/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

@@ -1,7 +1,7 @@
 <?php 
     session_start();
     include 'admin/koneksi.php';
-    if ($_SESSION['is_coordinator'] != '0') {
+    if (empty($_SESSION['username']))    {
       header('location:login.php');
     } else {
   ?>

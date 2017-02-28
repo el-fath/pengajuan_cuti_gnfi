@@ -27,11 +27,9 @@
 					if (isset($_POST['login'])) {
 						$username = $_POST['username'];
 						$userpass = $_POST['password'];
-						$status_pegawai = $_POST['status_pegawai']; 
+					
 						
-						$query = mysqli_query($conn, "SELECT pegawai.username, pegawai.password, pg.id_pegawai, pg.grup, pg.is_coordinator FROM pegawai_group AS pg
-							INNER JOIN pegawai ON pegawai.id_pegawai = pg.id_pegawai
-							WHERE username='$username'");
+						$query = mysqli_query($conn, "SELECT id_pegawai, username, nama_pegawai, password FROM pegawai WHERE username='$username'");
 						
 						if (mysqli_num_rows($query) > 0) {
 							$data = mysqli_fetch_assoc($query);
@@ -51,45 +49,13 @@
          //                            } else {
          //                                echo '<div class="alert alert-danger">Upss...!!! sorry username dan password tidak cocok</div>';
          //                            }
-         							if ($data['is_coordinator'] == 0) {
-         								$_SESSION['Username'] = $Username;   
+         							$sq = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE id_pegawai = '".$data['id_pegawai']."'") or die(mysqli_error($conn));
+         							$tmp = mysqli_fetch_assoc($sq);
+         								$_SESSION['username'] = $username;   
          								$_SESSION['id_pegawai'] = $data['id_pegawai'];
-         								$_SESSION['is_coordinator'] = $data['is_coordinator'];
-         								header("location:index.php");      	
-         							} elseif($data['is_coordinator'] == '1' && $data['grup'] == 'ADMIN') {
-         								$_SESSION['Username'] = $Username;   
-         								$_SESSION['id_pegawai'] = $data['id_pegawai'];
-         								$_SESSION['is_coordinator'] = $data['is_coordinator'];
-         								header("location:koordinator/index.php");      	
-         							} elseif($data['is_coordinator'] == '1' && $data['grup'] == 'TECHINNO') {
-         								$_SESSION['Username'] = $Username;   
-         								$_SESSION['id_pegawai'] = $data['id_pegawai'];
-         								$_SESSION['is_coordinator'] = $data['is_coordinator'];
-         								header("location:koordinator/index.php");      	
-         							} elseif($data['is_coordinator'] == '1' && $data['grup'] == 'REDAKSI') {
-         								$_SESSION['Username'] = $Username;   
-         								$_SESSION['id_pegawai'] = $data['id_pegawai'];
-         								$_SESSION['is_coordinator'] = $data['is_coordinator'];
-         								header("location:koordinator/index.php");      	
-         							} elseif($data['is_coordinator'] == '1' && $data['grup'] == 'CREATIVE') {
-         								$_SESSION['Username'] = $Username;   
-         								$_SESSION['id_pegawai'] = $data['id_pegawai'];
-         								$_SESSION['is_coordinator'] = $data['is_coordinator'];
-         								header("location:koordinator/index.php");      	
-         							} elseif($data['is_coordinator'] == '1' && $data['grup'] == 'OPERASIONAL') {
-         								$_SESSION['Username'] = $Username;   
-         								$_SESSION['id_pegawai'] = $data['id_pegawai'];
-         								$_SESSION['is_coordinator'] = $data['is_coordinator'];
-         								header("location:koordinator/index.php");      	
-         							} elseif($data['is_coordinator'] == '1' && $data['grup'] == 'MEDSOS') {
-         								$_SESSION['Username'] = $Username;   
-         								$_SESSION['id_pegawai'] = $data['id_pegawai'];
-         								$_SESSION['is_coordinator'] = $data['is_coordinator'];
-         								header("location:koordinator/index.php");      	
-         							} else {
-         								echo '<div class="alert alert-danger">Upss...!!! sorry username dan password tidak cocok</div>';
-         							}
-         							                  
+         								$_SESSION['is_coordinator'] = $tmp['is_coordinator'];
+         								$_SESSION['grup'] = $tmp['grup'];
+         								header("location:index.php");      	              
 							} else {
 								echo "username atau password tidak dikenali";
 							}
