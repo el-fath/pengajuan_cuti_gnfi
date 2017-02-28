@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -154,21 +154,8 @@
                                 <h5>DATA CUTI ANDA</h5>
                             </div>
                         </div>
-                        </div> 
-                        <div class="col-md-4 col-sm-4">
-                        <div class="portfolio-item">
-                            <div class="item-main">
-                                <div class="portfolio-image">
-                                    <img src="assets/img/x2.jpg" alt="">
-                                    <div class="overlay">
-                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".ajukan_barang"><i class="glyphicon glyphicon-pencil"></i></button>
-                                    </div>
-                                </div>
-                                <h5>AJUKAN BARANG ATAU ANGGARAN</h5>
-                            </div>
                         </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -381,6 +368,67 @@
             </div>
             </form>
             <?php } ?>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<div class="modal fade pegawai_cuti" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Data Pegawai Yang Sedang Cuti</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><strong>NAMA</strong></th>
+                            <th><strong>DIVISI</strong></th>
+                            <th><strong>MULAI CUTI</strong></th>
+                            <th><strong>AKHIR CUTI</strong></th>
+                            <th><strong>ALASAN</strong></th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $no=0; 
+                    $sql = "SELECT tgl_mulai_cuti,tgl_akhir_cuti, alasan, nama_pegawai, nama_cuti
+                            FROM permohonan_cuti
+                            INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
+                            INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
+                            ";
+                    $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
+                    $num_rows = mysqli_num_rows($s);
+                    if (!empty($num_rows)) {
+                    while ($tmp = mysqli_fetch_assoc($s)) {  
+                    $no++
+                    ?>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $tmp['nama_pegawai']; ?></td>
+                            <td><?php echo $tmp['nama_cuti']; ?></td>
+                            <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
+                            <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
+                            <td><?php echo $tmp['alasan']; ?></td>
+                        </tr>
+                     <?php }}else{ ?>
+                      <tr>
+                      <td align="center" colspan="9">Data Belum Tersedia</td>
+                      </tr>
+                      <?php } ?>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
         <!--/.Content-->
     </div>
