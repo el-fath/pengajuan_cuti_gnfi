@@ -41,7 +41,7 @@
                   <div class="x_content">
                     <?php  
                         $id_pegawai=$_GET['id_pegawai'];
-                        $sql="SELECT  pegawai.id_pegawai,pegawai.nama_pegawai, pegawai.username,pegawai.status_pegawai,jabatan.id_jabatan,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email, pegawai.alamat_pegawai, pegawai_group.grup ,pegawai.telpon_pegawai, pegawai.foto 
+                        $sql="SELECT  pegawai.id_pegawai,pegawai.nama_pegawai, pegawai.username,pegawai.status_pegawai,jabatan.id_jabatan,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email, pegawai.alamat_pegawai, pegawai_group.grup ,pegawai.telpon_pegawai, pegawai.foto, pegawai_group.is_coordinator 
                               FROM pegawai, jabatan, pegawai_group  WHERE pegawai.id_pegawai='$id_pegawai'";
                         $query=mysqli_query($conn,$sql) or die (mysqli_error($conn));
                         $temp=mysqli_fetch_array($query);
@@ -86,8 +86,8 @@
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">IS A KOORDINATOR ?</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="is_coordinator" class="form-control">
-                            <option value="1">YES</option>
-                            <option value="0">NO</option>
+                            <option <?= $temp['is_coordinator'] == '1' ?'selected':'' ?> value="1">YES</option>
+                            <option <?= $temp['is_coordinator'] == '0' ?'selected':'' ?> value="0">NO</option>
                           </select>
                         </div>
                       </div>
@@ -95,9 +95,12 @@
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">GROUP</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="group" class="form-control">
-                            <option value="IT">IT</option>
-                            <option value="REDAKSI">REDAKSI</option>
-                            <option value="CREATIVE">CREATIVE</option>
+                            <option <?= $temp['grup']=='ADMIN' ?'selected':'' ?>       value="ADMIN">ADMIN</option>
+                            <option <?= $temp['grup']=='TECHINNO' ?'selected':'' ?>    value="TECHINNO">TECHINNO</option>
+                            <option <?= $temp['grup']=='REDAKSI' ?'selected':'' ?>     value="REDAKSI">REDAKSI</option>
+                            <option <?= $temp['grup']=='CREATIVE' ?'selected':'' ?>    value="CREATIVE">CREATIVE</option>
+                            <option <?= $temp['grup']=='OPERASIONAL' ?'selected':'' ?> value="OPERASIONAL">OPERASIONAL</option>
+                            <option <?= $temp['grup']=='MEDSOS' ?'selected':'' ?>      value="MEDSOS">MEDSOS</option>
                           </select>
                         </div>
                       </div>

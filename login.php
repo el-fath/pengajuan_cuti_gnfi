@@ -64,12 +64,12 @@
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="password" type="password" value="" required>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<select name="status_pegawai" class="form-control">
 									<option value="admin">Admin</option>
 									<option value="pegawai">Pegawai</option>
 								</select>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<a href="admin/tambah_pegawai.php">Register Pegawai</a>
 							</div>

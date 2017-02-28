@@ -45,6 +45,8 @@
 	$b = mysqli_query($conn,$a) or die (mysqli_error());
 	if ($b == true && $uploadOk =='1'){
 		$z = mysqli_query($conn,"UPDATE pegawai_group SET grup='$group', is_coordinator='$is_coordinator' WHERE id_pegawai='$id_pegawai'") or die(mysqli_error($conn));
+		var_dump($z);
+		die();
 	echo "<script>alert('Proses edit $nama_pegawai berhasil')</script>";
 
 	}else{
