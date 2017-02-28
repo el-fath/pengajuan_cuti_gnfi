@@ -34,8 +34,8 @@
     <link href="assets/css/ihover.css" rel="stylesheet" />
 </head>
 <body>
-    <<?php include 'header.php'; ?>
-    <<?php include 'koneksi.php'; ?>
+    <?php include 'header.php'; ?>
+    <?php include 'koneksi.php'; ?>
     <!--HOME SECTION-->
     <div id="home-sec">
     <div class="container" >
@@ -70,12 +70,12 @@
     <!--END HOME SECTION--> 
     <!-- PORTFOLIO SECTION-->
    <section id="port-sec">
-       <div class="container-fluid">
+       <div class="container">
            <div class="row g-pad-bottom" >
                     <?php
                     if(isset($_GET['id_pcuti'])){
                     include "cetak_men.php";
-                    }?> <div class="col-md-6 col-sm-4">
+                    }?> <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -87,8 +87,47 @@
                                 <h5>AJUKAN CUTI</h5>
                             </div>
                         </div>
-                        </div>                     
-                        <div class="col-md-6 col-sm-4">
+                        </div>
+                        <?php 
+                        $id_pegawai=$_SESSION['id_pegawai'];
+                        $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
+                        $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
+                        while ($t = mysqli_fetch_assoc($a)) {
+                            if (['is_coordinator'] == '1') {
+                        ?>
+                        <div class="col-md- col-sm-4">
+                        <div class="portfolio-item">
+                            <div class="item-main">
+                                <div class="portfolio-image">
+                                    <img src="assets/img/x2.jpg" alt="">
+                                    <div class="overlay">
+                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".pegawai_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    </div>
+                                </div>
+                                <h5>FORM APPROVEL</h5>
+                            </div>
+                        </div>
+                        </div>
+                        <?php 
+                        }else{
+                        ?>                     
+                        <div class="col-md- col-sm-4">
+                        <div class="portfolio-item">
+                            <div class="item-main">
+                                <div class="portfolio-image">
+                                    <img src="assets/img/x2.jpg" alt="">
+                                    <div class="overlay">
+                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".pegawai_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    </div>
+                                </div>
+                                <h5>PEGAWAI YANG SEDANG CUTI</h5>
+                            </div>
+                        </div>
+                        </div>
+                        <?php 
+                        }}
+                        ?>
+                        <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -100,8 +139,8 @@
                                 <h5>AJUKAN BARANG ATAU ANGGARAN</h5>
                             </div>
                         </div>
-                        </div> 
-                        <div class="col-md-6 col-sm-4">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -110,11 +149,24 @@
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".data_cuti"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
                                 </div>
-                                <h5>DATA CUTI</h5>
+                                <h5>DATA CUTI ANDA</h5>
                             </div>
                         </div>
                         </div> 
-                        <div class="col-md-6 col-sm-4">
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
+                            <div class="item-main">
+                                <div class="portfolio-image">
+                                    <img src="assets/img/x2.jpg" alt="">
+                                    <div class="overlay">
+                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".ajukan_barang"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    </div>
+                                </div>
+                                <h5>AJUKAN BARANG ATAU ANGGARAN</h5>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -123,7 +175,7 @@
                                         <button class="preview btn btn-success" data-toggle="modal" data-target=".data_barang"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
                                 </div>
-                                <h5>DATA BARANG DAN ANGGARAN</h5>
+                                <h5>DATA BARANG DAN ANGGARAN ANDA</h5>
                             </div>
                         </div>
                         </div>
