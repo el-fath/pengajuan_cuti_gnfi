@@ -1,7 +1,7 @@
 <?php 
     session_start();
     include 'admin/koneksi.php';
-    if ($_SESSION['status_pegawai'] != 'pegawai') {
+    if ($_SESSION['is_coordinator'] != '0') {
       header('location:login.php');
     } else {
   ?>
