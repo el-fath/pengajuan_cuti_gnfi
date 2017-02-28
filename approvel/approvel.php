@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>INTERNAL WEBSITE GNFI</title>
     <!--REQUIRED STYLE SHEETS-->
-    <link rel="shortcut icon" type="../image/x-icon" href="1487735199.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../1487735199.ico">
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLE CSS -->
@@ -34,7 +34,7 @@
     <link href="../assets/css/ihover.css" rel="stylesheet" />
 </head>
 <body>
-    <?php include '../header.php'; ?>
+    <?php include 'header.php'; ?>
     <?php include '../koneksi.php'; ?>
     <!--HOME SECTION-->
     <div id="home-sec">
@@ -55,39 +55,117 @@
                 while ($row = mysqli_fetch_assoc($s)) {
                 ?>
             <div class="col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">
-                <h4>Welcome To Good News <?php echo $_SESSION['username']; ?></h4>
-                <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
+                <h4>Welcome To Approvel Page <?php echo $_SESSION['username'];} ?></h4>
             </div>
         </div>
     </div>
     </div>
     <!--END HOME SECTION--> 
-    <!-- PORTFOLIO SECTION-->
-   <section id="port-sec">
-       <div class="container">
-           <div class="row g-pad-bottom" >
-                <div class="table-responsive">
+    <div class="container" id="port-sec">
+       <div class="row g-pad-bottom">
+            <h2><center>Data Pegawai Yang Mengajukan Cuti</center> </h2>
+            <div class="table-responsive">
+                  <table class="table table-striped table-bordered table-hover" >
+                  <tr>
+                    <th><strong>NO</strong></th>
+                    <th><strong>NAMA PEGAWAI</strong></th>
+                    <!-- <th><strong>JENIS CUTI</strong></th> -->
+                    <th><strong>TGL PENGAJUAN</strong></th>
+                    <!-- <th><strong>LAMA CUTI</strong></th> -->
+                    <th><strong>MULAI CUTI</strong></th>
+                    <th><strong>AKHIR CUTI</strong></th>
+                    <th><strong>LAMA CUTI</strong></th>
+                    <th><strong>ALASAN CUTI</strong></th>
+                    <th><strong>JENIS CUTI</strong></th>
+                    <th><strong>JATAH CUTI</strong></th>
+                    <th><strong>STATUS</strong></th>
+                    <th colspan="3"><center>ACTION</center></th>
+                  </tr>  
+                  <?php
+                      $no=0;
+                      $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, alasan , jatah_cuti, lama_cuti
+                              FROM permohonan_cuti
+                              INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
+                              INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
+                              ORDER BY tgl_pengajuan DESC";
+                      $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
+                      $num_rows = mysqli_num_rows($s);
+                      if (!empty($num_rows)) {
+                      while ($tmp = mysqli_fetch_assoc($s)) {  
+                      $no++
+                  ?>
+                  <tr>
+                      <td align="center"><?php echo $no; ?></td>
+                      <td><?php echo $tmp['nama_pegawai']; ?></td>
+                      <!-- <td><?php echo $tmp['nama_cuti']; ?></td> -->
+                      <td><?php echo $tmp['tgl_pengajuan']; ?></td>
+                      <!-- <td><?php echo $tmp['lama_cuti']; ?></td> -->
+                      <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
+                      <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
+                      <td align="center"><?php echo $tmp['lama_cuti']; ?></td>
+                      <td><?php echo $tmp['alasan']; ?></td>
+                      <td><?php echo $tmp['nama_cuti']; ?></td>
+                      <td align="center"><?php echo $tmp['jatah_cuti']; ?></td>
+                      <!-- <td><?php echo $tmp['status']; ?></td> -->
+                      <td>
+                        <?php if ($tmp['status']=='disetujui'){ ?>
+                            <span class="label label-success" style="font-size: 12px;">disetujui</span>
+                        <?php } elseif ($tmp['status'] == 'ditolak') { ?>
+                            <span class="label label-danger" style="font-size: 12px;">ditolak</span>
+                        <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
+                            <span class="label label-warning" style="font-size: 12px;">Belum dikonfirmasi</span>
+                        <?php } ?>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-check"></i> setujui</a>
+                      </td>
+                      <td align="center">
+                        <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                      </td>
+                      <td align="center"> 
+                         <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                      </td>
+                  </tr>
+                  <?php }}else{ ?>
+                  <tr>
+                  <td align="center" colspan="10">Data Belum Tersedia</td>
+                  </tr>
+                  <?php } ?>
+                </table>  
+            </div>
+        </div>
+    </div>
+
+<div class="container" id="port-sec">
+       <div class="row g-pad-bottom">
+            <h2><center>Data Pegawai Yang Mengajukan Barang Dan Anggaran</center> </h2>
+            <div class="table-responsive">
                       <table class="table table-striped table-bordered table-hover" >
                       <tr>
+                        <th><strong>NO</strong></th>
                         <th><strong>NAMA PEGAWAI</strong></th>
-                        <!-- <th><strong>JENIS CUTI</strong></th> -->
                         <th><strong>TGL PENGAJUAN</strong></th>
                         <!-- <th><strong>LAMA CUTI</strong></th> -->
-                        <th><strong>MULAI CUTI</strong></th>
-                        <th><strong>AKHIR CUTI</strong></th>
-                        <th><strong>LAMA CUTI</strong></th>
-                        <th><strong>ALASAN CUTI</strong></th>
-                        <th><strong>JENIS CUTI</strong></th>
-                        <th><strong>JATAH CUTI</strong></th>
+                        <th><strong>KATEGORI BARANG</strong></th>
+                        <th><strong>NAMA BARANG</strong></th>
+                        <th><strong>BERKAS</strong></th>
+                        
+                        <th><strong>ALASAN</strong></th>
                         <th><strong>STATUS</strong></th>
                         <th colspan="3"><center>ACTION</center></th>
                       </tr>  
-                      <?php
-                          $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, alasan , jatah_cuti, lama_cuti
-                                  FROM permohonan_cuti
-                                  INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
-                                  INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
-                                  ORDER BY tgl_pengajuan DESC";
+                      <?php 
+                        $no=0; 
+                          $limit = 10;  
+                          if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+                          $start_from = ($page-1) * $limit; 
+                          $sql = "SELECT id_pbarang,status,nama_pegawai,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan 
+                                  FROM pengadaan_barang
+                                  INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
+                                  INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
+                                  ORDER BY tgl_pengajuan DESC
+                                  LIMIT $start_from, $limit
+                                  ";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                           $num_rows = mysqli_num_rows($s);
                           if (!empty($num_rows)) {
@@ -95,46 +173,44 @@
                           $no++
                       ?>
                       <tr>
+                          <td align="center"><?php echo $no; ?></td>
                           <td><?php echo $tmp['nama_pegawai']; ?></td>
-                          <!-- <td><?php echo $tmp['nama_cuti']; ?></td> -->
                           <td><?php echo $tmp['tgl_pengajuan']; ?></td>
-                          <!-- <td><?php echo $tmp['lama_cuti']; ?></td> -->
-                          <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
-                          <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
-                          <td align="center"><?php echo $tmp['lama_cuti']; ?></td>
+                          <td><?php echo $tmp['kategori']; ?></td>
+                          <td><?php echo $tmp['nama_barang'] ?></td>
+                          <td><a href="<?php echo'../berkas/'.$tmp['berkas']; ?>" ><?php echo $tmp['berkas'];  ?></a></td>
+                          
                           <td><?php echo $tmp['alasan']; ?></td>
-                          <td><?php echo $tmp['nama_cuti']; ?></td>
-                          <td align="center"><?php echo $tmp['jatah_cuti']; ?></td>
-                          <!-- <td><?php echo $tmp['status']; ?></td> -->
                           <td>
-                            <?php if ($tmp['status']=='disetujui'){ ?>
-                                <span class="label label-success" style="font-size: 12px;">disetujui</span>
-                            <?php } elseif ($tmp['status'] == 'ditolak') { ?>
-                                <span class="label label-danger" style="font-size: 12px;">ditolak</span>
-                            <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
-                                <span class="label label-warning" style="font-size: 12px;">Belum dikonfirmasi</span>
-                            <?php } ?>
+                        <?php if ($tmp['status']=='disetujui'){ ?>
+                            <span class="label label-success" style="font-size: 12px;">disetujui</span>
+                        <?php } elseif ($tmp['status'] == 'ditolak') { ?>
+                            <span class="label label-danger" style="font-size: 12px;">ditolak</span>
+                        <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
+                            <span class="label label-warning" style="font-size: 12px;">Belum dikonfirmasi</span>
+                        <?php } ?>
+                      </td>
+                          <td align="center">
+                            <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-check"></i> setujui</a>
                           </td>
                           <td align="center">
-                            <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-check"></i> setujui</a>
+                            <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
                           </td>
-                          <td align="center">
-                            <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
-                          </td>
-                          <td align="center"> 
-                             <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                           <td align="center"> 
+                             <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
                           </td>
                       </tr>
-                      <?php }}else{ ?>
+                     <?php }}else{ ?>
                       <tr>
-                      <td align="center" colspan="10">Data Belum Tersedia</td>
+                      <td align="center" colspan="9">Data Belum Tersedia</td>
                       </tr>
                       <?php } ?>
-                    </table>  
-                </div>
-           </div>
-       </div>
-   </section>
+                    </table>
+
+                    </div>
+        </div>
+    </div>
+
    <div class="modal fade" id="modal_delete" style="margin-top: 150px">
                 <div class="modal-dialog">
                     <div class="modal-content" style="margin-top:100px;">
