@@ -7,7 +7,7 @@
 <div class="modal-dialog" style="margin-top: 150px">
     <div class="modal-content">
         <div class="modal-body">
-          	<form role="form" action="proses_jon.php" enctype="multipart/form-data" method="POST">
+          	<form role="form" action="admin/proses_jon.php" enctype="multipart/form-data" method="POST">
                 <?php if ($r['jatah_cuti'] != '0'){ ?>
                 <div class="form-group" style="padding-bottom: 20px;">
                   	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menyetujui....!</h1>

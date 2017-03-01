@@ -8,7 +8,7 @@
 <div class="modal-dialog" style="margin-top: 150px">
     <div class="modal-content">
         <div class="modal-body">
-          	<form role="form" action="proses_tolak_jon.php" enctype="multipart/form-data" method="POST">
+          	<form role="form" action="admin/proses_tolak_jon.php" enctype="multipart/form-data" method="POST">
                 <div class="form-group" style="padding-bottom: 20px;">
                   	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menolak....!</h1>
                   	<input type="hidden" name="id_pcuti"  class="form-control" value="<?php echo $r['id_pcuti']; ?>" />
