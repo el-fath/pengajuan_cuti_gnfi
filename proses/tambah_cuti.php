@@ -9,6 +9,7 @@ $tgl_mulai_cuti = $_POST['tgl_mulai_cuti'];
 $tgl_akhir_cuti = $_POST['tgl_akhir_cuti'];
 $alasan = $_POST['alasan'];
 $status = 'Belum dikonfirmasi';
+$grup = $_SESSION['grup']
 $selisih = (strtotime($tgl_akhir_cuti) - strtotime($tgl_mulai_cuti))/(60*60*24);
 
 $sql1 = mysqli_query($conn, "SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
@@ -18,7 +19,14 @@ if ($selisih <= $row['jatah_cuti']) {
 	$sql = "INSERT INTO permohonan_cuti VALUES('','$id_pegawai','$id_jcuti', '$tgl_pengajuan','$selisih', '$tgl_mulai_cuti','$tgl_akhir_cuti','$alasan','$status','','')";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	if ($s) {
-		$b = mysqli_query($conn,"INSERT INTO pegawai_approval_list VALUES('','','$id_pcuti','cuti','$tgl_pengajuan','0')") or die(mysqli_error($conn));
+		$last_insert = mysqli_insert_id($conn);
+		if($_SESSION['is_coordinator'] == 0){
+			$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 && grup='grup' ") or die(mysqli_error($conn));
+			$userdata = mysqli_fetch_assoc($query);
+			$id_coordinator = $userdata['id_pegawai'];
+
+			$insert = mysqli_query($conn,"INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','cuti', now(),0)") or die (mysqli_error($conn));
+		}
 	echo "<script>alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
 	}
 } else {
