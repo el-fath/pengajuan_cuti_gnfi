@@ -21,7 +21,7 @@ if ($selisih <= $row['jatah_cuti']) {
 	if ($s) {
 		$last_insert = mysqli_insert_id($conn);
 		if($_SESSION['is_coordinator'] == 0){
-			$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 && grup='grup' ") or die(mysqli_error($conn));
+			$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 AND grup='grup' ") or die(mysqli_error($conn));
 			$userdata = mysqli_fetch_assoc($query);
 			$id_coordinator = $userdata['id_pegawai'];
 
