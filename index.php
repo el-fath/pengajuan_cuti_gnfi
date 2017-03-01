@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-md-6 col-sm-4">
+                        <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -155,7 +155,11 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-md-6 col-sm-4">
+                        <div class="col-md-4 col-sm-4">
+                        <div class="portfolio-item">
+                        </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image">
@@ -398,10 +402,11 @@
                     </thead>
                     <?php
                     $no=0; 
-                    $sql = "SELECT tgl_mulai_cuti,tgl_akhir_cuti, alasan, nama_pegawai, nama_cuti
+                    $sql = "SELECT tgl_mulai_cuti,tgl_akhir_cuti, alasan, nama_pegawai, nama_cuti, status
                             FROM permohonan_cuti
                             INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
                             INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
+                            WHERE status = 'disetujui'
                             ";
                     $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                     $num_rows = mysqli_num_rows($s);
