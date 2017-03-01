@@ -93,7 +93,23 @@
                         $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
                         $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
                         while ($t = mysqli_fetch_assoc($a)) {
-                            if ($t['is_coordinator'] == '1') {
+                            if ($t['is_coordinator'] == '0') {
+                        ?>
+                        <div class="col-md- col-sm-4">
+                        <div class="portfolio-item">
+                            <div class="item-main">
+                                <div class="portfolio-image">
+                                    <img src="assets/img/x2.jpg" alt="">
+                                    <div class="overlay">
+                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".pegawai_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    </div>
+                                </div>
+                                <h5>PEGAWAI YANG SEDANG CUTI</h5>
+                            </div>
+                        </div>
+                        </div>
+                        <?php 
+                        }else{
                         ?>
                         <div class="col-md- col-sm-4">
                         <div class="portfolio-item">
@@ -107,22 +123,6 @@
                                     </div>
                                 </div>
                                 <h5>FORM APPROVEL</h5>
-                            </div>
-                        </div>
-                        </div>
-                        <?php 
-                        }else{
-                        ?>                     
-                        <div class="col-md- col-sm-4">
-                        <div class="portfolio-item">
-                            <div class="item-main">
-                                <div class="portfolio-image">
-                                    <img src="assets/img/x2.jpg" alt="">
-                                    <div class="overlay">
-                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".pegawai_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
-                                    </div>
-                                </div>
-                                <h5>PEGAWAI YANG SEDANG CUTI</h5>
                             </div>
                         </div>
                         </div>
