@@ -32,6 +32,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <link href="assets/css/ihover.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -81,12 +82,13 @@
             	<th colspan="3"><center>ACTION</center></th>
             </tr>
             <?php 
-	              $limit = 10;  
+	              $limit = 5;  
 	              if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 	              $start_from = ($page-1) * $limit; 
-	              $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, alasan , jatah_cuti, lama_cuti
+	              $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, alasan , jatah_cuti, lama_cuti ,grup
 	                      FROM permohonan_cuti
 	                      INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
+	                      INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
 	                      INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
 	                      ORDER BY tgl_pengajuan DESC
 	                      LIMIT $start_from, $limit";
@@ -113,10 +115,10 @@
                     <?php } ?>
                 </td>
         		<td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-check"></i> setujui</a>
+                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup']? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
                 </td>
                 <td align="center"> 
                      <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
@@ -124,7 +126,7 @@
           	</tr>
           	<?php }}else{ ?>
             <tr>
-                <td align="center" colspan="10">Data Belum Tersedia</td>
+                <td align="center" colspan="8">Data Belum Tersedia</td>
             </tr>
             <?php } ?>
         </table>
@@ -137,14 +139,35 @@
               $total_pages = ceil($total_records / $limit);  
               $pagLink = "<ul class='pagination' style='padding-left: 179px;'>";  
               for ($i=1; $i<=$total_pages; $i++) {  
-                           $pagLink .= "<li><a href='data_cuti.php?page=".$i."'>".$i."</a></li>";  
+                           $pagLink .= "<li><a href='approvel.php?page=".$i."'>".$i."</a></li>";  
               };  
               echo $pagLink . "</ul";  
               ?>
         </div>
     </div>
     <!--END CONTACT SECTION-->
-
+     <!-- modal setuju -->
+        <div id="modalsetuju" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of modal setuju -->
+        <!-- modal tolak -->
+        <div id="modaltolak" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of modal tolak -->
     <!--FOOTER SECTION -->
     <?php include 'footer.php'; ?>
     <!-- END FOOTER SECTION -->
@@ -152,7 +175,6 @@
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY  -->
 <!--     <script src="jquery-2.2.2.js"></script> -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <!-- BOOTSTRAP CORE SCRIPT   -->
     <script src="assets/plugins/bootstrap.min.js"></script>  
      <!-- ISOTOPE SCRIPT   -->
@@ -160,7 +182,7 @@
     <!-- PRETTY PHOTO SCRIPT   -->
     <script src="assets/plugins/jquery.prettyPhoto.js"></script>    
     <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+    <!-- 	<script src="assets/js/custom.js"></script> -->
   <!--   <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script> -->
     <!-- polyfiller file to detect and load polyfills -->
     <!-- <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
@@ -169,5 +191,37 @@
       webshims.setOptions('forms-ext', {types: 'date'});
       webshims.polyfill('forms forms-ext');
     </script> -->
+    <script type="text/javascript">
+    $(document).ready(function () {
+       $(".open_modal").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "admin/setuju.php",
+            type: "get",
+            data : {id_pcuti: m,},
+            success: function (ajaxData){
+              $("#modalsetuju").html(ajaxData);
+              $("#modalsetuju").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+       $(".open_jon").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "admin/tolak.php",
+            type: "get",
+            data : {id_pcuti: m,},
+            success: function (ajaxData){
+              $("#modaltolak").html(ajaxData);
+              $("#modaltolak").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
+    </script>
 </body>
 </html>
