@@ -82,10 +82,10 @@
             	<th colspan="3"><center>ACTION</center></th>
             </tr>
             <?php 
-	              $limit = 5;  
+	              $limit = 10;  
 	              if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 	              $start_from = ($page-1) * $limit; 
-	              $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, alasan , jatah_cuti, lama_cuti ,grup
+	              $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, 	   alasan , jatah_cuti, lama_cuti ,grup
 	                      FROM permohonan_cuti
 	                      INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
 	                      INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai

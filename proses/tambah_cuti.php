@@ -18,6 +18,7 @@ if ($selisih <= $row['jatah_cuti']) {
 	$sql = "INSERT INTO permohonan_cuti VALUES('','$id_pegawai','$id_jcuti','$tgl_pengajuan', '$selisih', '$tgl_mulai_cuti','$tgl_akhir_cuti','$alasan','$status','','')";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	if ($s) {
+		
 	echo "<script>alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
 	}
 } else {
