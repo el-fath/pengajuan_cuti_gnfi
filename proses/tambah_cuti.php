@@ -28,7 +28,7 @@ if ($selisih <= $row['jatah_cuti']) {
 		
 			$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
 
-		}
+		} 
 		// mulai mengirim ke pegawai di atas koordinator
 	$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
 	$approv_data = mysqli_fetch_array($approvq);
