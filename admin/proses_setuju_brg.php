@@ -13,7 +13,7 @@ if ($_POST['id_jcuti'] != '2' ) {
 
 	$approve_user = mysqli_fetch_array($approve);
 
-	$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND object_id ='$id_pcuti'";
+	$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$approve_user' AND object_id ='$id_pcuti'";
 } else {
 
 }
