@@ -9,7 +9,7 @@ $id_jcuti = $_POST['id_jcuti'];
 	
 if ($_POST['id_jcuti'] != '2' ) {
 	if ($_SESSION['is_coordinator'] == '1'){
-		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND object_id ='$id_pcuti'"; 
+		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND object_id ='$id_pcuti' AND type = 'cuti'"; 
 	}else{
 		$approve = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die (mysqli_error($conn));
 		$approve_user = mysqli_fetch_array($approve);

@@ -176,6 +176,8 @@
            </div>
        </div>
    </section>
+
+   <h2>Good Luck</h2>
      <!-- END PORTFOLIO SECTION-->
 
 <!-- Large modal -->
