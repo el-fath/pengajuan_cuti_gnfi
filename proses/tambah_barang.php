@@ -54,12 +54,12 @@ if(isset($_POST['btnUpload'])){
 			} 
 			$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
 			$approv_data = mysqli_fetch_array($approvq);
-				foreach($approv_data as $user) {
+				
 					$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
 									VALUES ('','".$approv_data['id_pegawai']."','$last_insert','cuti',now(),0)";
 				
 					$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
-				}
+			
 			echo "<script> alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
 		} else{
 			echo '<script>alert("pengajuan anda gagal dikirim")</script>';
