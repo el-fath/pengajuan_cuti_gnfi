@@ -10,7 +10,11 @@ $id_jcuti = $_POST['id_jcuti'];
 if ($_POST['id_jcuti'] != '2' ) {
 	if ($_SESSION['is_coordinator'] == '1'){
 		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND object_id ='$id_pcuti'"; 
-	}else{echo "<script>alert('salah jon')</script>";}
+	}else{
+		$approve = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die (mysqli_error($conn));
+		$approve_user = mysqli_fetch_array($approve);
+		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."' AND object_id ='$id_pcuti'";
+	}
 	// $sql = "UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'";
 	// $b = mysqli_query($conn, "INSERT into pegawai_approval VALUES ('','$id_pegawai','$tgl_sah')") or die(mysqli_error($conn));
 }else{
