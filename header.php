@@ -9,7 +9,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">        
     <div class="container">
         <div class="navbar-header" >
-        <a class="navbar-brand" href="#" style="padding-top: 0px;">
+        <a class="navbar-brand" href="index.php" style="padding-top: 0px;">
             <img src="https://www.goodnewsfromindonesia.id/assets/front/main/logo-gnfi.png" alt="Good News from Indonesia" style="height: 65px;">
         </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

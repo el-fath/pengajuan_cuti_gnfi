@@ -38,36 +38,7 @@
     <?php include 'header.php'; ?>
     <?php include 'koneksi.php'; ?>
     <!--HOME SECTION-->
-    <div id="home-sec">
-    <div class="container" >
-        <div class="row text-center">
-            <div  class="col-md-12 col-sm-12" >
-                <div class="col-md-12">
-                <!-- <img src="assets/img/gnfi.png" style="width: 350px; height: 110px;" alt="">                    -->
-                </div>
-                <a  href="#port-sec">
-                <?php  
-                   $id_pegawai = $_SESSION['id_pegawai'];
-                   $sql = mysqli_query($conn,"SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
-                   while ($b = mysqli_fetch_assoc($sql)) {
-                ?>
-                <img src="<?php echo"admin/img/".$b['foto']; ?>" alt="..." class="img-circle profile_img" style="width: 200px; height: 200px">
-                <?php } ?>
-                </a>
-            </div>
-            <?php 
-                $id_pegawai = $_SESSION['id_pegawai'];
-                $sql = "SELECT * FROM pegawai WHERE id_pegawai ='$id_pegawai'";
-                $s = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                while ($row = mysqli_fetch_assoc($s)) {
-                ?>
-                <div class="col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">
-                <h4>Welcome To Good News <?php echo $_SESSION['username']; ?></h4>
-                <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
-                </div>
-        </div>
-    </div>
-    </div>
+<div class="container">
     <?php 
     $id_pegawai=$_SESSION['id_pegawai'];
     $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
@@ -75,9 +46,9 @@
     while ($t = mysqli_fetch_assoc($a)) {
         if ($t['is_coordinator'] == '1') {
     ?>
-    <div class="container">
-        <h2><center>Halaman Approvel</center></h2>
-        <table border="2" align="center" class="table table-bordered">
+        <h2 style="padding-top: 80px;"><center>Halaman Approvel</center></h2>
+        <div class="table-responsive">
+        <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
             <tr>
             	<th>NAMA</th>
             	<th>TGL PENGAJUAN</th>
@@ -138,6 +109,7 @@
             <?php } ?>
         </table>
         </div>
+          
             <?php  
               $sql = "SELECT COUNT(id_pcuti) FROM permohonan_cuti ";  
               $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
@@ -153,7 +125,10 @@
           <?php 
           }else{
           ?>
-          <div class="container">
+        </div>
+
+<div class="container">
+          
         <h2><center>Halaman Approvel</center></h2>
         <table border="2" align="center" class="table table-bordered">
             <tr>
@@ -215,14 +190,16 @@
             </tr>
             <?php } ?>
         </table>
-        </div>
+</div>
+        <div class="container">
+          
             <?php  
               $sql = "SELECT COUNT(id_pcuti) FROM permohonan_cuti ";  
               $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
               $row = mysqli_fetch_row($rs_result);  
               $total_records = $row[0];  
               $total_pages = ceil($total_records / $limit);  
-              $pagLink = "<ul class='pagination' style='padding-left: 179px;'>";  
+              $pagLink = "<ul class='pagination' style='padding-left: 150px;'>";  
               for ($i=1; $i<=$total_pages; $i++) {  
                            $pagLink .= "<li><a href='approvel.php?page=".$i."'>".$i."</a></li>";  
               };  
@@ -231,6 +208,8 @@
             <?php 
             }}
             ?>
+        </div>
+
     <!--END CONTACT SECTION-->
      <!-- modal setuju -->
         <div id="modalsetuju" class="modal fade" role="dialog" style="margin-top:100px;">

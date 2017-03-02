@@ -78,10 +78,10 @@
                     }?> <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
-                                <div class="portfolio-image">
+                                <div class="portfolio-image" data-toggle="modal" data-target=".ajukan_cuti">
                                     <img src="assets/img/98598-OLDMHL-591.jpg" alt="">
                                     <div class="overlay">
-                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".ajukan_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
+                                        <button class="preview btn btn-primary" ><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
                                 </div>
                                 <h5>AJUKAN CUTI</h5>
@@ -98,10 +98,10 @@
                         <div class="col-md- col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
-                                <div class="portfolio-image">
+                                <div class="portfolio-image" data-toggle="modal" data-target=".pegawai_cuti">
                                     <img src="assets/img/x2.jpg" alt="">
                                     <div class="overlay">
-                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".pegawai_cuti"><i class="glyphicon glyphicon-pencil"></i></button>
+                                        <button class="preview btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
                                 </div>
                                 <h5>PEGAWAI YANG SEDANG CUTI</h5>
@@ -114,14 +114,14 @@
                         <div class="col-md- col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
+                            <a href="approvel.php">
                                 <div class="portfolio-image">
                                     <img src="assets/img/x2.jpg" alt="">
                                     <div class="overlay">
-                                        <a href="approvel.php">
                                         <button class="preview btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
-                                        </a>
                                     </div>
                                 </div>
+                            </a>
                                 <h5>FORM APPROVEL</h5>
                             </div>
                         </div>
@@ -132,10 +132,10 @@
                         <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
-                                <div class="portfolio-image">
+                                <div class="portfolio-image" data-toggle="modal" data-target=".ajukan_barang">
                                     <img src="assets/img/x2.jpg" alt="">
                                     <div class="overlay">
-                                        <button class="preview btn btn-primary" data-toggle="modal" data-target=".ajukan_barang"><i class="glyphicon glyphicon-pencil"></i></button>
+                                        <button class="preview btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
                                 </div>
                                 <h5>AJUKAN BARANG ATAU ANGGARAN</h5>
@@ -145,10 +145,10 @@
                         <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
-                                <div class="portfolio-image">
+                                <div class="portfolio-image" data-toggle="modal" data-target=".data_cuti">
                                     <img src="assets/img/datacuti.png" alt="">
                                     <div class="overlay">
-                                        <button class="preview btn btn-success" data-toggle="modal" data-target=".data_cuti"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                        <button class="preview btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
                                 </div>
                                 <h5>DATA CUTI ANDA</h5>
@@ -162,10 +162,10 @@
                         <div class="col-md-4 col-sm-4">
                         <div class="portfolio-item">
                             <div class="item-main">
-                                <div class="portfolio-image">
+                                <div class="portfolio-image" data-toggle="modal" data-target=".data_barang">
                                     <img src="assets/img/OIUH600.png" alt="">
                                     <div class="overlay">
-                                        <button class="preview btn btn-success" data-toggle="modal" data-target=".data_barang"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                        <button class="preview btn btn-success" ><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
                                 </div>
                                 <h5>DATA BARANG DAN ANGGARAN ANDA</h5>
