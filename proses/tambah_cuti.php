@@ -9,7 +9,7 @@ $tgl_mulai_cuti = $_POST['tgl_mulai_cuti'];
 $tgl_akhir_cuti = $_POST['tgl_akhir_cuti'];
 $alasan = $_POST['alasan'];
 $status = 'Belum dikonfirmasi';
-$grup = $_SESSION['grup']
+$grup = $_SESSION['grup'];
 $selisih = (strtotime($tgl_akhir_cuti) - strtotime($tgl_mulai_cuti))/(60*60*24);
 
 $sql1 = mysqli_query($conn, "SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
@@ -21,11 +21,22 @@ if ($selisih <= $row['jatah_cuti']) {
 	if ($s) {
 		$last_insert = mysqli_insert_id($conn);
 		if($_SESSION['is_coordinator'] == 0){
-			$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 AND grup='grup' ") or die(mysqli_error($conn));
+			$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
 			$userdata = mysqli_fetch_assoc($query);
 			$id_coordinator = $userdata['id_pegawai'];
+			$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','cuti', now(),0)";
+		
+			$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
 
-			$insert = mysqli_query($conn,"INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','cuti', now(),0)") or die (mysqli_error($conn));
+		}
+		// mulai mengirim ke pegawai di atas koordinator
+	$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
+	$approv_data = mysqli_fetch_array($approvq);
+		foreach($approv_data as $user) {
+			$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
+							VALUES ('','".$approv_data['id_pegawai']."','$last_insert','cuti',now(),0)";
+		
+			$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
 		}
 	echo "<script>alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
 	}
@@ -34,7 +45,7 @@ if ($selisih <= $row['jatah_cuti']) {
 }
 ?>
 <meta http-equiv="refresh" content="0;URL='../index.php'" />
-
+<!-- 
 // mengambil id data terakhir yang dimasukkan
 $last_insert = mysqli_insert_id(($link);
 
@@ -113,4 +124,4 @@ foreach($approv_data as $user) {
 	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
 	mail($to, $subject, $message, $headers, "-f" . $from);
 	ini_restore(sendmail_from); // restore setting
-}
+} -->
