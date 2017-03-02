@@ -129,7 +129,7 @@
 
 <div class="container">
           
-        <h2><center>Halaman Approvel</center></h2>
+        <h2 style="padding-top: 80px;"><center>Halaman Approvel</center></h2>
         <table border="2" align="center" class="table table-bordered">
             <tr>
               <th>NAMA</th>
