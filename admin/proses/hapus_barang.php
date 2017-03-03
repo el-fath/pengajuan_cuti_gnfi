@@ -15,4 +15,4 @@
 	}
 
 ?>
-<meta http-equiv="refresh" content="0;URL='../data_barang.php'" />
+<meta http-equiv="refresh" content="0;URL='../../approvel.php'" />

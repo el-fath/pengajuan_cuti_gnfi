@@ -99,7 +99,7 @@
                     <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup']? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
                 </td>
                 <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
                 </td>
           	</tr>
           	<?php }}else{ ?>
@@ -181,7 +181,7 @@
                     <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
                 </td>
                 <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
                 </td>
             </tr>
             <?php }}else{ ?>
@@ -239,9 +239,10 @@
                 $limit = 10;  
                 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
                 $start_from = ($page-1) * $limit; 
-                $sql = "SELECT id_pbarang,status,nama_pegawai,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan 
+                $sql = "SELECT id_pbarang,status,nama_pegawai,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan, grup 
                         FROM pengadaan_barang
                         INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
+                        INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
                         INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
                         ORDER BY tgl_pengajuan DESC
                         LIMIT $start_from, $limit
@@ -258,7 +259,7 @@
               <td><?php echo $tmp['tgl_pengajuan']; ?></td>
               <td><?php echo $tmp['kategori']; ?></td>
               <td><?php echo $tmp['nama_barang'] ?></td>
-              <td><a href="<?php echo'../berkas/'.$tmp['berkas']; ?>" ><?php echo $tmp['berkas'];  ?></a></td>
+              <td><a href="<?php echo'berkas/'.$tmp['berkas']; ?>" ><?php echo $tmp['berkas'];  ?></a></td>
               <td><?php echo $tmp['alasan']; ?></td>
               <td>
                     <?php if ($tmp['status']=='disetujui'){ ?>
@@ -270,13 +271,13 @@
                     <?php } ?>
                 </td>
             <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
+                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup']? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup']? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
                 </td>
                 <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
                 </td>
             </tr>
             <?php }}else{ ?>
@@ -309,26 +310,31 @@
         <h2 style="padding-top: 80px;"><center>Halaman Approvel</center></h2>
         <table border="2" align="center" class="table table-bordered">
             <tr>
-              <th>NAMA</th>
-              <th>TGL PENGAJUAN</th>
-              <th>MULAI CUTI</th>
-              <th>AKHIR CUTI</th>
-              <th>ALASAN CUTI</th>
-              <th>JENIS CUTI</th>
-              <th>STATUS</th>
+              <th><strong>NO</strong></th>
+              <th><strong>NAMA PEGAWAI</strong></th>
+              <th><strong>TGL PENGAJUAN</strong></th>
+              <!-- <th><strong>LAMA CUTI</strong></th> -->
+              <th><strong>KATEGORI BARANG</strong></th>
+              <th><strong>NAMA BARANG</strong></th>
+              <th><strong>BERKAS</strong></th>
+              
+              <th><strong>ALASAN</strong></th>
+              <th><strong>STATUS</strong></th>
               <th colspan="3"><center>ACTION</center></th>
             </tr>
             <?php 
+               $no=0; 
                 $limit = 10;  
                 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
                 $start_from = ($page-1) * $limit; 
-                $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti,     alasan , jatah_cuti, lama_cuti ,grup
-                        FROM permohonan_cuti
-                        INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
+                $sql = "SELECT id_pbarang,status,nama_pegawai,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan, grup 
+                        FROM pengadaan_barang
+                        INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
                         INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
-                        INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
+                        INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
                         ORDER BY tgl_pengajuan DESC
-                        LIMIT $start_from, $limit";
+                        LIMIT $start_from, $limit
+                        ";
                 $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                 $num_rows = mysqli_num_rows($s);
                 if (!empty($num_rows)) {
@@ -336,12 +342,13 @@
                 $no++
             ?>
             <tr>
+              <td align="center"><?php echo $no; ?></td>
               <td><?php echo $tmp['nama_pegawai']; ?></td>
               <td><?php echo $tmp['tgl_pengajuan']; ?></td>
-              <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
-              <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
+              <td><?php echo $tmp['kategori']; ?></td>
+              <td><?php echo $tmp['nama_barang'] ?></td>
+              <td><a href="<?php echo'berkas/'.$tmp['berkas']; ?>" ><?php echo $tmp['berkas'];  ?></a></td>
               <td><?php echo $tmp['alasan']; ?></td>
-              <td><?php echo $tmp['nama_cuti']; ?></td>
               <td>
                     <?php if ($tmp['status']=='disetujui'){ ?>
                         <span class="label label-success" style="font-size: 12px;">disetujui</span>
@@ -352,13 +359,13 @@
                     <?php } ?>
                 </td>
             <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
+                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
                 </td>
                 <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
                 </td>
             </tr>
             <?php }}else{ ?>
@@ -371,22 +378,78 @@
         <div class="container">
           
             <?php  
-              $sql = "SELECT COUNT(id_pcuti) FROM permohonan_cuti ";  
-              $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
-              $row = mysqli_fetch_row($rs_result);  
-              $total_records = $row[0];  
-              $total_pages = ceil($total_records / $limit);  
-              $pagLink = "<ul class='pagination' style='padding-left: 150px;'>";  
-              for ($i=1; $i<=$total_pages; $i++) {  
-                           $pagLink .= "<li><a href='approvel.php?page=".$i."'>".$i."</a></li>";  
-              };  
-              echo $pagLink . "</ul";  
-              ?>
+                $sql = "SELECT COUNT(id_pbarang) FROM pengadaan_barang";  
+                $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
+                $row = mysqli_fetch_row($rs_result);  
+                $total_records = $row[0];  
+                $total_pages = ceil($total_records / $limit);  
+                $pagLink = "<ul class='pagination'>";  
+                for ($i=1; $i<=$total_pages; $i++) {  
+                             $pagLink .= "<li><a href='data_barang.php?page=".$i."'>".$i."</a></li>";  
+                };  
+                echo $pagLink . "</ul";  
+                ?>
             <?php 
             }}
             ?>
+        </div><!--end of approval barang-->
+            <!-- modal setuju brg-->
+        <div id="modalsetujubrg" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- end of modal setuju brg-->
+        <!-- modal tolak brg-->
+        <div id="modaltolakbrg" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of modal tolak brg-->
     <!--END CONTACT SECTION-->
+    <!-- confirm modal hapus -->
+            <div class="modal fade" id="modal_delete" style="margin-top: 150px">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top:100px;">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" style="text-align:center;">Are you sure to delete this information ?</h4>
+                      </div>
+                                
+                      <div class="modal-footer" style="margin:0px; border-top:0px; text-align:center;">
+                        <a href="#" class="btn btn-danger" id="delete_link">Delete</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of confirm modal hapus -->
+            <!-- confirm modal hapus brg -->
+            <div class="modal fade" id="modal_deletebrg" style="margin-top: 150px">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top:100px;">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" style="text-align:center;">Are you sure to delete this information ?</h4>
+                      </div>
+                                
+                      <div class="modal-footer" style="margin:0px; border-top:0px; text-align:center;">
+                        <a href="#" class="btn btn-danger" id="delete_link">Delete</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of confirm modal hapus brg-->
      <!-- modal setuju -->
         <div id="modalsetuju" class="modal fade" role="dialog" style="margin-top:100px;">
           <div class="modal-dialog" role="document">
@@ -433,6 +496,19 @@
       webshims.polyfill('forms forms-ext');
     </script> -->
     <script type="text/javascript">
+        function confirmdel(delete_url) {
+          $('#modal_deletebrg').modal('show', {backdrop:'static'});
+          document.getElementById('delete_link').setAttribute('href', delete_url);
+        }
+    </script>
+    <script src="build/js/custom.min.js"></script>
+     <script type="text/javascript">
+        function confirmdel(delete_url) {
+          $('#modal_delete').modal('show', {backdrop:'static'});
+          document.getElementById('delete_link').setAttribute('href', delete_url);
+        }
+    </script>
+    <script type="text/javascript">
     $(document).ready(function () {
        $(".open_modal").click(function(e) {
           var m = $(this).attr("id");
@@ -459,6 +535,38 @@
             success: function (ajaxData){
               $("#modaltolak").html(ajaxData);
               $("#modaltolak").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
+    </script>
+     <script type="text/javascript">
+    $(document).ready(function () {
+       $(".open_modalbrg").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "admin/setuju_brg.php",
+            type: "get",
+            data : {id_pbarang: m,},
+            success: function (ajaxData){
+              $("#modalsetujubrg").html(ajaxData);
+              $("#modalsetujubrg").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+       $(".open_jonbrg").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "admin/tolak_brg.php",
+            type: "get",
+            data : {id_pbarang: m,},
+            success: function (ajaxData){
+              $("#modaltolakbrg").html(ajaxData);
+              $("#modaltolakbrg").modal('show',{backdrop: 'true'});
                }
              });
           });

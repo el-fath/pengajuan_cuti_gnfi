@@ -41,7 +41,7 @@ if(isset($_POST['btnUpload'])){
 		//mulai memproses upload file
 		if(move_uploaded_file($_FILES['berkas']['tmp_name'], $folder.$file_name)){
 			//catat nama file ke database
-			$catat = mysqli_query($conn,'insert into pengadaan_barang values ("'.$id_pbarang.'", "'.$id_pegawai.'", "'.$id_kategori.'" ,"'.$nama_barang.'", "'.$tgl_pengajuan.'", "'.$file_name.'" ,"'.$alasan.'","Belum dikonfirmasi","")') or die(mysqli_error($conn));
+			$catat = mysqli_query($conn,'insert into pengadaan_barang values ("'.$id_pbarang.'", "'.$id_pegawai.'", "'.$id_kategori.'" ,"'.$nama_barang.'", "'.$tgl_pengajuan.'", "'.$file_name.'" ,"'.$alasan.'","Belum dikonfirmasi","","")') or die(mysqli_error($conn));
 			$last_insert = mysqli_insert_id($conn);
 			if($_SESSION['is_coordinator'] == 0){
 				$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
@@ -56,14 +56,15 @@ if(isset($_POST['btnUpload'])){
 			$approv_data = mysqli_fetch_array($approvq);
 				
 					$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
-									VALUES ('','".$approv_data['id_pegawai']."','$last_insert','cuti',now(),0)";
+									VALUES ('','".$approv_data['id_pegawai']."','$last_insert','barang',now(),0)";
 				
 					$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
 			
-			echo "<script> alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
+			echo "<script> alert('Pengajuan anda Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
 		} else{
 			echo '<script>alert("pengajuan anda gagal dikirim")</script>';
 	}
+}
 }
 ?>
 <meta http-equiv="refresh" content="0;URL='../index.php'" />
