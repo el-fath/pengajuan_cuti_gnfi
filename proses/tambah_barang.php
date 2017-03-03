@@ -12,7 +12,7 @@
 	$eror		= false;
 $folder		= '../berkas/';
 //type file yang bisa diupload
-$file_type	= array('jpg','jpeg','png','gif','bmp','doc','docx','xls','xlsx','sql');
+$file_type	= array('jpg','jpeg','png','gif','bmp','doc','docx','xls','xlsx','sql','pdf');
 //tukuran maximum file yang dapat diupload
 $max_size	= 4000000; // 4MB
 if(isset($_POST['btnUpload'])){
