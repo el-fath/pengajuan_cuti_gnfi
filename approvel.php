@@ -296,7 +296,7 @@
                 $total_pages = ceil($total_records / $limit);  
                 $pagLink = "<ul class='pagination'>";  
                 for ($i=1; $i<=$total_pages; $i++) {  
-                             $pagLink .= "<li><a href='data_barang.php?page=".$i."'>".$i."</a></li>";  
+                             $pagLink .= "<li><a href='approvel.php?page=".$i."'>".$i."</a></li>";  
                 };  
                 echo $pagLink . "</ul";  
                 ?>
@@ -385,7 +385,7 @@
                 $total_pages = ceil($total_records / $limit);  
                 $pagLink = "<ul class='pagination'>";  
                 for ($i=1; $i<=$total_pages; $i++) {  
-                             $pagLink .= "<li><a href='data_barang.php?page=".$i."'>".$i."</a></li>";  
+                             $pagLink .= "<li><a href='approvel.php?page=".$i."'>".$i."</a></li>";  
                 };  
                 echo $pagLink . "</ul";  
                 ?>
