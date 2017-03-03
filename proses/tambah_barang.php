@@ -47,7 +47,7 @@ if(isset($_POST['btnUpload'])){
 				$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
 				$userdata = mysqli_fetch_assoc($query);
 				$id_coordinator = $userdata['id_pegawai'];
-				$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','cuti', now(),0)";
+				$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','barang', now(),0)";
 			
 				$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
 

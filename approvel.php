@@ -370,7 +370,7 @@
             </tr>
             <?php }}else{ ?>
             <tr>
-                <td align="center" colspan="8">Data Belum Tersedia</td>
+                <td align="center" colspan="9">Data Belum Tersedia</td>
             </tr>
             <?php } ?>
         </table>
