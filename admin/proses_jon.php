@@ -25,13 +25,13 @@ if ($_POST['id_jcuti'] != '2' ) {
 	// $c = mysqli_query($conn, "INSERT into pegawai_approval VALUES ('','$id_pegawai','$tgl_sah')") or die(mysqli_error($conn));
 }
 
-$a = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti'") or die (mysqli_error($conn));
+$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '1' ") or die (mysqli_error($conn));
 $b = mysqli_fetch_array($a);
-if ($b['is_approval'] == '1') {
-$sql = "UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'";
-echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
+if ($b['sisa_approval'] == 0 ) {
+	$sql = "UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'";
+	echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 }else{
-echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
+	echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 }
 
 $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));

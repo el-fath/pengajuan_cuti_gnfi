@@ -61,12 +61,14 @@
             </tr>
             <?php 
 	              $limit = 10;  
+
 	              if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 	              $start_from = ($page-1) * $limit; 
 	              $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, 	   alasan , jatah_cuti, lama_cuti ,grup
-	                      FROM permohonan_cuti
+	                      FROM permohonan_cuti 
 	                      INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
 	                      INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
+                        -- INNER JOIN pegawai_approval_list ON pegawai.id_pegawai = pegawai_approval_list.approval_id
 	                      INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
 	                      ORDER BY tgl_pengajuan DESC
 	                      LIMIT $start_from, $limit";
