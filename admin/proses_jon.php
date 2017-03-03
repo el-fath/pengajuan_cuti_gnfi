@@ -27,9 +27,7 @@ if ($_POST['id_jcuti'] != '2' ) {
 	}else{
 		echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 	}
-
-	// $sql = "UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'";
-	// $b = mysqli_query($conn, "INSERT into pegawai_approval VALUES ('','$id_pegawai','$tgl_sah')") or die(mysqli_error($conn));
+	
 }else{
 
 	if ($_SESSION['is_coordinator'] == '1'){
