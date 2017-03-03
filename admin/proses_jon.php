@@ -29,7 +29,6 @@ $a = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '
 $b = mysqli_fetch_array($a);
 if ($b['is_approval'] == '1') {
 $sql = "UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'";
-$b = mysqli_query($conn, "INSERT into pegawai_approval VALUES ('','$id_pegawai','$tgl_sah')") or die(mysqli_error($conn));
 echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 }else{
 echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
