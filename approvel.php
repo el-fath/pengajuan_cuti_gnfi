@@ -256,7 +256,8 @@
                 $num_rows = mysqli_num_rows($s);
                 if (!empty($num_rows)) {
                 while ($tmp = mysqli_fetch_assoc($s)) {  
-                  $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pcuti']."'") or die(mysqli_error($conn));
+                  $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pbarang']."'") or die(mysqli_error($conn));
+                  $data = mysqli_fetch_array($l);
                 $no++
             ?>
             <tr>
@@ -277,10 +278,10 @@
                     <?php } ?>
                 </td>
             <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] == 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
+                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup']? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
                 </td>
                 <td align="center"> 
                      <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
