@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2017 at 08:14 AM
+-- Generation Time: Mar 03, 2017 at 10:58 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -92,7 +92,8 @@ CREATE TABLE `kategori_barang` (
 
 INSERT INTO `kategori_barang` (`id_kategori`, `kategori`) VALUES
 (3, 'Elektronik'),
-(4, 'Perabotan');
+(4, 'Perabotan'),
+(5, 'Anggaran Dana');
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `id_jabatan`, `jenis_kelami
 ('p06', 'Imam Muttaqin', 22, 'Laki-Laki', 'im@goodnews.id', '', '081331052911', 'cowok.png', 'Imam', '$2y$10$0IV0ev1Bdzidt2GdtbdoQ.W46laLp8M68P3sxZ7ULeEtpABr1E6OS', 14, 'pegawai'),
 ('p07', 'Dwina Henti Rahmawati', 21, 'Perempuan', 'dwina@goodnews.id', 'Bumi Ilalang Indah RT.003 RW.001 Desa/Kelurahan Jabon Kecamatan Mojoanyar Mojokerto', '081335560747', 'female.png', 'Dwina', '$2y$10$9nENJYOpYZ4G/B5FYBFXe.funrwGjJvLqYMJfOCdL9dI940.rTmgK', 14, 'pegawai'),
 ('p08', 'Bagus Dovyanto Ramadhan', 14, 'Laki-Laki', 'bagusdr@goodnews.id', 'Jl. Danau Maninjau Raya 81-B1 G38 RT.002 RW.008 Desa/Kelurahan Sawojajar Kecamatan Kedungkandang Mal', '082225253427', 'cowok.png', 'Bagus', '$2y$10$UrowwYpNW8ajSFa0nSARnOMrtHiwUTTlQiC4UzRbFA./OBLHeMpNC', 14, 'pegawai'),
-('p09', 'Yufi Eko Firmansyah', 3, 'Laki-Laki', 'yufieko@goodnews.id', 'Dusun Ngijingan RT.001 RW.002 Desa/Kelurahan Purwojati Kecamatan Ngoro Mojokerto', '08993766637', 'cowok.png', 'Yufi', '$2y$10$rt9iI/szhyiqR3o.6ZTRa.jZxw.tJcyTLyQQXqBBpd2tFZsPL6je6', 7, ''),
+('p09', 'Yufi Eko Firmansyah', 3, 'Laki-Laki', 'yufieko@goodnews.id', 'Dusun Ngijingan RT.001 RW.002 Desa/Kelurahan Purwojati Kecamatan Ngoro Mojokerto', '08993766637', 'cowok.png', 'Yufi', '$2y$10$rt9iI/szhyiqR3o.6ZTRa.jZxw.tJcyTLyQQXqBBpd2tFZsPL6je6', 11, 'pegawai'),
 ('p10', 'Juang M Nugraha', 17, 'Laki-Laki', 'djoeank@goodnews.id', 'Blok Sukajadi RT.023 RW.009 Desa/Kelurahan Sukajati Kecamatan Haurgeulis Indramayu', '08996259519', 'cowok.png', 'Juang', '$2y$10$RWIuuc8iG0gaaEcDVs5Y3uok7oasG1213xoLicfUuQkvVR0c1KqOm', 14, 'pegawai'),
 ('p11', 'Muchamad Dwi Roma Nursita', 6, 'Laki-Laki', 'dwiroma@goodnews.id', 'Somowiharjo 34 RT.003 RW.013 Desa/Kelurahan Babat Kecamatan Babat Lamongan', '087853640716', 'cowok.png', 'Muchamad', '$2y$10$dp6Vwu/o5smE1tFBPBU/fu7ju/CxurgHr5lKeQ/Bm4HACXp9VEFii', 14, 'pegawai'),
 ('p12', 'Aldila Dwiki Himawan', 5, 'Laki-Laki', 'aldiladwikihimawan@gmail.com', 'Jl. Lamongan 01/18 RT.005 RW.005 Desa/kelurahan Yosowilangun Kecamatan Manyar Gresik', '089677411243', 'cowok.png', 'Aldila', '$2y$10$vnpyfE4834RudYNWDDRAWOsuLBDyJuFNm1P99vyWrZGMxr4iB2tSu', 14, 'pegawai'),
@@ -176,6 +177,16 @@ CREATE TABLE `pegawai_approval_list` (
   `is_approval` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pegawai_approval_list`
+--
+
+INSERT INTO `pegawai_approval_list` (`id`, `approval_id`, `object_id`, `type`, `created`, `is_approval`) VALUES
+(1, 'p06', 1, 'cuti', '2017-03-03', 1),
+(2, 'p04', 1, 'cuti', '2017-03-03', 1),
+(3, 'p06', 1, 'barang', '2017-03-03', 0),
+(4, 'p04', 1, 'barang', '2017-03-03', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -202,7 +213,7 @@ INSERT INTO `pegawai_group` (`id`, `id_pegawai`, `grup`, `is_coordinator`) VALUE
 (10, 'p08', 'REDAKSI', 0),
 (11, 'p05', 'OPERASIONAL', 1),
 (12, 'p03', 'OPERASIONAL', 0),
-(13, 'p04', 'OPERASIONAL', 0),
+(13, 'p04', 'OPERASIONAL', 2),
 (14, 'p10', 'CREATIVE', 1),
 (15, 'p12', 'CREATIVE', 0),
 (16, 'p11', 'CREATIVE', 0),
@@ -224,15 +235,16 @@ CREATE TABLE `pengadaan_barang` (
   `berkas` varchar(50) NOT NULL,
   `alasan` text NOT NULL,
   `status` varchar(20) DEFAULT NULL,
-  `tgl_sah` date DEFAULT NULL
+  `tgl_sah` date DEFAULT NULL,
+  `disahkan` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengadaan_barang`
 --
 
-INSERT INTO `pengadaan_barang` (`id_pbarang`, `id_pegawai`, `id_kategori`, `nama_barang`, `tgl_pengajuan`, `berkas`, `alasan`, `status`, `tgl_sah`) VALUES
-(1, 'p04', 3, 'barang', '2017-02-17', 'pratikum2.doc', 'sadsadads', 'Belum dikonfirmasi', '0000-00-00');
+INSERT INTO `pengadaan_barang` (`id_pbarang`, `id_pegawai`, `id_kategori`, `nama_barang`, `tgl_pengajuan`, `berkas`, `alasan`, `status`, `tgl_sah`, `disahkan`) VALUES
+(1, 'p09', 3, 'berkas spasi', '2017-03-03', 'DOKUMEN PRESENTASI PI.pdf', 'uji coba', 'Belum dikonfirmasi', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -259,12 +271,7 @@ CREATE TABLE `permohonan_cuti` (
 --
 
 INSERT INTO `permohonan_cuti` (`id_pcuti`, `id_pegawai`, `id_jcuti`, `tgl_pengajuan`, `lama_cuti`, `tgl_mulai_cuti`, `tgl_akhir_cuti`, `alasan`, `status`, `tgl_sah`, `disahkan`) VALUES
-(12, 'p09', 3, '2017-03-01', 2, '2017-03-13', '2017-03-15', 'sakit', 'Belum dikonfirmasi', '0000-00-00', ''),
-(17, 'p09', 3, '2017-03-02', 1, '2017-03-22', '2017-03-23', 'pulkam', 'Belum dikonfirmasi', '0000-00-00', ''),
-(18, 'p09', 3, '2017-03-02', 1, '2017-03-22', '2017-03-23', 'pulkam', 'Belum dikonfirmasi', '0000-00-00', ''),
-(19, 'p09', 3, '2017-03-02', 1, '2017-03-22', '2017-03-23', 'pulkam', 'Belum dikonfirmasi', '0000-00-00', ''),
-(20, 'p09', 3, '2017-03-02', 1, '2017-03-22', '2017-03-23', 'pulkam', 'Belum dikonfirmasi', '0000-00-00', ''),
-(21, 'p09', 3, '2017-03-02', 1, '2017-03-22', '2017-03-23', 'pulkam', 'Belum dikonfirmasi', '0000-00-00', '');
+(1, 'p09', 2, '2017-03-03', 3, '2017-03-07', '2017-03-10', 'uji coba', 'disetujui', '2017-03-03', 'Wahyu');
 
 --
 -- Indexes for dumped tables
@@ -351,7 +358,7 @@ ALTER TABLE `jenis_cuti`
 -- AUTO_INCREMENT for table `kategori_barang`
 --
 ALTER TABLE `kategori_barang`
-  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pegawai_approval`
 --
@@ -361,7 +368,7 @@ ALTER TABLE `pegawai_approval`
 -- AUTO_INCREMENT for table `pegawai_approval_list`
 --
 ALTER TABLE `pegawai_approval_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pegawai_group`
 --
@@ -376,7 +383,7 @@ ALTER TABLE `pengadaan_barang`
 -- AUTO_INCREMENT for table `permohonan_cuti`
 --
 ALTER TABLE `permohonan_cuti`
-  MODIFY `id_pcuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_pcuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
