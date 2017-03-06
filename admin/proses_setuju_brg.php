@@ -23,7 +23,7 @@ if ($b['sisa_approval'] != 0 ) {
 	$l = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
 	
 	echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
-
+	echo "";
 }else{
 	echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 }
