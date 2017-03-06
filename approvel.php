@@ -44,6 +44,7 @@
         <div class="table-responsive">
         <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
             <tr>
+              <th>NO</th>
             	<th>NAMA</th>
             	<th>TGL PENGAJUAN</th>
             	<th>MULAI CUTI</th>
@@ -76,6 +77,7 @@
 	              $no++
           	?>
           	<tr>
+              <td align="center"><?php echo $no; ?></td>
           		<td><?php echo $tmp['nama_pegawai']; ?></td>
           		<td><?php echo $tmp['tgl_pengajuan']; ?></td>
           		<td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
@@ -127,7 +129,7 @@
           	</tr>
           	<?php }}else{ ?>
             <tr>
-                <td align="center" colspan="8">Data Belum Tersedia</td>
+                <td align="center" colspan="9">Data Belum Tersedia</td>
             </tr>
             <?php } ?>
         </table>
@@ -238,7 +240,7 @@
             </tr>
             <?php }}else{ ?>
             <tr>
-                <td align="center" colspan="8">Data Belum Tersedia</td>
+                <td align="center" colspan="9">Data Belum Tersedia</td>
             </tr>
             <?php } ?>
         </table>
@@ -257,7 +259,7 @@
                 echo $pagLink . "</ul";  
                 ?>
           <h2></h2>
-          <h2>Good Luck</h2>
+          <h2>Thanks For Approvel</h2>
             <!-- modal setuju brg-->
         <div id="modalsetujubrg" class="modal fade" role="dialog" style="margin-top:100px;">
           <div class="modal-dialog" role="document">
