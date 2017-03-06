@@ -16,10 +16,10 @@ if ($_POST['id_jcuti'] != '2' ) {
 		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."' AND object_id ='$id_pcuti'";
 	}
 
-	$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '1' ") or die (mysqli_error($conn));
+	$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '0' ") or die (mysqli_error($conn));
 	$b = mysqli_fetch_assoc($a);
 
-	if ($b['sisa_approval'] != 0 ) {
+	if ($b['sisa_approval'] == 1 ) {
 		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		
 		echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
@@ -38,10 +38,10 @@ if ($_POST['id_jcuti'] != '2' ) {
 		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."' AND object_id ='$id_pcuti'";
 	}
 
-	$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '1' ") or die (mysqli_error($conn));
+	$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '0' ") or die (mysqli_error($conn));
 	$b = mysqli_fetch_assoc($a);
 
-	if ($b['sisa_approval'] != 0 ) {
+	if ($b['sisa_approval'] == 1 ) {
 		$l = mysqli_query($conn,"UPDATE pegawai
 		INNER JOIN permohonan_cuti ON permohonan_cuti.id_pegawai = pegawai.id_pegawai
 		SET jatah_cuti = jatah_cuti - lama_cuti, STATUS = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
