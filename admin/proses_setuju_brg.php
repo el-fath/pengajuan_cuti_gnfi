@@ -21,7 +21,7 @@ $a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_
 $b = mysqli_fetch_assoc($a);
 
 if ($b['sisa_approval'] != 0 ) {
-	$l = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
+	$l = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui', tgl_sah = '$tgl_sah' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
 	
 	echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 	
