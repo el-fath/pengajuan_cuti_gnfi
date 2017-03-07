@@ -8,12 +8,12 @@ $username = $_SESSION['username'];
 $id_pegawai = $_SESSION['id_pegawai'];
 
 if ($_SESSION['is_coordinator'] == 1 ) {
-	$l =mysqli_query($conn,"UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND object_id ='$id_pbarang'") or die(mysqli_error($conn));
+	$l =mysqli_query($conn,"UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND type = 'barang' AND object_id ='$id_pbarang'") or die(mysqli_error($conn));
 	// $sql = "UPDATE pengadaan_barang SET disahkan = '$id_pegawai'" 
 } else {
 	$approve = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die (mysqli_error($conn));
 	$approve_user = mysqli_fetch_array($approve);
-	$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."'AND object_id ='$id_pbarang'";
+	$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."'AND type = 'barang' AND object_id ='$id_pbarang'";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 }
 

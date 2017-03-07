@@ -184,7 +184,7 @@
                 $num_rows = mysqli_num_rows($s);
                 if (!empty($num_rows)) {
                 while ($tmp = mysqli_fetch_assoc($s)) {  
-                  $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pbarang']."'") or die(mysqli_error($conn));
+                  $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pbarang']."'AND type = 'barang'") or die(mysqli_error($conn));
                   $data = mysqli_fetch_array($l);
                 $no++
             ?>
