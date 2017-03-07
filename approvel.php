@@ -38,53 +38,67 @@
     <?php include 'header.php'; ?>
     <?php include 'koneksi.php'; ?>
     <!--HOME SECTION-->
+
 <div class="container">
    
-        <h2 style="padding-top: 80px;"><center>Form Approvel Pengajuan Cuti</center></h2>
-        <div class="table-responsive">
+        <h2 style="padding-top: 80px;"><center>Approvel Page</center></h2>
+    <!-- Nav tabs -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#home" role="tab" data-toggle="tab">Cuti</a></li>
+            <li><a href="#profile" role="tab" data-toggle="tab">Barang</a></li>
+        </ul>
+
+    </div>
+
+    <!-- Tab panes + Panel body -->
+    <div class="panel-body tab-content">
+        <div class="tab-pane active" id="home">
+          <div class="table-responsive">
         <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
             <tr>
               <th>NO</th>
-            	<th>NAMA</th>
-            	<th>TGL PENGAJUAN</th>
-            	<th>MULAI CUTI</th>
-            	<th>AKHIR CUTI</th>
-            	<th>ALASAN CUTI</th>
-            	<th>JENIS CUTI</th>
-            	<th>STATUS</th>
-            	<th colspan="3"><center>ACTION</center></th>
+              <th>NAMA</th>
+              <th>TGL PENGAJUAN</th>
+              <th>MULAI CUTI</th>
+              <th>AKHIR CUTI</th>
+              <th>ALASAN CUTI</th>
+              <th>JENIS CUTI</th>
+              <th>STATUS</th>
+              <th colspan="3"><center>ACTION</center></th>
             </tr>
             <?php 
-	              $limit = 10;  
+                $limit = 10;  
 
-	              if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
-	              $start_from = ($page-1) * $limit; 
-	              $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, 	   alasan , jatah_cuti, lama_cuti ,grup
-	                      FROM permohonan_cuti 
-	                      INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
-	                      INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
+                if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+                $start_from = ($page-1) * $limit; 
+                $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti,     alasan , jatah_cuti, lama_cuti ,grup
+                        FROM permohonan_cuti 
+                        INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
+                        INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
                         -- INNER JOIN pegawai_approval_list ON pegawai.id_pegawai = pegawai_approval_list.approval_id
-	                      INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
-	                      ORDER BY tgl_pengajuan DESC
-	                      LIMIT $start_from, $limit";
+                        INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
+                        ORDER BY tgl_pengajuan DESC";
                 
-	              $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
-	              $num_rows = mysqli_num_rows($s);
-	              if (!empty($num_rows)) {
-	              while ($tmp = mysqli_fetch_assoc($s)) {  
+                $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
+                $num_rows = mysqli_num_rows($s);
+                if (!empty($num_rows)) {
+                while ($tmp = mysqli_fetch_assoc($s)) {  
                   $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pcuti']."'AND type = 'cuti'") or die(mysqli_error($conn));
                   $data = mysqli_fetch_array($l);
-	              $no++
-          	?>
-          	<tr>
+                $no++
+            ?>
+            <tr>
               <td align="center"><?php echo $no; ?></td>
-          		<td><?php echo $tmp['nama_pegawai']; ?></td>
-          		<td><?php echo $tmp['tgl_pengajuan']; ?></td>
-          		<td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
-          		<td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
-          		<td><?php echo $tmp['alasan']; ?></td>
-          		<td><?php echo $tmp['nama_cuti']; ?></td>
-          		<td>
+              <td><?php echo $tmp['nama_pegawai']; ?></td>
+              <td><?php echo $tmp['tgl_pengajuan']; ?></td>
+              <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
+              <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
+              <td><?php echo $tmp['alasan']; ?></td>
+              <td><?php echo $tmp['nama_cuti']; ?></td>
+              <td>
                     <?php if ($tmp['status']=='disetujui'){ ?>
                         <span class="label label-success" style="font-size: 12px;">disetujui</span>
                     <?php } elseif ($tmp['status'] == 'ditolak') { ?>
@@ -100,7 +114,7 @@
                 while ($t = mysqli_fetch_assoc($a)) {
                 if ($t['is_coordinator'] == '1') {
                 ?>
-        		<td align="center">
+            <td align="center">
                     <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
                 </td>
                 <td align="center">
@@ -126,33 +140,18 @@
               <?php 
               }}
               ?>
-          	</tr>
-          	<?php }}else{ ?>
+            </tr>
+            <?php }}else{ ?>
             <tr>
                 <td align="center" colspan="9">Data Belum Tersedia</td>
             </tr>
             <?php } ?>
         </table>
         </div>
-          
-            <?php  
-              $sql = "SELECT COUNT(id_pcuti) FROM permohonan_cuti ";  
-              $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
-              $row = mysqli_fetch_row($rs_result);  
-              $total_records = $row[0];  
-              $total_pages = ceil($total_records / $limit);  
-              $pagLink = "<ul class='pagination'>";  
-              for ($i=1; $i<=$total_pages; $i++) {  
-                           $pagLink .= "<li><a href='approvel.php?page=".$i."'>".$i."</a></li>";  
-              };  
-              echo $pagLink . "</ul";  
-              ?>
-          
 
-<div class="container"><!-- start of approval barang -->
-    
-        <h2 style="padding-top: 80px;"><center>Form Approvel Pengajuan Barang</center></h2>
-        <div class="table-responsive">
+        </div>
+        <div class="tab-pane" id="profile">
+          <div class="table-responsive">
         <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
             <tr>
               <th><strong>NO</strong></th>
@@ -245,21 +244,13 @@
             <?php } ?>
         </table>
         </div>
-        
-            <?php  
-                $sql = "SELECT COUNT(id_pbarang) FROM pengadaan_barang";  
-                $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
-                $row = mysqli_fetch_row($rs_result);  
-                $total_records = $row[0];  
-                $total_pages = ceil($total_records / $limit);  
-                $pagLink = "<ul class='pagination'>";  
-                for ($i=1; $i<=$total_pages; $i++) {  
-                             $pagLink .= "<li><a href='approvel.php?page=".$i."'>".$i."</a></li>";  
-                };  
-                echo $pagLink . "</ul";  
-                ?>
-          <h2></h2>
-          <h2>Thanks For Approvel</h2>
+        </div>
+        <div class="tab-pane" id="messages">MESSAGES</div>
+        <div class="tab-pane" id="settings">SET</div>
+    </div>
+</div>
+
+
             <!-- modal setuju brg-->
         <div id="modalsetujubrg" class="modal fade" role="dialog" style="margin-top:100px;">
           <div class="modal-dialog" role="document">
