@@ -41,7 +41,7 @@ if ($_POST['id_jcuti'] != '2' ) {
 	$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '0' ") or die (mysqli_error($conn));
 	$b = mysqli_fetch_assoc($a);
 
-	if ($b['sisa_approval'] == 1 ) {
+	if ($b['sisa_approval'] == 0 ) {
 		$l = mysqli_query($conn,"UPDATE pegawai
 		INNER JOIN permohonan_cuti ON permohonan_cuti.id_pegawai = pegawai.id_pegawai
 		SET jatah_cuti = jatah_cuti - lama_cuti, STATUS = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
