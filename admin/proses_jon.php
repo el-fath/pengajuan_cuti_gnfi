@@ -9,17 +9,18 @@ $id_jcuti = $_POST['id_jcuti'];
 	
 if ($_POST['id_jcuti'] != '2' ) {
 	if ($_SESSION['is_coordinator'] == '1'){
-		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND object_id ='$id_pcuti' AND type = 'cuti'"; 
+		$l =mysqli_query($conn,"UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND type = 'cuti' AND object_id ='$id_pcuti'") or die(mysqli_error($conn));
 	}else{
 		$approve = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die (mysqli_error($conn));
 		$approve_user = mysqli_fetch_array($approve);
 		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."' AND object_id ='$id_pcuti'";
+		$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	}
 
 	$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '0' ") or die (mysqli_error($conn));
 	$b = mysqli_fetch_assoc($a);
 
-	if ($b['sisa_approval'] == 1 ) {
+	if ($b['sisa_approval'] == 0 ) {
 		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		
 		echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
@@ -31,11 +32,12 @@ if ($_POST['id_jcuti'] != '2' ) {
 }else{
 
 	if ($_SESSION['is_coordinator'] == '1'){
-		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND object_id ='$id_pcuti' AND type = 'cuti'"; 
+		$l =mysqli_query($conn,"UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND type = 'cuti' AND object_id ='$id_pcuti'") or die(mysqli_error($conn)); 
 	}else{
 		$approve = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die (mysqli_error($conn));
 		$approve_user = mysqli_fetch_array($approve);
 		$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."' AND object_id ='$id_pcuti'";
+		$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	}
 
 	$a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_list WHERE object_id = '$id_pcuti' AND type = 'cuti' AND is_approval = '0' ") or die (mysqli_error($conn));
@@ -55,7 +57,5 @@ if ($_POST['id_jcuti'] != '2' ) {
 	// $c = mysqli_query($conn, "INSERT into pegawai_approval VALUES ('','$id_pegawai','$tgl_sah')") or die(mysqli_error($conn));
 }
 
-
-$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 ?>
 <meta http-equiv="refresh" content="0;URL='../approvel.php'" />
