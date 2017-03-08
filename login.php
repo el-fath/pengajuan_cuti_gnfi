@@ -64,8 +64,8 @@
          								$_SESSION['id_pegawai'] = $data['id_pegawai'];
          								$_SESSION['is_coordinator'] = $tmp['is_coordinator'];
          								$_SESSION['grup'] = $tmp['grup'];
-         								// header("location:index.php");      	              
-         								echo "to pegawai";
+         								header("location:index.php");      	              
+         								// echo "to pegawai";
          							}
 							} else {
 								echo "username atau password tidak dikenali";
