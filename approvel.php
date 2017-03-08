@@ -47,8 +47,8 @@
     <div class="panel-heading">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="active"><a href="#home" role="tab" data-toggle="tab">Cuti</a></li>
-            <li><a href="#profile" role="tab" data-toggle="tab">Barang</a></li>
+            <li class="active"><a href="#home" role="tab" data-toggle="tab">Pengajuan Cuti Team</a></li>
+            <li><a href="#profile" role="tab" data-toggle="tab">Pengajuan Barang Team</a></li>
         </ul>
     </div>
     <!-- Tab panes + Panel body -->
