@@ -51,11 +51,22 @@
          //                            }
          							$sq = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE id_pegawai = '".$data['id_pegawai']."'") or die(mysqli_error($conn));
          							$tmp = mysqli_fetch_assoc($sq);
+         							if ($tmp['grup'] == 'ADMIN') {
+         								$_SESSION['username'] = $username;   
+         								$_SESSION['id_pegawai'] = $data['id_pegawai'];
+         								$_SESSION['grup'] = $tmp['grup'];
+         								// $_SESSION['is_coordinator'] = $tmp['is_coordinator'];
+         								// $_SESSION['grup'] = $tmp['grup'];
+         								header("location:admin/index.php");
+         								// echo "to admin";
+         							} else {
          								$_SESSION['username'] = $username;   
          								$_SESSION['id_pegawai'] = $data['id_pegawai'];
          								$_SESSION['is_coordinator'] = $tmp['is_coordinator'];
          								$_SESSION['grup'] = $tmp['grup'];
-         								header("location:index.php");      	              
+         								// header("location:index.php");      	              
+         								echo "to pegawai";
+         							}
 							} else {
 								echo "username atau password tidak dikenali";
 							}

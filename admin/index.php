@@ -70,84 +70,12 @@
           </div>
           <!-- /top tiles -->
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><strong>Data Pengajuan Cuti Pegawai Yang Belum Dikonfirmasi</strong></h2>
-                   <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div class="table-responsive">
-                      <table class="table table-striped table-bordered table-hover" >
-                      <tr>
-                        <th><strong>NO</strong></th>
-                        <th><strong>NAMA PEGAWAI</strong></th>
-                        <!-- <th><strong>JENIS CUTI</strong></th> -->
-                        <th><strong>TGL PENGAJUAN</strong></th>
-                        <th><strong>LAMA CUTI</strong></th>
-                        <th><strong>MULAI CUTI</strong></th>
-                        <th><strong>AKHIR CUTI</strong></th>
-                        <th><strong>ALASAN CUTI</strong></th>
-                        <th><strong>JENIS CUTI</strong></th>
-                        <th><strong>JATAH CUTI</strong></th>
-                        <th><strong>STATUS</strong></th>
-                        <th colspan="2"><center>ACTION</center></th>
-                      </tr>  
-                      <?php $no=0; 
-                          $id_pegawai = $_SESSION['id_pegawai'];
-                          $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti, alasan , jatah_cuti
-                                  FROM permohonan_cuti
-                                  INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
-                                  INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
-                                  WHERE status = 'Belum dikonfirmasi' ORDER BY tgl_pengajuan DESC";
-                          $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
-                          $num_rows = mysqli_num_rows($s);
-                          if (!empty($num_rows)) {
-                          while ($tmp = mysqli_fetch_assoc($s)) {  
-                          $no++
-                      ?>
-                      <tr>
-                          <td align="center"><?php echo $no; ?></td>
-                          <td><?php echo $tmp['nama_pegawai']; ?></td>
-                          <!-- <td><?php echo $tmp['nama_cuti']; ?></td> -->
-                          <td><?php echo $tmp['tgl_pengajuan']; ?></td>
-                          <td align="center"><?php echo $tmp['lama_cuti']; ?></td> 
-                          <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
-                          <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
-                          <td><?php echo $tmp['alasan']; ?></td>
-                          <td><?php echo $tmp['nama_cuti']; ?></td>
-                          <td align="center"><?php echo $tmp['jatah_cuti']; ?></td>
-                          <td><?php echo $tmp['status']; ?></td>
-                          <td align="center">
-                            <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-check"></i> setujui</a>
-                          </td>
-                          <td align="center">
-                            <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
-                          </td>
-                      </tr>
-                      <?php }}else{ ?>
-                      <tr>
-                      <td align="center" colspan="11">Data Belum Tersedia</td>
-                      </tr>
-                      <?php } ?>
-                    </table>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            
              <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><strong>Data Pengajuan Barang Pegawai Yang Belum Dikonfirmasi</strong></h2>
+                    <h2><strong>Data Pegawai Yang Belum Punya Group</strong></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -157,27 +85,29 @@
 
                   <div class="x_content">
                     <div class="table-responsive">
-                      <table class="table table-striped table-bordered table-hover" >
+                    <table class="table table-striped table-bordered table-hover" >
                       <tr>
-                        <th><strong>NO</strong></th>
-                        <th><strong>NAMA PEGAWAI</strong></th>
-                        
-                        <th><strong>TGL PENGAJUAN</strong></th>
-                        
-                        <th><strong>KATEGORI BARANG</strong></th>
-                        <th><strong>NAMA BARANG</strong></th>
-                        <th><strong>BERKAS</strong></th>
-                        <th><strong>ALASAN</strong></th>
-                        <th><strong>STATUS</strong></th>
-                        <th colspan="2"><center>ACTION</center></th>
+                        <!-- <th>NO</th> -->
+                        <th>ID PEGAWAI</th>
+                        <th>NAMA PEGAWAI</th>
+                        <th>JABATAN</th>
+                        <th>JENIS KELAMIN</th>
+                        <th>EMAIL</th>
+                        <th>GROUP</th>
+                        <th>TELPON PEGAWAI</th>
+                       
+                       
+                        <th colspan="3"><center>ACTION</center></th>
                       </tr>  
-                      <?php $no=0; 
-                          $id_pegawai = $_SESSION['id_pegawai'];
-                          $sql = "SELECT id_pbarang,status,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan, nama_pegawai 
-                                  FROM pengadaan_barang
-                                  INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
-                                  INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
-                                  WHERE status = 'Belum dikonfirmasi' ORDER BY tgl_pengajuan DESC";
+                      <?php 
+                          $no=0; 
+                          $limit = 10;  
+                          if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+                          $start_from = ($page-1) * $limit; 
+                          $sql = "SELECT pegawai.id_pegawai,pegawai.nama_pegawai,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email,pegawai_group.grup,pegawai.alamat_pegawai,pegawai.telpon_pegawai,pegawai.foto,pegawai.jatah_cuti, pegawai.username FROM pegawai 
+                            LEFT JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
+                            LEFT JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan 
+                            LIMIT $start_from, $limit";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                           $num_rows = mysqli_num_rows($s);
                           if (!empty($num_rows)) {
@@ -185,94 +115,85 @@
                           $no++
                       ?>
                       <tr>
-                          <td align="center"><?php echo $no; ?></td>
+                          <!-- <td><?php echo $no; ?></td> -->
+                          <td><?php echo $tmp['id_pegawai']; ?></td>
                           <td><?php echo $tmp['nama_pegawai']; ?></td>
-                          <td><?php echo $tmp['tgl_pengajuan']; ?></td>
-                          <td><?php echo $tmp['kategori']; ?></td>
-                          <td><?php echo $tmp['nama_barang'] ?></td>
-                          <td><?php echo $tmp['berkas']; ?></td>
-                          <td><?php echo $tmp['alasan']; ?></td>
-                          <td><?php echo $tmp['status']; ?></td>
-                         <td align="center">
-                            <a href="#" class="btn btn-xs btn-success buka_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-check"></i> setujui</a>
-                          </td>
+                          <td><?php echo $tmp['jabatan']; ?></td>
+                          <td><?php echo $tmp['jenis_kelamin']; ?></td>
+                          <td><?php echo $tmp['email']; ?></td>
+                          <td><?php echo $tmp['grup']; ?></td>
+                          <td><?php echo $tmp['telpon_pegawai']; ?></td>
                           <td align="center">
-                            <a href="#" class="btn btn-xs btn-danger open <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                            <a href="#" class="btn btn-xs btn-success open_modal" id="<?php echo $tmp['id_pegawai'] ?>"><i class="glyphicon glyphicon-list"></i></a>
+                            <a href="edit_pegawai.php?&id_pegawai=<?php echo $tmp['id_pegawai']; ?>" class="btn btn-xs btn-warning" ><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="#" class="btn btn-xs btn-danger" onclick="confirmdel('proses/hapus_pegawai.php?&id_pegawai=<?php echo $tmp['id_pegawai']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
                           </td>
+                          <!-- <td>
+                            <a href="#" class="btn btn-xs btn-primary open_modal" id="<?php echo $tmp['id_pegawai'] ?>"><i class="glyphicon glyphicon-list"></i> Detail</a>
+                          </td>
+                          <td>
+                            <a href="edit_pegawai.php?&id_pegawai=<?php echo $tmp['id_pegawai']; ?>" class="btn btn-xs btn-warning" ><i class="glyphicon glyphicon-pencil"></i> edit</a>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-xs btn-danger" onclick="confirmdel('proses/hapus_pegawai.php?&id_pegawai=<?php echo $tmp['id_pegawai']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                          </td> -->
                       </tr>
                       <?php }}else{ ?>
                       <tr>
-                      <td align="center" colspan="9">Data Belum Tersedia</td>
+                      <td align="center" colspan="11">Data Belum Tersedia</td>
                       </tr>
                       <?php } ?>
                     </table>
-
-                    </div>
+                   
+                  </div>
+                  <?php  
+                      $sql = "SELECT COUNT(id_pegawai) FROM pegawai";  
+                      $rs_result = mysqli_query($conn,$sql) or die(mysqli_error($conn));  
+                      $row = mysqli_fetch_row($rs_result);  
+                      $total_records = $row[0];  
+                      $total_pages = ceil($total_records / $limit);  
+                      $pagLink = "<ul class='pagination'>";  
+                      for ($i=1; $i<=$total_pages; $i++) {  
+                                   $pagLink .= "<li><a href='list_pegawai.php?page=".$i."'>".$i."</a></li>";  
+                      };  
+                      echo $pagLink . "</ul";  
+                      ?>
+                    <br />
+                    
                   </div>
                 </div>
               </div>
             </div>
-            
-         <!-- modal setuju -->
-        <div id="modalsetuju" class="modal fade" role="dialog" style="margin-top:100px;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="fetched-data"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end of modal setuju -->
-        <!-- modal tolak -->
-        <div id="modaltolak" class="modal fade" role="dialog" style="margin-top:100px;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="fetched-data"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end of modal tolak -->
-        </div>
 
-                     <!-- modal setuju -->
-        <div id="setuju" class="modal fade" role="dialog" style="margin-top:100px;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="fetched-data"></div>
-              </div>
+          <!-- confirm modal hapus -->
+            <div class="modal fade" id="modal_delete" style="margin-top: 150px">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top:100px;">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" style="text-align:center;">Are you sure to delete this information ?</h4>
+                      </div>
+                                
+                      <div class="modal-footer" style="margin:0px; border-top:0px; text-align:center;">
+                        <a href="#" class="btn btn-danger" id="delete_link">Delete</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- end of modal setuju -->
-        <!-- modal tolak -->
-        <div id="tolak" class="modal fade" role="dialog" style="margin-top:100px;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="fetched-data"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end of modal tolak -->
+            <!-- end of confirm modal hapus -->
 
+          <div id="ModalEdit" class="modal fade" style="margin-top: 100px">
+
+          </div>  
+        </div>
       </div>
-    </div>
-  </div>
-      
-
-        <!-- /page content -->
-      
- 
-  <script src="vendors/jquery/dist/jquery.min.js"></script>
+   </div>
+   <script src="vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
   
+    <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
@@ -283,70 +204,22 @@
       document.getElementById('delete_link').setAttribute('href', delete_url);
     }
   </script>
-   <script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(function () {
        $(".open_modal").click(function(e) {
           var m = $(this).attr("id");
           $.ajax({
-            url: "setuju.php",
-            type: "get",
-            data : {id_pcuti: m,},
+            url: "detail_pegawai.php",
+            type: "GET",
+            data : {id_pegawai: m,},
             success: function (ajaxData){
-              $("#modalsetuju").html(ajaxData);
-              $("#modalsetuju").modal('show',{backdrop: 'true'});
+              $("#ModalEdit").html(ajaxData);
+              $("#ModalEdit").modal('show',{backdrop: 'true'});
                }
              });
           });
         });
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-       $(".open_jon").click(function(e) {
-          var m = $(this).attr("id");
-          $.ajax({
-            url: "tolak.php",
-            type: "get",
-            data : {id_pcuti: m,},
-            success: function (ajaxData){
-              $("#modaltolak").html(ajaxData);
-              $("#modaltolak").modal('show',{backdrop: 'true'});
-               }
-             });
-          });
-        });
-    </script>
-
-     <script type="text/javascript">
-    $(document).ready(function () {
-       $(".buka_modal").click(function(e) {
-          var m = $(this).attr("id");
-          $.ajax({
-            url: "setuju_brg.php",
-            type: "get",
-            data : {id_pbarang: m,},
-            success: function (ajaxData){
-              $("#setuju").html(ajaxData);
-              $("#setuju").modal('show',{backdrop: 'true'});
-               }
-             });
-          });
-        });
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-       $(".open").click(function(e) {
-          var m = $(this).attr("id");
-          $.ajax({
-            url: "tolak_brg.php",
-            type: "get",
-            data : {id_pbarang: m,},
-            success: function (ajaxData){
-              $("#tolak").html(ajaxData);
-              $("#tolak").modal('show',{backdrop: 'true'});
-               }
-             });
-          });
-        });
-    </script>
+  </script> 
+    
   </body>
 </html>

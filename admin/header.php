@@ -32,7 +32,7 @@
  <?php 
     session_start();
     include 'koneksi.php';
-    if ($_SESSION['is_coordinator'] != '1') {
+    if ($_SESSION['grup'] != 'ADMIN') {
       header('location:../login.php');
     } else {    
   ?>
@@ -80,8 +80,8 @@
                       <li><a href="list_kategori.php">List Kategori Barang</a></li>
                       <li><a href="list_jenis_cuti.php">List Jenis Cuti</a></li>
                       <li><a href="list_pegawai.php">Data Pegawai</a></li>
-                      <li><a href="data_barang.php">Data Pengajuan Barang</a></li>
-                      <li><a href="data_cuti.php" title="">Data Pengajuan Cuti</a></li>
+                      <!-- <li><a href="data_barang.php">Data Pengajuan Barang</a></li>
+                      <li><a href="data_cuti.php" title="">Data Pengajuan Cuti</a></li> -->
                     </ul>
                   </li>
                 </ul>
