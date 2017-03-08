@@ -43,7 +43,7 @@
    
         <h2 style="padding-top: 80px;"><center>Approvel Page</center></h2>
     <!-- Nav tabs -->
-<div class="panel panel-danger">
+<div class="panel panel-default">
     <div class="panel-heading">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs nav-justified" role="tablist">
