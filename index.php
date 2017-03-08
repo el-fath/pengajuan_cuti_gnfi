@@ -99,7 +99,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image" data-toggle="modal" data-target=".pegawai_cuti">
-                                    <img src="assets/img/x2.jpg" alt="">
+                                    <img src="assets/img/X9.jpg" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
@@ -116,7 +116,7 @@
                             <div class="item-main">
                             <a href="approvel.php">
                                 <div class="portfolio-image">
-                                    <img src="assets/img/x2.jpg" alt="">
+                                    <img src="assets/img/X7.jpg" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>
