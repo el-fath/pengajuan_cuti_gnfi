@@ -1,7 +1,7 @@
 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-bordered table-hover table-striped">
                         <tr>
-                            <td rowspan="9"> <img src="<?php echo'admin/img/'.$r['foto']; ?>" style="width: 280px; height: 300px"></td>
+                            <td align="center" rowspan="10"><img src="<?php echo'admin/img/'.$r['foto']; ?>" style="width: 280px; height: 300px"></td>
                         </tr>
                         <tr>
                             <td><strong>ID Pegawai</strong></td>
@@ -30,23 +30,19 @@
                         <tr>
                             <td><strong>Email</strong></td>
                             <td><?php echo $r['email']; ?></td>
+                        </tr
+                        <tr>
+                            <td><strong>Telpon</strong></td>
+                            <td><?php echo $r['telpon_pegawai']; ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Username</strong></td>
+                            <td><?php echo $r['username']; ?></td>
                         </tr>
                         <tr>
                             <td><strong>Alamat</strong></td>
-                            <td><?php echo $r['alamat_pegawai']; ?></td>
+                            <td colspan="2"><?php echo $r['alamat_pegawai']; ?></td>
                         </tr>
-                        <!-- <div class="row">
-                            <div class="col-md-2"></div> -->
-                            <tr>
-                                <td></td>
-                                <td><strong>Telpon</strong></td>
-                                <td><?php echo $r['telpon_pegawai']; ?></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><strong>Username</strong></td>
-                                <td><?php echo $r['username']; ?></td>
-                            </tr>
                         <!-- </div> -->
                     </table>
                   </div> 
