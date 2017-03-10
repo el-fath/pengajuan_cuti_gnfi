@@ -41,7 +41,7 @@
                   <div class="x_content">
                     <?php  
                         $id_pegawai=$_GET['id_pegawai'];
-                        $sql="SELECT  pegawai.id_pegawai,pegawai.nama_pegawai, pegawai.username,pegawai.status_pegawai,jabatan.id_jabatan,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email, pegawai.alamat_pegawai, pegawai_group.grup ,pegawai.telpon_pegawai, pegawai.foto, pegawai_group.is_coordinator 
+                        $sql="SELECT  pegawai.id_pegawai,pegawai.nama_pegawai, pegawai.username,pegawai.status_pegawai,jabatan.id_jabatan,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email,pegawai.tgl_lahir, pegawai.tgl_bergabung, pegawai.alamat_pegawai, pegawai_group.grup ,pegawai.telpon_pegawai, pegawai.foto, pegawai_group.is_coordinator 
                               FROM pegawai, jabatan, pegawai_group  WHERE pegawai.id_pegawai='$id_pegawai'";
                         $query=mysqli_query($conn,$sql) or die (mysqli_error($conn));
                         $temp=mysqli_fetch_assoc($query);
