@@ -73,6 +73,10 @@
        <div class="container">
            <div class="row g-pad-bottom" >
                     <?php
+                    if(isset($_GET['id_pbarang'])){
+                    include "cetakbrg_men.php";
+                    }?>
+                    <?php
                     if(isset($_GET['id_pcuti'])){
                     include "cetak_men.php";
                     }?> <div class="col-md-4 col-sm-4">
@@ -563,6 +567,7 @@
                             <th><strong>BERKAS</strong></th>
                             <th><strong>ALASAN</strong></th>
                             <th><strong>STATUS</strong></th>
+                            <th><strong>ACTION</strong></th>
                         </tr>
                     </thead>
                     <?php 
@@ -587,6 +592,7 @@
                             <td><?php echo $tmp['berkas']; ?></td>
                             <td><?php echo $tmp['alasan']; ?></td>
                             <td><?php echo $tmp['status']; ?></td>
+                            <td align='center'><a href='index.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>'><button class='btn btn-success btn-sm'>Detail</button></a></td>
                         </tr>
                      <?php }}else{ ?>
                       <tr>
