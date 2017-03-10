@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2017 at 12:14 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Mar 10, 2017 at 08:03 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -107,6 +107,8 @@ CREATE TABLE `pegawai` (
   `id_jabatan` int(10) NOT NULL,
   `jenis_kelamin` varchar(10) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `tgl_bergabung` date DEFAULT NULL,
   `alamat_pegawai` varchar(100) DEFAULT NULL,
   `telpon_pegawai` varchar(12) DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL,
@@ -120,28 +122,28 @@ CREATE TABLE `pegawai` (
 -- Dumping data for table `pegawai`
 --
 
-INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `id_jabatan`, `jenis_kelamin`, `email`, `alamat_pegawai`, `telpon_pegawai`, `foto`, `username`, `password`, `jatah_cuti`, `status_pegawai`) VALUES
-('p02', 'Akhyari Hananto', 3, 'Laki-Laki', 'akhyaree@goodnews.id', '', '08113051846', 'cowok.png', 'Akhyari', '$2y$10$LoUa/IiEB2tc9mvusKj99uz1xHvJ5C.6PTuf9HaR4AkRuiepYyjRq', 14, ''),
-('p03', 'R. Andini Ratu F', 7, 'Perempuan', 'andiniratu@goodnews.id', 'Jl. Selong Permai Blok E/04 RT.003 RW.009 Desa/Kelurahan Gunung Sekar Kecamatan Sampang Kabupaten Sa', '08123502236', 'female.png', 'Andini', '$2y$10$nQuCy9pQhsUTLoUJ4PS.gOppMP6UWoGxJs96aBZITFdw.PqaKIftm', 14, 'admin'),
-('p04', 'Wahyu Aji ', 19, 'Laki-Laki', 'aji@goodnews.id', '', '0811971261', 'cowok.png', 'Wahyu', '$2y$10$Fq6GRdkKbNkT.2htQyJcPe7XuTRSTAz5x2bMQfq4Pjfu4iuDDumx2', 14, 'pegawai'),
-('p05', 'Shinta Soebijandono', 20, 'Perempuan', 'shinta@goodnews.id', '', '08179315129', 'female.png', 'Shinta', '$2y$10$1OAwukJQVt2duYgC8IpMoOrU6sOVqfeqt3AVZT1h6HX9WsDmNFJ/S', 14, 'pegawai'),
-('p06', 'Imam Muttaqin', 22, 'Laki-Laki', 'im@goodnews.id', '', '081331052911', 'cowok.png', 'Imam', '$2y$10$0IV0ev1Bdzidt2GdtbdoQ.W46laLp8M68P3sxZ7ULeEtpABr1E6OS', 14, 'pegawai'),
-('p07', 'Dwina Henti Rahmawati', 21, 'Perempuan', 'dwina@goodnews.id', 'Bumi Ilalang Indah RT.003 RW.001 Desa/Kelurahan Jabon Kecamatan Mojoanyar Mojokerto', '081335560747', 'female.png', 'Dwina', '$2y$10$9nENJYOpYZ4G/B5FYBFXe.funrwGjJvLqYMJfOCdL9dI940.rTmgK', 14, 'pegawai'),
-('p08', 'Bagus Dovyanto Ramadhan', 14, 'Laki-Laki', 'bagusdr@goodnews.id', 'Jl. Danau Maninjau Raya 81-B1 G38 RT.002 RW.008 Desa/Kelurahan Sawojajar Kecamatan Kedungkandang Mal', '082225253427', 'cowok.png', 'Bagus', '$2y$10$UrowwYpNW8ajSFa0nSARnOMrtHiwUTTlQiC4UzRbFA./OBLHeMpNC', 14, 'pegawai'),
-('p09', 'Yufi Eko Firmansyah', 3, 'Laki-Laki', 'yufieko@goodnews.id', 'Dusun Ngijingan RT.001 RW.002 Desa/Kelurahan Purwojati Kecamatan Ngoro Mojokerto', '08993766637', 'cowok.png', 'Yufi', '$2y$10$rt9iI/szhyiqR3o.6ZTRa.jZxw.tJcyTLyQQXqBBpd2tFZsPL6je6', 14, 'pegawai'),
-('p10', 'Juang M Nugraha', 17, 'Laki-Laki', 'djoeank@goodnews.id', 'Blok Sukajadi RT.023 RW.009 Desa/Kelurahan Sukajati Kecamatan Haurgeulis Indramayu', '08996259519', 'cowok.png', 'Juang', '$2y$10$RWIuuc8iG0gaaEcDVs5Y3uok7oasG1213xoLicfUuQkvVR0c1KqOm', 14, 'pegawai'),
-('p11', 'Muchamad Dwi Roma Nursita', 6, 'Laki-Laki', 'dwiroma@goodnews.id', 'Somowiharjo 34 RT.003 RW.013 Desa/Kelurahan Babat Kecamatan Babat Lamongan', '087853640716', 'cowok.png', 'Muchamad', '$2y$10$dp6Vwu/o5smE1tFBPBU/fu7ju/CxurgHr5lKeQ/Bm4HACXp9VEFii', 14, 'pegawai'),
-('p12', 'Aldila Dwiki Himawan', 5, 'Laki-Laki', 'aldiladwikihimawan@gmail.com', 'Jl. Lamongan 01/18 RT.005 RW.005 Desa/kelurahan Yosowilangun Kecamatan Manyar Gresik', '089677411243', 'cowok.png', 'Aldila', '$2y$10$vnpyfE4834RudYNWDDRAWOsuLBDyJuFNm1P99vyWrZGMxr4iB2tSu', 14, 'pegawai'),
-('p13', 'Arifina Budi Aswati', 8, 'Perempuan', 'arifina@goodnews.id', 'Jl. Arwana No.12 RT.031 RW.005 Desa/Kelurahan Minomartani Kecamatan Ngaglik Kabupaten Sleman DIY', '', 'female.png', 'Arifina', '$2y$10$S2fp9nZEsqrRZnHE5QVIte5Cl.WotIpeK2jQClLR/ONng0Jb1pv2m', 14, 'pegawai'),
-('p14', 'Antok Kurniawan', 9, 'Laki-Laki', 'goul.hanami@gmail.com', 'Jl. Dukuh Menanggal 8/27 RT.001 RW.005 Kel. Dukuh Menanggal Kec. Gayungan Surabaya', '85853071737', 'cowok.png', 'Antok', '$2y$10$83Hf0OywD4f5aEm5bitcs.KAPaSrprOvqdhV3crFIAn3j.sxsDv5m', 14, 'pegawai'),
-('p15', 'Akhmad Rianor Asrari Puadi', 10, 'Laki-Laki', 'asraripuadi@goodnews.id', 'Jl. Ir H Juanda 28 Komp. Pasar RT.028 RW.001 Desa/Kelurahan Ketapang Kecamatan Mentawa Baru Ketapang', '085651257278', 'cowok.png', 'Akhmad', '$2y$10$WVYvFFKEbgyU3t/wQSX8YOunqBecAJiZg9KsaGiT8EpJpS5ThLIfK', 14, 'pegawai'),
-('p16', 'Imama Lavi Insani', 10, 'Perempuan', 'imalavins@goodnews.id', 'Kepatihan RT.004 RW.002 Desa/Kelurahan Kepatihan Kecamatan Tulangan Sidoarjo', '085852711572', 'female.png', 'Imama', '$2y$10$doKQfpvudNtPjUITm.wpc.0HNtQmMLPlmXJisXIoyRXQDevBZFXnq', 14, 'pegawai'),
-('p17', 'Mochamad Fachrezy Zulfikar', 11, 'Laki-Laki', 'fachrezybisnis@gmail.com', 'Kupang Krajan 2 No.34A Kelurahan Kupang Krajan Kecamatan Sawahan Surabaya', '083849194848', 'cowok.png', 'Mochamad', '$2y$10$GUzPd3PRAuzq1JKTXwWdp.P0sM2kula0FE2JamXMgUolCgodJY/U2', 14, 'pegawai'),
-('p18', 'Al Hamdani', 12, 'Laki-Laki', '', 'Jl. Masjid RT.002 RW.002 Desa/Kelurahan Bagan Melibur Kecamatan Merbau Kabupaten Kepulauan Meranti P', '', 'cowok.png', 'Al', '$2y$10$p402ffu6vdwyqbPYj24/B.Um1r6Er42QWSaiSPeQMgT.V13BwXnn2', 14, 'pegawai'),
-('p19', 'Isniyah Zulfah', 10, 'Perempuan', '', 'Jl. Gubeng Kertajaya gang 5C No.39A Surabaya', '', 'female.png', 'Isniyah', '$2y$10$p7n9m9htxWUSDZEp.RoSTuPuy0jGoYvAwZafE9qQkb68kgzgWgTc.', 14, 'pegawai'),
-('p20', 'Widya Lestari', 10, 'Perempuan', '', 'Jl. Dharmawangsa IV nomor 23 Surabaya', '', 'female.png', 'Widya', '$2y$10$7sBPXGwIU7HfersDe6XZ6e6H4W2YikqNnQUrq4jnCKJwa9UYi4uWe', 14, 'pegawai'),
-('p21', 'Agustina Suminar', 10, 'Perempuan', '', 'Jl. Karamenjangan 8 No.7 Surabaya', '', 'female.png', 'Agustina', '$2y$10$kCQPmJ8miKoGwIN6/HM10OBkNY52IsCHPRDy.vuC9otsLhRMrUPbS', 14, 'pegawai'),
-('p22', 'yuan', 3, 'Laki-Laki', 'yuaneko95@gmail.com', 'tanjung', '0897765', 'ar2.jpg', 'yuaneko', '$2y$10$cVsDJsw/3f8Lk4tJQCWrdOXwUSePv0PcqmjXuA.eNpkKFBwW9CV0y', 14, '');
+INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `id_jabatan`, `jenis_kelamin`, `email`, `tgl_lahir`, `tgl_bergabung`, `alamat_pegawai`, `telpon_pegawai`, `foto`, `username`, `password`, `jatah_cuti`, `status_pegawai`) VALUES
+('p02', 'Akhyari Hananto', 3, 'Laki-Laki', 'akhyaree@goodnews.id', NULL, NULL, '', '08113051846', 'cowok.png', 'Akhyari', '$2y$10$LoUa/IiEB2tc9mvusKj99uz1xHvJ5C.6PTuf9HaR4AkRuiepYyjRq', 14, ''),
+('p03', 'R. Andini Ratu F', 7, 'Perempuan', 'andiniratu@goodnews.id', NULL, NULL, 'Jl. Selong Permai Blok E/04 RT.003 RW.009 Desa/Kelurahan Gunung Sekar Kecamatan Sampang Kabupaten Sa', '08123502236', 'female.png', 'Andini', '$2y$10$nQuCy9pQhsUTLoUJ4PS.gOppMP6UWoGxJs96aBZITFdw.PqaKIftm', 14, 'admin'),
+('p04', 'Wahyu Aji ', 19, 'Laki-Laki', 'aji@goodnews.id', NULL, NULL, '', '0811971261', 'cowok.png', 'Wahyu', '$2y$10$Fq6GRdkKbNkT.2htQyJcPe7XuTRSTAz5x2bMQfq4Pjfu4iuDDumx2', 14, 'pegawai'),
+('p05', 'Shinta Soebijandono', 20, 'Perempuan', 'shinta@goodnews.id', NULL, NULL, '', '08179315129', 'female.png', 'Shinta', '$2y$10$1OAwukJQVt2duYgC8IpMoOrU6sOVqfeqt3AVZT1h6HX9WsDmNFJ/S', 14, 'pegawai'),
+('p06', 'Imam Muttaqin', 22, 'Laki-Laki', 'im@goodnews.id', '1992-07-15', '0000-00-00', '', '081331052911', 'cowok.png', 'Imam', '$2y$10$0IV0ev1Bdzidt2GdtbdoQ.W46laLp8M68P3sxZ7ULeEtpABr1E6OS', 14, 'pegawai'),
+('p07', 'Dwina Henti Rahmawati', 21, 'Perempuan', 'dwina@goodnews.id', NULL, NULL, 'Bumi Ilalang Indah RT.003 RW.001 Desa/Kelurahan Jabon Kecamatan Mojoanyar Mojokerto', '081335560747', 'female.png', 'Dwina', '$2y$10$9nENJYOpYZ4G/B5FYBFXe.funrwGjJvLqYMJfOCdL9dI940.rTmgK', 14, 'pegawai'),
+('p08', 'Bagus Dovyanto Ramadhan', 14, 'Laki-Laki', 'bagusdr@goodnews.id', NULL, NULL, 'Jl. Danau Maninjau Raya 81-B1 G38 RT.002 RW.008 Desa/Kelurahan Sawojajar Kecamatan Kedungkandang Mal', '082225253427', 'cowok.png', 'Bagus', '$2y$10$UrowwYpNW8ajSFa0nSARnOMrtHiwUTTlQiC4UzRbFA./OBLHeMpNC', 14, 'pegawai'),
+('p09', 'Yufi Eko Firmansyah', 3, 'Laki-Laki', 'yufieko@goodnews.id', NULL, NULL, 'Dusun Ngijingan RT.001 RW.002 Desa/Kelurahan Purwojati Kecamatan Ngoro Mojokerto', '08993766637', 'cowok.png', 'Yufi', '$2y$10$rt9iI/szhyiqR3o.6ZTRa.jZxw.tJcyTLyQQXqBBpd2tFZsPL6je6', 14, 'pegawai'),
+('p10', 'Juang M Nugraha', 17, 'Laki-Laki', 'djoeank@goodnews.id', NULL, NULL, 'Blok Sukajadi RT.023 RW.009 Desa/Kelurahan Sukajati Kecamatan Haurgeulis Indramayu', '08996259519', 'cowok.png', 'Juang', '$2y$10$RWIuuc8iG0gaaEcDVs5Y3uok7oasG1213xoLicfUuQkvVR0c1KqOm', 14, 'pegawai'),
+('p11', 'Muchamad Dwi Roma Nursita', 6, 'Laki-Laki', 'dwiroma@goodnews.id', NULL, NULL, 'Somowiharjo 34 RT.003 RW.013 Desa/Kelurahan Babat Kecamatan Babat Lamongan', '087853640716', 'cowok.png', 'Muchamad', '$2y$10$dp6Vwu/o5smE1tFBPBU/fu7ju/CxurgHr5lKeQ/Bm4HACXp9VEFii', 14, 'pegawai'),
+('p12', 'Aldila Dwiki Himawan', 5, 'Laki-Laki', 'aldiladwikihimawan@gmail.com', NULL, NULL, 'Jl. Lamongan 01/18 RT.005 RW.005 Desa/kelurahan Yosowilangun Kecamatan Manyar Gresik', '089677411243', 'cowok.png', 'Aldila', '$2y$10$vnpyfE4834RudYNWDDRAWOsuLBDyJuFNm1P99vyWrZGMxr4iB2tSu', 14, 'pegawai'),
+('p13', 'Arifina Budi Aswati', 8, 'Perempuan', 'arifina@goodnews.id', NULL, NULL, 'Jl. Arwana No.12 RT.031 RW.005 Desa/Kelurahan Minomartani Kecamatan Ngaglik Kabupaten Sleman DIY', '', 'female.png', 'Arifina', '$2y$10$S2fp9nZEsqrRZnHE5QVIte5Cl.WotIpeK2jQClLR/ONng0Jb1pv2m', 14, 'pegawai'),
+('p14', 'Antok Kurniawan', 9, 'Laki-Laki', 'goul.hanami@gmail.com', NULL, NULL, 'Jl. Dukuh Menanggal 8/27 RT.001 RW.005 Kel. Dukuh Menanggal Kec. Gayungan Surabaya', '85853071737', 'cowok.png', 'Antok', '$2y$10$83Hf0OywD4f5aEm5bitcs.KAPaSrprOvqdhV3crFIAn3j.sxsDv5m', 14, 'pegawai'),
+('p15', 'Akhmad Rianor Asrari Puadi', 10, 'Laki-Laki', 'asraripuadi@goodnews.id', NULL, NULL, 'Jl. Ir H Juanda 28 Komp. Pasar RT.028 RW.001 Desa/Kelurahan Ketapang Kecamatan Mentawa Baru Ketapang', '085651257278', 'cowok.png', 'Akhmad', '$2y$10$WVYvFFKEbgyU3t/wQSX8YOunqBecAJiZg9KsaGiT8EpJpS5ThLIfK', 14, 'pegawai'),
+('p16', 'Imama Lavi Insani', 10, 'Perempuan', 'imalavins@goodnews.id', NULL, NULL, 'Kepatihan RT.004 RW.002 Desa/Kelurahan Kepatihan Kecamatan Tulangan Sidoarjo', '085852711572', 'female.png', 'Imama', '$2y$10$doKQfpvudNtPjUITm.wpc.0HNtQmMLPlmXJisXIoyRXQDevBZFXnq', 14, 'pegawai'),
+('p17', 'Mochamad Fachrezy Zulfikar', 11, 'Laki-Laki', 'fachrezybisnis@gmail.com', NULL, NULL, 'Kupang Krajan 2 No.34A Kelurahan Kupang Krajan Kecamatan Sawahan Surabaya', '083849194848', 'cowok.png', 'Mochamad', '$2y$10$GUzPd3PRAuzq1JKTXwWdp.P0sM2kula0FE2JamXMgUolCgodJY/U2', 14, 'pegawai'),
+('p18', 'Al Hamdani', 12, 'Laki-Laki', '', NULL, NULL, 'Jl. Masjid RT.002 RW.002 Desa/Kelurahan Bagan Melibur Kecamatan Merbau Kabupaten Kepulauan Meranti P', '', 'cowok.png', 'Al', '$2y$10$p402ffu6vdwyqbPYj24/B.Um1r6Er42QWSaiSPeQMgT.V13BwXnn2', 14, 'pegawai'),
+('p19', 'Isniyah Zulfah', 10, 'Perempuan', '', NULL, NULL, 'Jl. Gubeng Kertajaya gang 5C No.39A Surabaya', '', 'female.png', 'Isniyah', '$2y$10$p7n9m9htxWUSDZEp.RoSTuPuy0jGoYvAwZafE9qQkb68kgzgWgTc.', 14, 'pegawai'),
+('p20', 'Widya Lestari', 10, 'Perempuan', '', NULL, NULL, 'Jl. Dharmawangsa IV nomor 23 Surabaya', '', 'female.png', 'Widya', '$2y$10$7sBPXGwIU7HfersDe6XZ6e6H4W2YikqNnQUrq4jnCKJwa9UYi4uWe', 14, 'pegawai'),
+('p21', 'Agustina Suminar', 10, 'Perempuan', '', NULL, NULL, 'Jl. Karamenjangan 8 No.7 Surabaya', '', 'female.png', 'Agustina', '$2y$10$kCQPmJ8miKoGwIN6/HM10OBkNY52IsCHPRDy.vuC9otsLhRMrUPbS', 14, 'pegawai'),
+('p22', 'yuan', 7, 'Laki-Laki', 'yuaneko95@gmail.com', NULL, NULL, 'tanjung', '0897765', 'OIUH600.jpg', 'yuaneko', '$2y$10$cVsDJsw/3f8Lk4tJQCWrdOXwUSePv0PcqmjXuA.eNpkKFBwW9CV0y', 14, '');
 
 -- --------------------------------------------------------
 
@@ -182,11 +184,42 @@ CREATE TABLE `pegawai_approval_list` (
 --
 
 INSERT INTO `pegawai_approval_list` (`id`, `approval_id`, `object_id`, `type`, `created`, `is_approval`) VALUES
-(1, 'p06', 1, 'cuti', '2017-03-07', 1),
-(2, 'p04', 1, 'cuti', '2017-03-07', 1),
-(3, 'p06', 1, 'barang', '2017-03-07', 1),
-(4, 'p04', 1, 'barang', '2017-03-07', 1),
-(5, 'p04', 2, 'cuti', '2017-03-07', 0);
+(1, 'p06', 3, 'barang', '2017-03-03', 1),
+(2, 'p04', 3, 'barang', '2017-03-03', 1),
+(3, 'p06', 4, 'barang', '2017-03-05', 1),
+(4, 'p04', 4, 'barang', '2017-03-05', 0),
+(5, 'p06', 1, 'cuti', '2017-03-05', 1),
+(6, 'p04', 1, 'cuti', '2017-03-05', 1),
+(9, 'p06', 6, 'barang', '2017-03-06', 1),
+(10, 'p04', 6, 'barang', '2017-03-06', 1),
+(11, 'p06', 7, 'barang', '2017-03-06', 1),
+(12, 'p04', 7, 'barang', '2017-03-06', 1),
+(13, 'p06', 8, 'barang', '2017-03-06', 0),
+(14, 'p04', 8, 'barang', '2017-03-06', 1),
+(15, 'p06', 9, 'barang', '2017-03-06', 1),
+(16, 'p04', 9, 'barang', '2017-03-06', 0),
+(17, 'p06', 10, 'barang', '2017-03-06', 1),
+(18, 'p04', 10, 'barang', '2017-03-06', 1),
+(19, 'p06', 11, 'barang', '2017-03-06', 0),
+(20, 'p04', 11, 'barang', '2017-03-06', 1),
+(21, 'p06', 12, 'barang', '2017-03-06', 0),
+(22, 'p04', 12, 'barang', '2017-03-06', 0),
+(23, 'p06', 13, 'barang', '2017-03-06', 0),
+(24, 'p04', 13, 'barang', '2017-03-06', 1),
+(25, 'p06', 2, 'cuti', '2017-03-07', 0),
+(26, 'p04', 2, 'cuti', '2017-03-07', 1),
+(27, 'p06', 3, 'cuti', '2017-03-07', 0),
+(28, 'p04', 3, 'cuti', '2017-03-07', 1),
+(29, 'p06', 14, 'barang', '2017-03-07', 1),
+(30, 'p04', 14, 'barang', '2017-03-07', 1),
+(31, 'p06', 15, 'barang', '2017-03-07', 1),
+(32, 'p04', 15, 'barang', '2017-03-07', 1),
+(33, 'p06', 4, 'cuti', '2017-03-07', 1),
+(34, 'p04', 4, 'cuti', '2017-03-07', 0),
+(35, 'p06', 5, 'cuti', '2017-03-07', 1),
+(36, 'p04', 5, 'cuti', '2017-03-07', 1),
+(37, 'p06', 16, 'barang', '2017-03-07', 1),
+(38, 'p04', 16, 'barang', '2017-03-07', 1);
 
 -- --------------------------------------------------------
 
@@ -208,7 +241,7 @@ CREATE TABLE `pegawai_group` (
 INSERT INTO `pegawai_group` (`id`, `id_pegawai`, `grup`, `is_coordinator`) VALUES
 (1, 'p09', 'TECHINNO', 0),
 (2, 'p06', 'TECHINNO', 1),
-(7, 'p22', 'TECHINNO', 0),
+(7, 'p22', 'ADMIN', 0),
 (8, 'p02', 'REDAKSI', 1),
 (9, 'p13', 'REDAKSI', 0),
 (10, 'p08', 'REDAKSI', 0),
@@ -236,6 +269,7 @@ CREATE TABLE `pengadaan_barang` (
   `berkas` varchar(50) NOT NULL,
   `alasan` text NOT NULL,
   `status` varchar(20) DEFAULT NULL,
+  `note` text,
   `tgl_sah` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -243,8 +277,8 @@ CREATE TABLE `pengadaan_barang` (
 -- Dumping data for table `pengadaan_barang`
 --
 
-INSERT INTO `pengadaan_barang` (`id_pbarang`, `id_pegawai`, `id_kategori`, `nama_barang`, `tgl_pengajuan`, `berkas`, `alasan`, `status`, `tgl_sah`) VALUES
-(1, 'p09', 5, 'uang', '2017-03-07', 'Daftar Nilai Mahasiswa.docx', 'liputan', 'disetujui', '2017-03-07');
+INSERT INTO `pengadaan_barang` (`id_pbarang`, `id_pegawai`, `id_kategori`, `nama_barang`, `tgl_pengajuan`, `berkas`, `alasan`, `status`, `note`, `tgl_sah`) VALUES
+(16, 'p09', 3, 'uji coba', '2017-03-07', 'data karyawan GNFI (1).xlsx', 'uji coba brg', 'disetujui', 'yakin aja\r\n', '2017-03-10');
 
 -- --------------------------------------------------------
 
@@ -262,6 +296,7 @@ CREATE TABLE `permohonan_cuti` (
   `tgl_akhir_cuti` date NOT NULL,
   `alasan` varchar(100) NOT NULL,
   `status` varchar(20) DEFAULT NULL,
+  `note` text,
   `tgl_sah` date DEFAULT NULL,
   `disahkan` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -270,9 +305,8 @@ CREATE TABLE `permohonan_cuti` (
 -- Dumping data for table `permohonan_cuti`
 --
 
-INSERT INTO `permohonan_cuti` (`id_pcuti`, `id_pegawai`, `id_jcuti`, `tgl_pengajuan`, `lama_cuti`, `tgl_mulai_cuti`, `tgl_akhir_cuti`, `alasan`, `status`, `tgl_sah`, `disahkan`) VALUES
-(1, 'p09', 3, '2017-03-07', 2, '2017-03-09', '2017-03-11', 'nyobak', 'disetujui', '2017-03-07', 'wahyu'),
-(2, 'p06', 3, '2017-03-07', 3, '2017-03-15', '2017-03-18', 'sakit', 'Belum dikonfirmasi', '2017-03-07', 'wahyu');
+INSERT INTO `permohonan_cuti` (`id_pcuti`, `id_pegawai`, `id_jcuti`, `tgl_pengajuan`, `lama_cuti`, `tgl_mulai_cuti`, `tgl_akhir_cuti`, `alasan`, `status`, `note`, `tgl_sah`, `disahkan`) VALUES
+(5, 'p09', 3, '2017-03-07', 2, '2017-03-08', '2017-03-10', 'uji coba', 'disetujui', NULL, '2017-03-10', 'Wahyu');
 
 --
 -- Indexes for dumped tables
@@ -369,7 +403,7 @@ ALTER TABLE `pegawai_approval`
 -- AUTO_INCREMENT for table `pegawai_approval_list`
 --
 ALTER TABLE `pegawai_approval_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `pegawai_group`
 --
@@ -379,12 +413,12 @@ ALTER TABLE `pegawai_group`
 -- AUTO_INCREMENT for table `pengadaan_barang`
 --
 ALTER TABLE `pengadaan_barang`
-  MODIFY `id_pbarang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pbarang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `permohonan_cuti`
 --
 ALTER TABLE `permohonan_cuti`
-  MODIFY `id_pcuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pcuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
