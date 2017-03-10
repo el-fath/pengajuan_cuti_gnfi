@@ -106,7 +106,8 @@
                           $start_from = ($page-1) * $limit; 
                           $sql = "SELECT pegawai.id_pegawai,pegawai.nama_pegawai,jabatan.jabatan,pegawai.jenis_kelamin,pegawai.email,pegawai_group.grup,pegawai.alamat_pegawai,pegawai.telpon_pegawai,pegawai.foto,pegawai.jatah_cuti, pegawai.username FROM pegawai 
                             LEFT JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
-                            LEFT JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan 
+                            LEFT JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan
+                             
                             LIMIT $start_from, $limit";
                           $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                           $num_rows = mysqli_num_rows($s);
