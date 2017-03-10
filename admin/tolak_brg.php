@@ -5,13 +5,17 @@
   while($r=mysqli_fetch_array($modal)){
 ?>
 
-<div class="modal-dialog" style="margin-top: 150px">
+<div class="modal-dialog" style="margin-top: 80px">
     <div class="modal-content">
         <div class="modal-body">
           	<form role="form" action="admin/proses_tolak_brg.php" enctype="multipart/form-data" method="POST">
                 <div class="form-group" style="padding-bottom: 20px;">
-                  	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menolak men.!</h1>
+                  	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menolak</h1>
                   	<input type="hidden" name="id_pbarang"  class="form-control" value="<?php echo $r['id_pbarang']; ?>" />
+                </div>
+                <div class="form-group">
+                  <label>Alasan Anda Kenapa Menolak Pengajuan Ini ??</label>
+                  <textarea name="note" class="form-control" placeholder="Alasan Anda Kenapa Menolak Pengajuan Ini ??"><?php echo $r['note']; ?></textarea>
                 </div>
               	<div class="modal-footer">
                   <input class="btn btn-success" value="yakin" type="submit" />

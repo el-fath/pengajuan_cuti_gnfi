@@ -69,6 +69,20 @@
                           <input type="text" name="username" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['username']; ?>" oninvalid="this.setCustomValidity('input hanya boleh a-z A-Z 1-9 tanpa spasi')">
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">TGL LAHIR<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="date" name="tgl_lahir" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['tgl_lahir']; ?>">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">TGL BERGABUNG<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="date" name="tgl_bergabung" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['tgl_bergabung']; ?>">
+                        </div>
+                      </div>
                       <!-- <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">STATUS</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">

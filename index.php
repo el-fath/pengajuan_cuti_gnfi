@@ -292,6 +292,14 @@
                         <th><input class="form-control col-md-7 col-xs-12" type="email" name="email" value="<?php echo $temp['email']; ?>"></th>
                     </tr>
                     <tr>
+                        <th>Tgl Lahir</th>
+                        <th><input class="form-control col-md-7 col-xs-12" type="date" name="tgl_lahir" value="<?php echo $temp['tgl_lahir']; ?>"></th>
+                    </tr>
+                    <tr>
+                        <th>Tgl Bergabung</th>
+                        <th><input class="form-control col-md-7 col-xs-12" type="date" name="tgl_bergabung" value="<?php echo $temp['tgl_bergabung']; ?>"></th>
+                    </tr>
+                    <tr>
                         <th>Alamat</th>
                         <th><input class="form-control col-md-7 col-xs-12" type="text" name="alamat_pegawai" value="<?php echo $temp['alamat_pegawai']; ?>"></th>
                     </tr>

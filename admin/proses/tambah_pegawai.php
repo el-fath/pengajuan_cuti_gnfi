@@ -3,6 +3,8 @@
 	$option 		= ['cost' => 10,];
 	$id_pegawai 	= $_POST['id_pegawai'];
 	$nama_pegawai 	= $_POST['nama_pegawai'];
+	$tgl_lahir      = $_POST['tgl_lahir'];
+	$tgl_bergabung  = $_POST['tgl_bergabung'];
 	$id_jabatan 	= $_POST['id_jabatan'];
 	$jenis_kelamin 	= $_POST['jenis_kelamin'];
 	$email 			= $_POST['email'];
@@ -41,7 +43,7 @@
 	// 	echo "<script>alert('karakter username hanya boleh a-z A-Z 0-9 tanpa spasi')</script>";
 	// } else {
 		
-		$sql = "INSERT INTO pegawai VALUES('$id_pegawai','$nama_pegawai','$id_jabatan','$jenis_kelamin','$email','$alamat_pegawai','$telpon_pegawai','$file','$username','$hash','14','pegawai')";
+		$sql = "INSERT INTO pegawai VALUES('$id_pegawai','$nama_pegawai','$id_jabatan','$jenis_kelamin','$email','$tgl_lahir','$tgl_bergabung','$alamat_pegawai','$telpon_pegawai','$file','$username','$hash','14','pegawai')";
 	 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 		if ($s == true && $uploadOk =='1') {
 			$z = mysqli_query($conn,"INSERT INTO pegawai_group VALUES('','$id_pegawai','','')") or die(mysqli_error());

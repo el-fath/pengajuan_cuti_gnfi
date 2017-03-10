@@ -6,6 +6,8 @@
 	$id_jabatan 	= $_POST['id_jabatan'];
 	$jenis_kelamin 	= $_POST['jenis_kelamin'];
 	$email 			= $_POST['email'];
+	$tgl_lahir      = $_POST['tgl_lahir'];
+	$tgl_bergabung  = $_POST['tgl_bergabung'];
 	$alamat_pegawai = $_POST['alamat_pegawai'];
 	$telpon_pegawai = $_POST['telpon_pegawai'];
 	$status_pegawai	= $_POST['status_pegawai'];
@@ -38,9 +40,9 @@
 	}
 
 	if ($_FILES["foto"]["name"] == "" || $uploadOk == '0'){
-	$a = "UPDATE pegawai SET id_pegawai = '$id_pegawai', nama_pegawai = '$nama_pegawai', username='$username', id_jabatan = '$id_jabatan', email = '$email', jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai', status_pegawai = '$status_pegawai' WHERE id_pegawai = '$id_pegawai'";
+	$a = "UPDATE pegawai SET id_pegawai = '$id_pegawai', nama_pegawai = '$nama_pegawai', username='$username', id_jabatan = '$id_jabatan', email = '$email', tgl_lahir = '$tgl_lahir', tgl_bergabung = '$tgl_bergabung', jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai', status_pegawai = '$status_pegawai' WHERE id_pegawai = '$id_pegawai'";
 	}else{
-	$a = "UPDATE pegawai SET id_pegawai = '$id_pegawai', nama_pegawai = '$nama_pegawai',username='$username', id_jabatan = '$id_jabatan', email = '$email', jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai', status_pegawai = '$status_pegawai',foto = '$file' WHERE id_pegawai = '$id_pegawai'";
+	$a = "UPDATE pegawai SET id_pegawai = '$id_pegawai', nama_pegawai = '$nama_pegawai',username='$username', id_jabatan = '$id_jabatan', email = '$email', tgl_lahir = '$tgl_lahir', tgl_bergabung = '$tgl_bergabung', jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai', status_pegawai = '$status_pegawai',foto = '$file' WHERE id_pegawai = '$id_pegawai'";
   	}
 	$b = mysqli_query($conn,$a) or die (mysqli_error());
 	if ($b == true && $uploadOk =='1'){
