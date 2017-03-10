@@ -26,6 +26,7 @@ if ($_POST['id_jcuti'] != '2' ) {
 		echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 
 	}else{
+		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET status = 'disetujui 1 approvel', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 	}
 	
@@ -51,6 +52,7 @@ if ($_POST['id_jcuti'] != '2' ) {
 		echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 
 	}else{
+		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET status = 'disetujui 1 approvel', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 	}
 

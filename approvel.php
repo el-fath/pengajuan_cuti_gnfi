@@ -103,6 +103,8 @@
                         <span class="label label-danger" style="font-size: 12px;">ditolak</span>
                     <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
                         <span class="label label-warning" style="font-size: 12px;">Belum dikonfirmasi</span>
+                    <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
+                        <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
                     <?php } ?>
                 </td>
                 <?php 
