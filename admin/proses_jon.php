@@ -3,6 +3,7 @@ session_start();
 include 'koneksi.php';
 $username = $_SESSION['username'];
 $id_pegawai = $_SESSION['id_pegawai'];
+$note = $_POST['note'];
 $id_pcuti = $_POST['id_pcuti'];
 $tgl_sah = date('Y/m/d');
 $id_jcuti = $_POST['id_jcuti'];
@@ -21,12 +22,12 @@ if ($_POST['id_jcuti'] != '2' ) {
 	$b = mysqli_fetch_assoc($a);
 
 	if ($b['sisa_approval'] == 0 ) {
-		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
+		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET note = '$note',status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		
 		echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 
 	}else{
-		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET status = 'disetujui 1 approvel', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
+		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET note = '$note',status = 'disetujui 1 approvel', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 	}
 	
@@ -47,12 +48,12 @@ if ($_POST['id_jcuti'] != '2' ) {
 	if ($b['sisa_approval'] == 0 ) {
 		$l = mysqli_query($conn,"UPDATE pegawai
 		INNER JOIN permohonan_cuti ON permohonan_cuti.id_pegawai = pegawai.id_pegawai
-		SET jatah_cuti = jatah_cuti - lama_cuti, STATUS = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
+		SET jatah_cuti = jatah_cuti - lama_cuti,note = '$note', STATUS = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		
 		echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 
 	}else{
-		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET status = 'disetujui 1 approvel', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
+		$l = mysqli_query($conn,"UPDATE permohonan_cuti SET note = '$note', status = 'disetujui 1 approvel', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 	}
 

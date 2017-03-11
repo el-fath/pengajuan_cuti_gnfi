@@ -10,7 +10,7 @@
 <?php
 
 $id_pbarang=$_GET['id_pbarang'];
-$sql = "SELECT pengadaan_barang.id_pbarang, pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan, pengadaan_barang.tgl_pengajuan, pengadaan_barang.alasan ,pengadaan_barang.status,pengadaan_barang.nama_barang,pengadaan_barang.berkas, pengadaan_barang.tgl_sah
+$sql = "SELECT pengadaan_barang.id_pbarang,pengadaan_barang.disahkan,pengadaan_barang.status, pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan, pengadaan_barang.tgl_pengajuan, pengadaan_barang.alasan ,pengadaan_barang.status,pengadaan_barang.nama_barang,pengadaan_barang.berkas, pengadaan_barang.tgl_sah
         FROM pegawai, pengadaan_barang, jabatan
         WHERE pegawai.id_pegawai = pengadaan_barang.id_pegawai
         AND pegawai.id_jabatan= jabatan.id_jabatan
@@ -61,6 +61,11 @@ $temp=mysqli_fetch_array($s);
                          <td style="padding-left: 30px"><strong>:</strong></td>                                               
                          <td style="padding-left: 30px"><?php echo $temp['alasan']; ?></td>
                      </tr>
+                     <tr>
+                         <td><strong>Status</strong></td>
+                         <td style="padding-left: 30px"><strong>:</strong></td>                                               
+                         <td style="padding-left: 30px"><?php echo $temp['status']; ?></td>
+                     </tr>
                  </table>
                  <br>
                   <p style="padding-left: 70px">Demikian surat pengajuan ini dibuat dan kami ucapkan terimakasih.</p>
@@ -80,7 +85,7 @@ $temp=mysqli_fetch_array($s);
                   <br>
                     <tr>
                       <td style="padding-left: 90px"><strong><?php echo $temp['nama_pegawai']; ?></strong></td>
-                      <td style="padding-left: 284px"><strong><?php echo $temp['disahkan']; ?></strong></td>
+                      <td style="padding-left: 230px"><strong><?php echo $temp['disahkan']; ?></strong></td>
                     </tr>
                   </table>
                   <br>

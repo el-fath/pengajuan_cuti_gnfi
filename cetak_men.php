@@ -10,7 +10,7 @@
 <?php
 
 $id_pcuti=$_GET['id_pcuti'];
-$sql = "SELECT permohonan_cuti.id_pcuti,pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan ,jenis_cuti.nama_cuti, permohonan_cuti.tgl_pengajuan ,permohonan_cuti.lama_cuti, permohonan_cuti.tgl_mulai_cuti, permohonan_cuti.tgl_akhir_cuti, permohonan_cuti.alasan ,permohonan_cuti.status, permohonan_cuti.tgl_sah, permohonan_cuti.disahkan
+$sql = "SELECT permohonan_cuti.id_pcuti,permohonan_cuti.status,pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan ,jenis_cuti.nama_cuti, permohonan_cuti.tgl_pengajuan ,permohonan_cuti.lama_cuti, permohonan_cuti.tgl_mulai_cuti, permohonan_cuti.tgl_akhir_cuti, permohonan_cuti.alasan ,permohonan_cuti.status, permohonan_cuti.tgl_sah, permohonan_cuti.disahkan
         FROM pegawai, permohonan_cuti, jabatan, jenis_cuti
         WHERE pegawai.id_pegawai = permohonan_cuti.id_pegawai
         AND pegawai.id_jabatan= jabatan.id_jabatan
@@ -60,7 +60,11 @@ $tgl_sah = $temp['tgl_sah'];
                                                    <td style ="padding-right: 50px"><strong>s/d</strong></td>
                                                    <td><?php echo date("d-m-Y", strtotime($temp['tgl_akhir_cuti'])); ?></td>
                                                </tr>
-                                               
+                                               <tr>
+                                                   <td><strong>Status</strong></td>
+                                                   <td style="padding-left: 30px"><strong>:</strong></td>                                               
+                                                   <td style="padding-left: 30px"><?php echo $temp['status']; ?></td>
+                                               </tr>
                                            </table>
                                            <br>
                                             <p style="padding-left: 70px">Demikian surat cuti kerja ini dibuat dan kami ucapkan terimakasih.</p>
@@ -80,7 +84,7 @@ $tgl_sah = $temp['tgl_sah'];
                                             <br>
                                               <tr>
                                                 <td style="padding-left: 90px"><strong><?php echo $temp['nama_pegawai']; ?></strong></td>
-                                                <td style="padding-left: 284px"><strong><?php echo $temp['disahkan']; ?></strong></td>
+                                                <td style="padding-left: 230px"><strong><?php echo $temp['disahkan']; ?></strong></td>
                                               </tr>
                                             </table>
                                             <br>

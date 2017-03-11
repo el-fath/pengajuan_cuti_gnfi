@@ -4,15 +4,19 @@
   $modal=mysqli_query($conn,"SELECT * FROM permohonan_cuti INNER JOIN pegawai ON pegawai.id_pegawai=permohonan_cuti.id_pegawai WHERE id_pcuti='$id_pcuti'");
   while($r=mysqli_fetch_array($modal)){
 ?>
-<div class="modal-dialog" style="margin-top: 150px">
+<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-body">
           	<form role="form" action="admin/proses_jon.php" enctype="multipart/form-data" method="POST">
                 <?php if ($r['jatah_cuti'] != '0'){ ?>
-                <div class="form-group" style="padding-bottom: 20px;">
+                <div class="form-group">
                   	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menyetujui....!</h1>
                   	<input type="hidden" name="id_pcuti"  class="form-control" value="<?php echo $r['id_pcuti']; ?>" />
                     <input type="hidden" name="id_jcuti"  class="form-control" value="<?php echo $r['id_jcuti']; ?>" />
+                </div>
+                <div class="form-group">
+                  <label>Alasan Anda Kenapa Menyetujui Pengajuan Ini ??</label>
+                  <textarea name="note" class="form-control" placeholder="Alasan Anda Kenapa Menyetujui Pengajuan Ini ??"><?php echo $r['note']; ?></textarea>
                 </div>
               	<div class="modal-footer">
                   <input class="btn btn-success" value="yakin" type="submit" />
@@ -21,7 +25,7 @@
                   </button>
               	</div>
                 <?php }else{ ?>
-                <div class="form-group" style="padding-bottom: 20px;">
+                <div class="form-group">
                     <h1 class="modal-title" id="myModalLabel">Mohon Maaf Jatah Cuti <?php echo $r['nama_pegawai']; ?> Habis.........!</h1>
                 </div>
                 <?php } ?>

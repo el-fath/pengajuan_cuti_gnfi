@@ -5,11 +5,11 @@
   while($r=mysqli_fetch_array($modal)){
 ?>
 
-<div class="modal-dialog" style="margin-top: 80px">
+<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-body">
           	<form role="form" action="admin/proses_setuju_brg.php" enctype="multipart/form-data" method="POST">
-                <div class="form-group" style="padding-bottom: 20px;">
+                <div class="form-group">
                   	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menyetujui </h1>
                   	<input type="hidden" name="id_pbarang"  class="form-control" value="<?php echo $r['id_pbarang']; ?>" />
                 </div>
