@@ -17,6 +17,7 @@ $sql = "SELECT pengadaan_barang.id_pbarang,pengadaan_barang.disahkan,pengadaan_b
         AND pengadaan_barang.id_pbarang = '$id_pbarang'";
 $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 $temp=mysqli_fetch_array($s);
+$tgl_sah = $temp['tgl_sah'];
 ?>
 <div class="table-responsive">
   <div id="p1">
@@ -95,11 +96,21 @@ $temp=mysqli_fetch_array($s);
               </div>
               </div>
               <div class="modal-footer">
+              <?php 
+                $id_pegawai=$_SESSION['id_pegawai'];
+                $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
+                $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
+                while ($t = mysqli_fetch_assoc($a)) {
+                    if ($t['is_coordinator'] == '0') {
+                ?>
                   <a href="index.php"><button type="button" class="btn btn-default">Kembali</button></a>
                  <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
-              
-          
-      </div>
+                <?php }else{ ?>
+                  <a href="approvel.php"><button type="button" class="btn btn-default">Kembali</button></a>
+                 <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
+                 <button type="button" class="btn btn-success">Kirim Ke Keuangan</button>
+                <?php }} ?>
+              </div>
   <script>
   function printContent(el){
     var restorepage = document.body.innerHTML;

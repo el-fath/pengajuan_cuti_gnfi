@@ -40,9 +40,12 @@
     <!--HOME SECTION-->
 
 <div class="container">
-   
-        <h2 style="padding-top: 80px;"><center>Approvel Page</center></h2>
+    <h2 style="padding-top: 80px;"><center>Approvel Page</center></h2>
     <!-- Nav tabs -->
+    <?php
+    if(isset($_GET['id_pbarang'])){
+    include "cetakbrg_men.php";
+    }?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <!-- Nav tabs -->
@@ -106,7 +109,7 @@
                     <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
                         <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
                     <?php } ?>
-                </td>
+              </td>
                 <?php 
                 $id_pegawai=$_SESSION['id_pegawai'];
                 $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
@@ -164,7 +167,7 @@
               
               <th><strong>ALASAN</strong></th>
               <th><strong>STATUS</strong></th>
-              <th colspan="3"><center>ACTION</center></th>
+              <th colspan="4"><center>ACTION</center></th>
             </tr>
             <?php 
                $no=0; 
@@ -205,7 +208,8 @@
                     <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
                         <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
                     <?php } ?>
-                </td>
+              </td>
+              <td align='center'><a href='?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>'><button class='btn btn-success btn-sm'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
                 <?php 
                 $id_pegawai=$_SESSION['id_pegawai'];
                 $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
@@ -213,31 +217,31 @@
                 while ($t = mysqli_fetch_assoc($a)) {
                     if ($t['is_coordinator'] == '1') {
                 ?>
-            <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
-                </td>
-                <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
-                </td>
-                <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
-                </td>
-                <?php 
-                }else{
-                 ?>
+              <td align="center">
+                  <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+              </td>
+              <td align="center">
+                  <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+              </td>
+              <td align="center"> 
+                   <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+              </td>
+              <?php 
+              }else{
+               ?>
 
-                <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
-                </td>
-                <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
-                </td>
-                <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
-                </td>
-                <?php 
-                }}
-                ?>
+              <td align="center">
+                  <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+              </td>
+              <td align="center">
+                  <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+              </td>
+              <td align="center"> 
+                   <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+              </td>
+              <?php 
+              }}
+              ?>
             </tr>
             <?php }}else{ ?>
             <tr>
