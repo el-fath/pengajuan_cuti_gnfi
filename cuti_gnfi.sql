@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2017 at 08:03 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Generation Time: Mar 12, 2017 at 04:18 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `cuti_gnfi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coment`
+--
+
+CREATE TABLE `coment` (
+  `id_comen` int(5) NOT NULL,
+  `id_pcuti` int(10) DEFAULT NULL,
+  `id_pegawai` varchar(10) DEFAULT NULL,
+  `komentar` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `coment`
+--
+
+INSERT INTO `coment` (`id_comen`, `id_pcuti`, `id_pegawai`, `komentar`) VALUES
+(1, 1, 'p09', 'Nyobak'),
+(2, 1, 'p06', 'oppoooo......?'),
+(3, 1, 'p09', 'Nyobak Ae....'),
+(4, 1, 'p06', 'oo.....');
 
 -- --------------------------------------------------------
 
@@ -123,9 +146,9 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `id_jabatan`, `jenis_kelamin`, `email`, `tgl_lahir`, `tgl_bergabung`, `alamat_pegawai`, `telpon_pegawai`, `foto`, `username`, `password`, `jatah_cuti`, `status_pegawai`) VALUES
-('p02', 'Akhyari Hananto', 3, 'Laki-Laki', 'akhyaree@goodnews.id', NULL, NULL, '', '08113051846', 'cowok.png', 'Akhyari', '$2y$10$LoUa/IiEB2tc9mvusKj99uz1xHvJ5C.6PTuf9HaR4AkRuiepYyjRq', 14, ''),
+('p02', 'Akhyari Hananto', 8, 'Laki-Laki', 'akhyaree@goodnews.id', NULL, NULL, '', '08113051846', 'cowok.png', 'Akhyari', '$2y$10$LoUa/IiEB2tc9mvusKj99uz1xHvJ5C.6PTuf9HaR4AkRuiepYyjRq', 14, ''),
 ('p03', 'R. Andini Ratu F', 7, 'Perempuan', 'andiniratu@goodnews.id', NULL, NULL, 'Jl. Selong Permai Blok E/04 RT.003 RW.009 Desa/Kelurahan Gunung Sekar Kecamatan Sampang Kabupaten Sa', '08123502236', 'female.png', 'Andini', '$2y$10$nQuCy9pQhsUTLoUJ4PS.gOppMP6UWoGxJs96aBZITFdw.PqaKIftm', 14, 'admin'),
-('p04', 'Wahyu Aji ', 19, 'Laki-Laki', 'aji@goodnews.id', NULL, NULL, '', '0811971261', 'cowok.png', 'Wahyu', '$2y$10$Fq6GRdkKbNkT.2htQyJcPe7XuTRSTAz5x2bMQfq4Pjfu4iuDDumx2', 14, 'pegawai'),
+('p04', 'Wahyu Aji ', 19, 'Laki-Laki', 'aji@goodnews.id', '0000-00-00', '0000-00-00', 'Surabaya', '0811971261', 'cowok.png', 'Wahyu', '$2y$10$Fq6GRdkKbNkT.2htQyJcPe7XuTRSTAz5x2bMQfq4Pjfu4iuDDumx2', 14, 'pegawai'),
 ('p05', 'Shinta Soebijandono', 20, 'Perempuan', 'shinta@goodnews.id', NULL, NULL, '', '08179315129', 'female.png', 'Shinta', '$2y$10$1OAwukJQVt2duYgC8IpMoOrU6sOVqfeqt3AVZT1h6HX9WsDmNFJ/S', 14, 'pegawai'),
 ('p06', 'Imam Muttaqin', 22, 'Laki-Laki', 'im@goodnews.id', '1992-07-15', '0000-00-00', '', '081331052911', 'cowok.png', 'Imam', '$2y$10$0IV0ev1Bdzidt2GdtbdoQ.W46laLp8M68P3sxZ7ULeEtpABr1E6OS', 14, 'pegawai'),
 ('p07', 'Dwina Henti Rahmawati', 21, 'Perempuan', 'dwina@goodnews.id', NULL, NULL, 'Bumi Ilalang Indah RT.003 RW.001 Desa/Kelurahan Jabon Kecamatan Mojoanyar Mojokerto', '081335560747', 'female.png', 'Dwina', '$2y$10$9nENJYOpYZ4G/B5FYBFXe.funrwGjJvLqYMJfOCdL9dI940.rTmgK', 14, 'pegawai'),
@@ -143,7 +166,8 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `id_jabatan`, `jenis_kelami
 ('p19', 'Isniyah Zulfah', 10, 'Perempuan', '', NULL, NULL, 'Jl. Gubeng Kertajaya gang 5C No.39A Surabaya', '', 'female.png', 'Isniyah', '$2y$10$p7n9m9htxWUSDZEp.RoSTuPuy0jGoYvAwZafE9qQkb68kgzgWgTc.', 14, 'pegawai'),
 ('p20', 'Widya Lestari', 10, 'Perempuan', '', NULL, NULL, 'Jl. Dharmawangsa IV nomor 23 Surabaya', '', 'female.png', 'Widya', '$2y$10$7sBPXGwIU7HfersDe6XZ6e6H4W2YikqNnQUrq4jnCKJwa9UYi4uWe', 14, 'pegawai'),
 ('p21', 'Agustina Suminar', 10, 'Perempuan', '', NULL, NULL, 'Jl. Karamenjangan 8 No.7 Surabaya', '', 'female.png', 'Agustina', '$2y$10$kCQPmJ8miKoGwIN6/HM10OBkNY52IsCHPRDy.vuC9otsLhRMrUPbS', 14, 'pegawai'),
-('p22', 'yuan', 7, 'Laki-Laki', 'yuaneko95@gmail.com', NULL, NULL, 'tanjung', '0897765', 'OIUH600.jpg', 'yuaneko', '$2y$10$cVsDJsw/3f8Lk4tJQCWrdOXwUSePv0PcqmjXuA.eNpkKFBwW9CV0y', 14, '');
+('p22', 'yuan', 3, 'Laki-Laki', 'yuaneko95@gmail.com', '2017-03-15', '2017-03-25', 'PPI', '0897765', 'ar2.jpg', 'yuaneko', '$2y$10$cVsDJsw/3f8Lk4tJQCWrdOXwUSePv0PcqmjXuA.eNpkKFBwW9CV0y', 14, ''),
+('p23', 'Yatim', 17, 'Laki-Laki', 'yr@gmail.com', '1995-06-14', '2017-03-10', 'Kenjeran', '098763456789', 'ar2.jpg', 'yatim', '$2y$10$upZyF.nZsmi8W067CzDDY.Me28uoGHRVNGi3y.OF.fwRped6Aiy0W', 14, 'pegawai');
 
 -- --------------------------------------------------------
 
@@ -184,42 +208,14 @@ CREATE TABLE `pegawai_approval_list` (
 --
 
 INSERT INTO `pegawai_approval_list` (`id`, `approval_id`, `object_id`, `type`, `created`, `is_approval`) VALUES
-(1, 'p06', 3, 'barang', '2017-03-03', 1),
-(2, 'p04', 3, 'barang', '2017-03-03', 1),
-(3, 'p06', 4, 'barang', '2017-03-05', 1),
-(4, 'p04', 4, 'barang', '2017-03-05', 0),
-(5, 'p06', 1, 'cuti', '2017-03-05', 1),
-(6, 'p04', 1, 'cuti', '2017-03-05', 1),
-(9, 'p06', 6, 'barang', '2017-03-06', 1),
-(10, 'p04', 6, 'barang', '2017-03-06', 1),
-(11, 'p06', 7, 'barang', '2017-03-06', 1),
-(12, 'p04', 7, 'barang', '2017-03-06', 1),
-(13, 'p06', 8, 'barang', '2017-03-06', 0),
-(14, 'p04', 8, 'barang', '2017-03-06', 1),
-(15, 'p06', 9, 'barang', '2017-03-06', 1),
-(16, 'p04', 9, 'barang', '2017-03-06', 0),
-(17, 'p06', 10, 'barang', '2017-03-06', 1),
-(18, 'p04', 10, 'barang', '2017-03-06', 1),
-(19, 'p06', 11, 'barang', '2017-03-06', 0),
-(20, 'p04', 11, 'barang', '2017-03-06', 1),
-(21, 'p06', 12, 'barang', '2017-03-06', 0),
-(22, 'p04', 12, 'barang', '2017-03-06', 0),
-(23, 'p06', 13, 'barang', '2017-03-06', 0),
-(24, 'p04', 13, 'barang', '2017-03-06', 1),
-(25, 'p06', 2, 'cuti', '2017-03-07', 0),
-(26, 'p04', 2, 'cuti', '2017-03-07', 1),
-(27, 'p06', 3, 'cuti', '2017-03-07', 0),
-(28, 'p04', 3, 'cuti', '2017-03-07', 1),
-(29, 'p06', 14, 'barang', '2017-03-07', 1),
-(30, 'p04', 14, 'barang', '2017-03-07', 1),
-(31, 'p06', 15, 'barang', '2017-03-07', 1),
-(32, 'p04', 15, 'barang', '2017-03-07', 1),
-(33, 'p06', 4, 'cuti', '2017-03-07', 1),
-(34, 'p04', 4, 'cuti', '2017-03-07', 0),
-(35, 'p06', 5, 'cuti', '2017-03-07', 1),
-(36, 'p04', 5, 'cuti', '2017-03-07', 1),
-(37, 'p06', 16, 'barang', '2017-03-07', 1),
-(38, 'p04', 16, 'barang', '2017-03-07', 1);
+(1, 'p06', 1, 'cuti', '2017-03-10', 1),
+(2, 'p04', 1, 'cuti', '2017-03-10', 0),
+(3, 'p06', 1, 'barang', '2017-03-10', 1),
+(4, 'p04', 1, 'barang', '2017-03-10', 1),
+(5, 'p06', 2, 'cuti', '2017-03-11', 0),
+(6, 'p04', 2, 'cuti', '2017-03-11', 0),
+(7, 'p06', 2, 'barang', '2017-03-11', 0),
+(8, 'p04', 2, 'barang', '2017-03-11', 0);
 
 -- --------------------------------------------------------
 
@@ -241,7 +237,7 @@ CREATE TABLE `pegawai_group` (
 INSERT INTO `pegawai_group` (`id`, `id_pegawai`, `grup`, `is_coordinator`) VALUES
 (1, 'p09', 'TECHINNO', 0),
 (2, 'p06', 'TECHINNO', 1),
-(7, 'p22', 'ADMIN', 0),
+(7, 'p22', 'ADMIN', 2),
 (8, 'p02', 'REDAKSI', 1),
 (9, 'p13', 'REDAKSI', 0),
 (10, 'p08', 'REDAKSI', 0),
@@ -252,7 +248,8 @@ INSERT INTO `pegawai_group` (`id`, `id_pegawai`, `grup`, `is_coordinator`) VALUE
 (15, 'p12', 'CREATIVE', 0),
 (16, 'p11', 'CREATIVE', 0),
 (19, 'p07', 'MEDSOS', 1),
-(20, 'p17', 'MEDSOS', 0);
+(20, 'p17', 'MEDSOS', 0),
+(21, 'p23', 'ADMIN', 0);
 
 -- --------------------------------------------------------
 
@@ -270,15 +267,18 @@ CREATE TABLE `pengadaan_barang` (
   `alasan` text NOT NULL,
   `status` varchar(20) DEFAULT NULL,
   `note` text,
-  `tgl_sah` date DEFAULT NULL
+  `tgl_sah` date DEFAULT NULL,
+  `disahkan` varchar(20) DEFAULT NULL,
+  `note2` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengadaan_barang`
 --
 
-INSERT INTO `pengadaan_barang` (`id_pbarang`, `id_pegawai`, `id_kategori`, `nama_barang`, `tgl_pengajuan`, `berkas`, `alasan`, `status`, `note`, `tgl_sah`) VALUES
-(16, 'p09', 3, 'uji coba', '2017-03-07', 'data karyawan GNFI (1).xlsx', 'uji coba brg', 'disetujui', 'yakin aja\r\n', '2017-03-10');
+INSERT INTO `pengadaan_barang` (`id_pbarang`, `id_pegawai`, `id_kategori`, `nama_barang`, `tgl_pengajuan`, `berkas`, `alasan`, `status`, `note`, `tgl_sah`, `disahkan`, `note2`) VALUES
+(1, 'p09', 5, 'uang', '2017-03-10', 'Daftar Nilai Mahasiswa.docx', 'Liputan', 'disetujui', 'nyobak', '2017-03-12', 'wahyu', ''),
+(2, 'p09', 4, 'nyobak', '2017-03-11', 'Daftar Nilai Mahasiswa.docx', 'nyobak', 'Belum dikonfirmasi', '', '0000-00-00', '', 'mboh jon');
 
 -- --------------------------------------------------------
 
@@ -298,19 +298,27 @@ CREATE TABLE `permohonan_cuti` (
   `status` varchar(20) DEFAULT NULL,
   `note` text,
   `tgl_sah` date DEFAULT NULL,
-  `disahkan` varchar(20) DEFAULT NULL
+  `disahkan` varchar(20) DEFAULT NULL,
+  `note2` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `permohonan_cuti`
 --
 
-INSERT INTO `permohonan_cuti` (`id_pcuti`, `id_pegawai`, `id_jcuti`, `tgl_pengajuan`, `lama_cuti`, `tgl_mulai_cuti`, `tgl_akhir_cuti`, `alasan`, `status`, `note`, `tgl_sah`, `disahkan`) VALUES
-(5, 'p09', 3, '2017-03-07', 2, '2017-03-08', '2017-03-10', 'uji coba', 'disetujui', NULL, '2017-03-10', 'Wahyu');
+INSERT INTO `permohonan_cuti` (`id_pcuti`, `id_pegawai`, `id_jcuti`, `tgl_pengajuan`, `lama_cuti`, `tgl_mulai_cuti`, `tgl_akhir_cuti`, `alasan`, `status`, `note`, `tgl_sah`, `disahkan`, `note2`) VALUES
+(1, 'p09', 3, '2017-03-10', 3, '2017-03-15', '2017-03-18', 'sakit', 'disetujui 1 approvel', 'nyobak 1', '2017-03-11', 'imam', 'sip men gwhjeklop wiu345,w;pkgs[lezdvofhlu'),
+(2, 'p09', 3, '2017-03-11', 3, '2017-03-14', '2017-03-17', 'nikah', 'Belum dikonfirmasi', 'nyobak 2', '0000-00-00', '', 'sip jon');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `coment`
+--
+ALTER TABLE `coment`
+  ADD KEY `id_comen` (`id_comen`);
 
 --
 -- Indexes for table `jabatan`
@@ -380,6 +388,11 @@ ALTER TABLE `permohonan_cuti`
 --
 
 --
+-- AUTO_INCREMENT for table `coment`
+--
+ALTER TABLE `coment`
+  MODIFY `id_comen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
@@ -403,22 +416,22 @@ ALTER TABLE `pegawai_approval`
 -- AUTO_INCREMENT for table `pegawai_approval_list`
 --
 ALTER TABLE `pegawai_approval_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `pegawai_group`
 --
 ALTER TABLE `pegawai_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `pengadaan_barang`
 --
 ALTER TABLE `pengadaan_barang`
-  MODIFY `id_pbarang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pbarang` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `permohonan_cuti`
 --
 ALTER TABLE `permohonan_cuti`
-  MODIFY `id_pcuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pcuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
