@@ -68,7 +68,7 @@
               <th>ALASAN CUTI</th>
               <th>JENIS CUTI</th>
               <th>STATUS</th>
-              <th colspan="3"><center>ACTION</center></th>
+              <th colspan="4"><center>ACTION</center></th>
             </tr>
             <?php 
                 $limit = 10;  
@@ -118,28 +118,31 @@
                 if ($t['is_coordinator'] == '1') {
                 ?>
             <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
+                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i></a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+                </td>
+                <td align="center">
+                  <a href="#" class="btn btn-xs btn-primary note" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
                 </td>
                 <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
-
                 <?php 
                 }else{
                 ?>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
+                    <a href="#" class="btn btn-xs btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i></a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                    <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
                 </td>
-                <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+                <td align="center">
+                  <a href="#" class="btn btn-xs btn-primary note2" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
+                </td><td align="center"> 
+                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
-
               <?php 
               }}
               ?>
@@ -167,7 +170,7 @@
               
               <th><strong>ALASAN</strong></th>
               <th><strong>STATUS</strong></th>
-              <th colspan="4"><center>ACTION</center></th>
+              <th colspan="5"><center>ACTION</center></th>
             </tr>
             <?php 
                $no=0; 
@@ -209,7 +212,7 @@
                         <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
                     <?php } ?>
               </td>
-              <td align='center'><a href='?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>'><button class='btn btn-success btn-sm'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
+              <td align='center'><a href='?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>'><button class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
                 <?php 
                 $id_pegawai=$_SESSION['id_pegawai'];
                 $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
@@ -218,26 +221,32 @@
                     if ($t['is_coordinator'] == '1') {
                 ?>
               <td align="center">
-                  <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+                  <a href="#" class="btn btn-success btn-xs open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
               </td>
               <td align="center">
-                  <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+                  <a href="#" class="btn btn-danger btn-xs open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
               </td>
+              <td align="center">
+                  <a href="#" class="btn btn-xs btn-primary notebrg" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
+                </td>
               <td align="center"> 
-                   <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+                   <a href="#" class="btn btn-danger btn-xs <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
               </td>
               <?php 
               }else{
                ?>
 
               <td align="center">
-                  <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+                  <a href="#" class="btn btn-success btn-xs open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
               </td>
               <td align="center">
-                  <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+                  <a href="#" class="btn btn-danger btn-xs open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
               </td>
+              <td align="center">
+                  <a href="#" class="btn btn-xs btn-primary notebrg2" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
+                </td>
               <td align="center"> 
-                   <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+                   <a href="#" class="btn btn-danger btn-xs <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
               </td>
               <?php 
               }}
@@ -312,6 +321,42 @@
                 </div>
             </div>
             <!-- end of confirm modal hapus brg-->
+        <div id="modalnote" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="modalnote2" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="modalnotebrg" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="modalnotebrg2" class="modal fade" role="dialog" style="margin-top:100px;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="fetched-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
      <!-- modal setuju -->
         <div id="modalsetuju" class="modal fade" role="dialog" style="margin-top:100px;">
           <div class="modal-dialog" role="document">
@@ -369,6 +414,70 @@
           $('#modal_delete').modal('show', {backdrop:'static'});
           document.getElementById('delete_link').setAttribute('href', delete_url);
         }
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+       $(".notebrg").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "modal/notebrg.php",
+            type: "get",
+            data : {id_pbarang: m,},
+            success: function (ajaxData){
+              $("#modalnotebrg").html(ajaxData);
+              $("#modalnotebrg").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+       $(".notebrg2").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "modal/notebrg2.php",
+            type: "get",
+            data : {id_pbarang: m,},
+            success: function (ajaxData){
+              $("#modalnotebrg2").html(ajaxData);
+              $("#modalnotebrg2").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+       $(".note").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "modal/note.php",
+            type: "get",
+            data : {id_pcuti: m,},
+            success: function (ajaxData){
+              $("#modalnote").html(ajaxData);
+              $("#modalnote").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+       $(".note2").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "modal/note2.php",
+            type: "get",
+            data : {id_pcuti: m,},
+            success: function (ajaxData){
+              $("#modalnote2").html(ajaxData);
+              $("#modalnote2").modal('show',{backdrop: 'true'});
+               }
+             });
+          });
+        });
     </script>
     <script type="text/javascript">
     $(document).ready(function () {

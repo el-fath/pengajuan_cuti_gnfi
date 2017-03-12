@@ -13,11 +13,7 @@
                   	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menyetujui </h1>
                   	<input type="hidden" name="id_pbarang"  class="form-control" value="<?php echo $r['id_pbarang']; ?>" />
                 </div>
-                <div class="form-group">
-                  <label>Alasan Anda Kenapa Menyetujui Pengajuan Ini ??</label>
-                  <textarea name="note" class="form-control" placeholder="Alasan Anda Kenapa Menyetujui Pengajuan Ini ??"><?php echo $r['note']; ?></textarea>
-                </div>
-              	<div class="modal-footer">
+                <div class="modal-footer">
                   <input class="btn btn-success" value="yakin" type="submit" />
                   <button type="reset" class="btn btn-danger"  data-dismiss="modal" aria-hidden="true">
                     Cancel

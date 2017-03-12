@@ -10,7 +10,7 @@
 <?php
 
 $id_pbarang=$_GET['id_pbarang'];
-$sql = "SELECT pengadaan_barang.id_pbarang,pengadaan_barang.disahkan,pengadaan_barang.status, pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan, pengadaan_barang.tgl_pengajuan, pengadaan_barang.alasan ,pengadaan_barang.status,pengadaan_barang.nama_barang,pengadaan_barang.berkas, pengadaan_barang.tgl_sah
+$sql = "SELECT pengadaan_barang.id_pbarang,pengadaan_barang.note,pengadaan_barang.note2,pengadaan_barang.disahkan,pengadaan_barang.status, pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan, pengadaan_barang.tgl_pengajuan, pengadaan_barang.alasan ,pengadaan_barang.status,pengadaan_barang.nama_barang,pengadaan_barang.berkas, pengadaan_barang.tgl_sah
         FROM pegawai, pengadaan_barang, jabatan
         WHERE pegawai.id_pegawai = pengadaan_barang.id_pegawai
         AND pegawai.id_jabatan= jabatan.id_jabatan
@@ -104,6 +104,7 @@ $tgl_sah = $temp['tgl_sah'];
                     if ($t['is_coordinator'] == '0') {
                 ?>
                   <a href="index.php"><button type="button" class="btn btn-default">Kembali</button></a>
+                <button type="button" data-toggle="modal" data-target=".komen" class="btn btn-success">Approvel Note</button>
                  <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
                 <?php }else{ ?>
                   <a href="approvel.php"><button type="button" class="btn btn-default">Kembali</button></a>
@@ -111,6 +112,44 @@ $tgl_sah = $temp['tgl_sah'];
                  <button type="button" class="btn btn-success">Kirim Ke Keuangan</button>
                 <?php }} ?>
               </div>
+  <div class="modal fade komen" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="padding-top: 130px;">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="myModalLabel">Note From Approvel</h3>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+            <div class="table-responsive">
+            <table>
+              <tr>
+                <td>Approvel 1 Note :</td>
+              </tr>
+              <tr>
+                <td><?php echo $temp['note']; ?></td>
+              </tr>
+              <tr>
+                <td>Approvel 2 Note :</td>
+              </tr>
+              <tr>
+                <td><?php echo $temp['note2']; ?></td>                
+              </tr>
+            </table>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+            <!--Footer-->
+        </div>
+        <!--/.Content-->
+    </div>
+  </div>
   <script>
   function printContent(el){
     var restorepage = document.body.innerHTML;

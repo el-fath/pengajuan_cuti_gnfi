@@ -10,7 +10,7 @@
 <?php
 
 $id_pcuti=$_GET['id_pcuti'];
-$sql = "SELECT permohonan_cuti.id_pcuti,permohonan_cuti.status,pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan ,jenis_cuti.nama_cuti, permohonan_cuti.tgl_pengajuan ,permohonan_cuti.lama_cuti, permohonan_cuti.tgl_mulai_cuti, permohonan_cuti.tgl_akhir_cuti, permohonan_cuti.alasan ,permohonan_cuti.status, permohonan_cuti.tgl_sah, permohonan_cuti.disahkan
+$sql = "SELECT permohonan_cuti.id_pcuti,permohonan_cuti.note,permohonan_cuti.note2,permohonan_cuti.status,pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan ,jenis_cuti.nama_cuti, permohonan_cuti.tgl_pengajuan ,permohonan_cuti.lama_cuti, permohonan_cuti.tgl_mulai_cuti, permohonan_cuti.tgl_akhir_cuti, permohonan_cuti.alasan ,permohonan_cuti.status, permohonan_cuti.tgl_sah, permohonan_cuti.disahkan
         FROM pegawai, permohonan_cuti, jabatan, jenis_cuti
         WHERE pegawai.id_pegawai = permohonan_cuti.id_pegawai
         AND pegawai.id_jabatan= jabatan.id_jabatan
@@ -99,7 +99,7 @@ $tgl_sah = $temp['tgl_sah'];
                <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
             </div>
   <div class="modal fade komen" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="padding-top: 130px;">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
@@ -111,21 +111,22 @@ $tgl_sah = $temp['tgl_sah'];
             </div>
             <!--Body-->
             <div class="modal-body">
-            <?php 
-            $id_pegawai=$_SESSION['id_pegawai'];
-            $id_pcuti=$_GET['id_pcuti'];
-            $no=0; 
-            $sql = "SELECT * FROM permohonan_cuti WHERE id_pegawai ='$id_pegawai' AND id_pcuti ='$id_pcuti'";
-            $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
-            $num_rows = mysqli_num_rows($s);
-            if (!empty($num_rows)) {
-            while ($tmp = mysqli_fetch_assoc($s)) {  
-            $no++
-            ?>
             <div class="table-responsive">
-            <H5><?php echo $tmp['note']; ?></H5>       
+            <table>
+              <tr>
+                <td>Approvel 1 Note :</td>
+              </tr>
+              <tr>
+                <td><?php echo $temp['note']; ?></td>
+              </tr>
+              <tr>
+                <td>Approvel 2 Note :</td>
+              </tr>
+              <tr>
+                <td><?php echo $temp['note2']; ?></td>                
+              </tr>
+            </table>
             </div>
-            <?php }} ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -134,7 +135,7 @@ $tgl_sah = $temp['tgl_sah'];
         </div>
         <!--/.Content-->
     </div>
-</div>
+  </div>
   <script>
   function printContent(el){
     var restorepage = document.body.innerHTML;
