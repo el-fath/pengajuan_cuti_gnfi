@@ -15,7 +15,7 @@
     <!--REQUIRED STYLE SHEETS-->
     <link rel="shortcut icon" type="image/x-icon" href="1487735199.ico">
     <!-- BOOTSTRAP CORE STYLE CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLE CSS -->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <!--ANIMATED FONTAWESOME STYLE CSS -->
