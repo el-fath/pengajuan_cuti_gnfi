@@ -43,8 +43,8 @@
                         $id_pegawai=$_GET['id_pegawai'];
                         $sql="SELECT * FROM pegawai 
                               INNER JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan
-                              -- INNER JOIN pegawai_group ON pegawai_group.id_pegawai = pegawai.id_pegawai
-                              WHERE id_pegawai='$id_pegawai'";
+                              INNER JOIN pegawai_group ON pegawai_group.id_pegawai = pegawai.id_pegawai
+                              WHERE pegawai_group.id_pegawai='$id_pegawai'";
                         $query=mysqli_query($conn,$sql) or die (mysqli_error($conn));
                         $temp=mysqli_fetch_assoc($query);
                     ?>
@@ -100,7 +100,7 @@
                       </div> -->
                       <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">IS A KOORDINATOR ?</label>
-                        <?php echo $temp['is_coordinator']; ?>
+                        <!-- <?php echo $temp['is_coordinator']; ?> -->
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="is_coordinator" class="form-control">
                             <option <?= $temp['is_coordinator'] == '2' ? 'selected':'' ?> value="2">SUPER ADMIN</option>
@@ -111,7 +111,7 @@
                       </div>
                       <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">GROUP</label>
-                        <?php echo $temp['grup']; ?>
+                        <!-- <?php echo $temp['grup']; ?> -->
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="group" class="form-control">
                             <option <?= $temp['grup']=='ADMIN' ?'selected':'' ?>       value="ADMIN">ADMIN</option>
