@@ -29,7 +29,7 @@
 						$userpass = $_POST['password'];
 					
 						
-						$query = mysqli_query($conn, "SELECT id_pegawai, username, nama_pegawai, password FROM pegawai WHERE username='$username'");
+						$query = mysqli_query($conn, "SELECT id_pegawai, username, nama_pegawai, password, email FROM pegawai WHERE username='$username'");
 						
 						if (mysqli_num_rows($query) > 0) {
 							$data = mysqli_fetch_assoc($query);
@@ -61,7 +61,8 @@
          								// echo "to admin";
          							} else {
          								$_SESSION['username'] = $username;   
-         								$_SESSION['nama_pegawai'] = $data['nama_pegawai'];   
+         								$_SESSION['nama_pegawai'] = $data['nama_pegawai']; 
+         								$_SESSION['email']  = $data['email'];
          								$_SESSION['id_pegawai'] = $data['id_pegawai'];
          								$_SESSION['is_coordinator'] = $tmp['is_coordinator'];
          								$_SESSION['grup'] = $tmp['grup'];

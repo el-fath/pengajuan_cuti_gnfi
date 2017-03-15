@@ -42,7 +42,7 @@ if ($selisih <= $row['jatah_cuti']) {
 			$headers .= "MIME-Version: 1.0" . $eol;
 			$headers .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
  
-			$to = $koor_data['nama_pegawai'] . '<'.'rochman003@gmail.com'.'>';
+			$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
 			// var_dump($koor_data['email']);
 			// die();
 		    // data
@@ -68,7 +68,7 @@ if ($selisih <= $row['jatah_cuti']) {
 			ini_restore(sendmail_from); // restore setting
 		} 
 		// mulai mengirim ke pegawai di atas koordinator
-	$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
+	$approvq = mysqli_query($conn,"SELECT * FROM pegawai_approval INNER JOIN Pegawai on pegawai.id_pegawai = pegawai_approval.id_pegawai") or die(mysqli_error($conn));
 	$approv_data = mysqli_fetch_array($approvq);
 			$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
 							VALUES ('','".$approv_data['id_pegawai']."','$last_insert','cuti',now(),0)";
@@ -87,7 +87,9 @@ if ($selisih <= $row['jatah_cuti']) {
 	$headers .= "MIME-Version: 1.0" . $eol;
 	$headers .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
 	// kirim email notifikasi
-	$to = $koor_data['nama_pegawai'] . '<'.'rochman003@gmail.com'.'>';
+	$to = $approv_data['nama_pegawai'] . '<'.$approv_data['email'].'>';
+	// var_dump($approv_data['email']);
+	// die();
     // data
     $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
     // https://www.goodnewsfromindonesia.id/email/articlereview.html
