@@ -50,17 +50,71 @@ if(isset($_POST['btnUpload'])){
 				$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','barang', now(),0)";
 			
 				$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
-				$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
-			// var_dump($koor_data['email']);
-			// die();
+				mail("email","subject","content");
+				$from = "no-reply@goodnews.id"; 
+				$reply_to = "dev@goodnews.id";
+				$mime_boundary=md5(time());
+				$eol = "\r\n";
+				 
+				$headers = "From: Good News from Indonesia <" . $from . ">" . $eol;
+				$headers .= "Reply-To: ". $reply_to . $eol;
+				$headers .= "X-Mailer: GNFIsystem v".phpversion() . $eol;
+				$headers .= "MIME-Version: 1.0" . $eol;
+				$headers .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
+	 
+				$to = $koor_data['nama_pegawai'] . '<'.'rochman003@gmail.com'.'>';
+				// var_dump($koor_data['email']);
+				// die();
+			    // data
+			    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
+			    // https://www.goodnewsfromindonesia.id/email/articlereview.html
+			    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
+			    $content = str_replace('{{user_name}}', $_SESSION['username'], $mailtemplate);
+			    // $content = str_replace('{{user_link}}', $data['user_link'], $content);
+			    
+			    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
+			    // $from = $row['email'];
+			    $msg = "";
+			    $msg .= "--".$mime_boundary.$eol;
+			    $msg .= "Content-Type: text/html; charset=iso-8859-1".$eol;
+			    $msg .= "Content-Transfer-Encoding: 8bit".$eol;
+
+			    // content
+			    $message = $msg.$fin.$eol.$eol;
+			    $message .= "--".$mime_boundary."--".$eol.$eol;
+
+				ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
+				@mail($to, $subject, $message, $headers, "-f" . $from);
+				ini_restore(sendmail_from); // restore setting
+			} 
+			$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
+			$approv_data = mysqli_fetch_array($approvq);
+				
+					$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
+									VALUES ('','".$approv_data['id_pegawai']."','$last_insert','barang',now(),0)";
+				
+					$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
+			mail("email","subject","content"); 
+			$from = "no-reply@goodnews.id"; 
+			$reply_to = "dev@goodnews.id";
+			$mime_boundary=md5(time());
+			$eol = "\r\n";
+			 
+			$headers = "From: Good News from Indonesia <" . $from . ">" . $eol;
+			$headers .= "Reply-To: ". $reply_to . $eol;
+			$headers .= "X-Mailer: GNFIsystem v".phpversion() . $eol;
+			$headers .= "MIME-Version: 1.0" . $eol;
+			$headers .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
+			// kirim email notifikasi
+			$to = $koor_data['nama_pegawai'] . '<'.'rochman003@gmail.com'.'>';
 		    // data
 		    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
 		    // https://www.goodnewsfromindonesia.id/email/articlereview.html
-		    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
-		    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
-		    $content = str_replace('{{user_link}}', $data['user_link'], $content);
-		    $content = str_replace('{{title}}', $data['title'], $content);
-		    $content = str_replace('{{link}}', $data['link'], $content);
+		    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
+		    $content = str_replace('{{user_name}}', $_SESSION['username'], $mailtemplate);
+		    // $content = str_replace('{{user_link}}', $data['user_link'], $content);
+		    // $content = str_replace('{{title}}', $data['title'], $content);
+		    // $content = str_replace('{{link}}', $data['link'], $content);
 		    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
 
 		    $msg = "";
@@ -73,43 +127,8 @@ if(isset($_POST['btnUpload'])){
 		    $message .= "--".$mime_boundary."--".$eol.$eol;
 
 			ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
-			mail($to, $subject, $message, $headers, "-f" . $from);
-			ini_restore(sendmail_from); // restore setting
-			} 
-			$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
-			$approv_data = mysqli_fetch_array($approvq);
-				
-					$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
-									VALUES ('','".$approv_data['id_pegawai']."','$last_insert','barang',now(),0)";
-				
-					$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
-			mail("email","subject","content"); 
-
-
-	// kirim email notifikasi
-	$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
-    // data
-    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
-    // https://www.goodnewsfromindonesia.id/email/articlereview.html
-    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
-    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
-    $content = str_replace('{{user_link}}', $data['user_link'], $content);
-    $content = str_replace('{{title}}', $data['title'], $content);
-    $content = str_replace('{{link}}', $data['link'], $content);
-    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
-
-    $msg = "";
-    $msg .= "--".$mime_boundary.$eol;
-    $msg .= "Content-Type: text/html; charset=iso-8859-1".$eol;
-    $msg .= "Content-Transfer-Encoding: 8bit".$eol;
-
-    // content
-    $message = $msg.$fin.$eol.$eol;
-    $message .= "--".$mime_boundary."--".$eol.$eol;
-
-	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
-	mail($to, $subject, $message, $headers, "-f" . $from);
-	ini_restore(sendmail_from); // restore setting
+			@mail($to, $subject, $message, $headers, "-f" . $from);
+			ini_restore(sendmail_from); // restore setting	
 			echo "<script> alert('Pengajuan anda Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
 
 		} else{

@@ -61,6 +61,7 @@
          								// echo "to admin";
          							} else {
          								$_SESSION['username'] = $username;   
+         								$_SESSION['nama_pegawai'] = $data['nama_pegawai'];   
          								$_SESSION['id_pegawai'] = $data['id_pegawai'];
          								$_SESSION['is_coordinator'] = $tmp['is_coordinator'];
          								$_SESSION['grup'] = $tmp['grup'];

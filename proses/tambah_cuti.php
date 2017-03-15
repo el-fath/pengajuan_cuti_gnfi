@@ -10,16 +10,19 @@ $tgl_akhir_cuti = $_POST['tgl_akhir_cuti'];
 $alasan = $_POST['alasan'];
 $status = 'Belum dikonfirmasi';
 $grup = $_SESSION['grup'];
+$nama_pegawai = $_SESSION['nama_pegawai'];
 $selisih = (strtotime($tgl_akhir_cuti) - strtotime($tgl_mulai_cuti))/(60*60*24);
 
 $sql1 = mysqli_query($conn, "SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
 $row = mysqli_fetch_assoc($sql1);
+
 
 if ($selisih <= $row['jatah_cuti']) {
 	$sql = "INSERT INTO permohonan_cuti VALUES('','$id_pegawai','$id_jcuti', '$tgl_pengajuan','$selisih', '$tgl_mulai_cuti','$tgl_akhir_cuti','$alasan','$status','','','','')";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	if ($s) {
 		$last_insert = mysqli_insert_id($conn);
+		$from = $row['email'];
 		if($_SESSION['is_coordinator'] == 0){
 			$query = mysqli_query($conn,"SELECT p.id_pegawai,p.email,p.nama_pegawai FROM pegawai_group pg JOIN pegawai p ON p.id_pegawai = pg.id_pegawai  WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
 			$koor_data = mysqli_fetch_assoc($query);
@@ -27,20 +30,30 @@ if ($selisih <= $row['jatah_cuti']) {
 			$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','cuti', now(),0)";
 		
 			$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
-			mail("email","subject","content"); 
-			$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
+			mail("email","subject","content");
+			$from = "no-reply@goodnews.id"; 
+			$reply_to = "dev@goodnews.id";
+			$mime_boundary=md5(time());
+			$eol = "\r\n";
+			 
+			$headers = "From: Good News from Indonesia <" . $from . ">" . $eol;
+			$headers .= "Reply-To: ". $reply_to . $eol;
+			$headers .= "X-Mailer: GNFIsystem v".phpversion() . $eol;
+			$headers .= "MIME-Version: 1.0" . $eol;
+			$headers .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
+ 
+			$to = $koor_data['nama_pegawai'] . '<'.'rochman003@gmail.com'.'>';
 			// var_dump($koor_data['email']);
 			// die();
 		    // data
 		    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
 		    // https://www.goodnewsfromindonesia.id/email/articlereview.html
-		    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
+		    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
 		    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
-		    $content = str_replace('{{user_link}}', $data['user_link'], $content);
-		    $content = str_replace('{{title}}', $data['title'], $content);
-		    $content = str_replace('{{link}}', $data['link'], $content);
+		    // $content = str_replace('{{user_link}}', $data['user_link'], $content);
+		    
 		    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
-
+		    // $from = $row['email'];
 		    $msg = "";
 		    $msg .= "--".$mime_boundary.$eol;
 		    $msg .= "Content-Type: text/html; charset=iso-8859-1".$eol;
@@ -51,7 +64,7 @@ if ($selisih <= $row['jatah_cuti']) {
 		    $message .= "--".$mime_boundary."--".$eol.$eol;
 
 			ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
-			mail($to, $subject, $message, $headers, "-f" . $from);
+			@mail($to, $subject, $message, $headers, "-f" . $from);
 			ini_restore(sendmail_from); // restore setting
 		} 
 		// mulai mengirim ke pegawai di atas koordinator
@@ -63,17 +76,26 @@ if ($selisih <= $row['jatah_cuti']) {
 			$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
 	mail("email","subject","content"); 
 
-
+	$from = "no-reply@goodnews.id"; 
+	$reply_to = "dev@goodnews.id";
+	$mime_boundary=md5(time());
+	$eol = "\r\n";
+	 
+	$headers = "From: Good News from Indonesia <" . $from . ">" . $eol;
+	$headers .= "Reply-To: ". $reply_to . $eol;
+	$headers .= "X-Mailer: GNFIsystem v".phpversion() . $eol;
+	$headers .= "MIME-Version: 1.0" . $eol;
+	$headers .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
 	// kirim email notifikasi
-	$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
+	$to = $koor_data['nama_pegawai'] . '<'.'rochman003@gmail.com'.'>';
     // data
     $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
     // https://www.goodnewsfromindonesia.id/email/articlereview.html
-    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
-    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
-    $content = str_replace('{{user_link}}', $data['user_link'], $content);
-    $content = str_replace('{{title}}', $data['title'], $content);
-    $content = str_replace('{{link}}', $data['link'], $content);
+    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
+    $content = str_replace('{{user_name}}', $nama_pegawai, $mailtemplate);
+    // $content = str_replace('{{user_link}}', $data['user_link'], $content);
+    // $content = str_replace('{{title}}', $data['title'], $content);
+    // $content = str_replace('{{link}}', $data['link'], $content);
     $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
 
     $msg = "";
@@ -86,7 +108,7 @@ if ($selisih <= $row['jatah_cuti']) {
     $message .= "--".$mime_boundary."--".$eol.$eol;
 
 	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
-	mail($to, $subject, $message, $headers, "-f" . $from);
+	@mail($to, $subject, $message, $headers, "-f" . $from);
 	ini_restore(sendmail_from); // restore setting	
 	echo "<script>alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
 	}
