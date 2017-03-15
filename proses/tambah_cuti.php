@@ -21,13 +21,38 @@ if ($selisih <= $row['jatah_cuti']) {
 	if ($s) {
 		$last_insert = mysqli_insert_id($conn);
 		if($_SESSION['is_coordinator'] == 0){
-			$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
-			$userdata = mysqli_fetch_assoc($query);
-			$id_coordinator = $userdata['id_pegawai'];
+			$query = mysqli_query($conn,"SELECT p.id_pegawai,p.email,p.nama_pegawai FROM pegawai_group pg JOIN pegawai p ON p.id_pegawai = pg.id_pegawai  WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
+			$koor_data = mysqli_fetch_assoc($query);
+			$id_coordinator = $koor_data['id_pegawai'];
 			$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','cuti', now(),0)";
 		
 			$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
+			mail("email","subject","content"); 
+			$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
+			// var_dump($koor_data['email']);
+			// die();
+		    // data
+		    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
+		    // https://www.goodnewsfromindonesia.id/email/articlereview.html
+		    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
+		    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
+		    $content = str_replace('{{user_link}}', $data['user_link'], $content);
+		    $content = str_replace('{{title}}', $data['title'], $content);
+		    $content = str_replace('{{link}}', $data['link'], $content);
+		    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
 
+		    $msg = "";
+		    $msg .= "--".$mime_boundary.$eol;
+		    $msg .= "Content-Type: text/html; charset=iso-8859-1".$eol;
+		    $msg .= "Content-Transfer-Encoding: 8bit".$eol;
+
+		    // content
+		    $message = $msg.$fin.$eol.$eol;
+		    $message .= "--".$mime_boundary."--".$eol.$eol;
+
+			ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
+			mail($to, $subject, $message, $headers, "-f" . $from);
+			ini_restore(sendmail_from); // restore setting
 		} 
 		// mulai mengirim ke pegawai di atas koordinator
 	$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
@@ -36,66 +61,6 @@ if ($selisih <= $row['jatah_cuti']) {
 							VALUES ('','".$approv_data['id_pegawai']."','$last_insert','cuti',now(),0)";
 		
 			$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
-		
-	echo "<script>alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
-	}
-} else {
-	echo "<script>alert('Maaf, Jatah cuti anda kurang...')</script>";
-}
-?>
-<meta http-equiv="refresh" content="0;URL='../index.php'" />
-<!-- 
-// mengambil id data terakhir yang dimasukkan
-$last_insert = mysqli_insert_id(($link);
-
-// melakukan pengecekan apakah pegawai yang login koordinator atau bukan
-if($_SESSION['is_coordinator'] == 0) {
-	// jika bukan koordinator
-	// dapetin session group
-	$group = $_SESSION['group'];
-	// query
-	$koorq = mysql_query("SELECT p.id_pegawai,p.email,p.nama_pegawai FROM pegawai_group pg JOIN pegawai p ON p.id_pegawai = pg.id_pegawai WHERE pg.is_coordinator = 1 AND pg.group = '$group')
-	$koor_data = mysql_fetch_assoc($koorq);
-	// dapet satu id_pegawai yang merupakan koordinator divisi/grup tsb
-	$id_koordinator = $koor_data['id_pegawai'];
-	// dimasukkan ke tabel pegawai_approval_list
-	$insq = mysql_query("INSERT INTO pegawai_approval_list (approval_id,object_id,type,created,is_approve) 
-						VALUES ('$id_koordinator','$last_insert','barang/cuti',now(),0)"); 
-	
-
-	// kirim email notifikasi
-	$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
-    // data
-    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
-    // https://www.goodnewsfromindonesia.id/email/articlereview.html
-    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
-    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
-    $content = str_replace('{{user_link}}', $data['user_link'], $content);
-    $content = str_replace('{{title}}', $data['title'], $content);
-    $content = str_replace('{{link}}', $data['link'], $content);
-    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
-
-    $msg = "";
-    $msg .= "--".$mime_boundary.$eol;
-    $msg .= "Content-Type: text/html; charset=iso-8859-1".$eol;
-    $msg .= "Content-Transfer-Encoding: 8bit".$eol;
-
-    // content
-    $message = $msg.$fin.$eol.$eol;
-    $message .= "--".$mime_boundary."--".$eol.$eol;
-
-	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
-	mail($to, $subject, $message, $headers, "-f" . $from);
-	ini_restore(sendmail_from); // restore setting
-}
-
-// mulai mengirim ke pegawai di atas koordinator
-$approvq = mysql_query("SELECT id_pegawai FROM pegawai_approval");
-$approv_data = mysql_fetch_array($approvq);
-
-foreach($approv_data as $user) {
-	$insq = mysql_query("INSERT INTO pegawai_approval_list (approval_id,object_id,type,created,is_approve) 
-						VALUES ('".$user['id_pegawai']."','$last_insert','barang/cuti',now(),0)");
 	mail("email","subject","content"); 
 
 
@@ -122,5 +87,11 @@ foreach($approv_data as $user) {
 
 	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
 	mail($to, $subject, $message, $headers, "-f" . $from);
-	ini_restore(sendmail_from); // restore setting
-} -->
+	ini_restore(sendmail_from); // restore setting	
+	echo "<script>alert('Pengajuan Cuti Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
+	}
+} else {
+	echo "<script>alert('Maaf, Jatah cuti anda kurang...')</script>";
+}
+?>
+<meta http-equiv="refresh" content="0;URL='../index.php'" />

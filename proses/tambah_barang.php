@@ -44,13 +44,37 @@ if(isset($_POST['btnUpload'])){
 			$catat = mysqli_query($conn,'insert into pengadaan_barang values ("'.$id_pbarang.'", "'.$id_pegawai.'", "'.$id_kategori.'" ,"'.$nama_barang.'", "'.$tgl_pengajuan.'", "'.$file_name.'" ,"'.$alasan.'","Belum dikonfirmasi","","","","")') or die(mysqli_error($conn));
 			$last_insert = mysqli_insert_id($conn);
 			if($_SESSION['is_coordinator'] == 0){
-				$query = mysqli_query($conn,"SELECT * FROM pegawai_group WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
-				$userdata = mysqli_fetch_assoc($query);
-				$id_coordinator = $userdata['id_pegawai'];
+				$query = mysqli_query($conn,"SELECT p.id_pegawai,p.email,p.nama_pegawai FROM pegawai_group pg JOIN pegawai p ON p.id_pegawai = pg.id_pegawai   WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
+				$koor_data = mysqli_fetch_assoc($query);
+				$id_coordinator = $koor_data['id_pegawai'];
 				$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','barang', now(),0)";
 			
 				$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
+				$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
+			// var_dump($koor_data['email']);
+			// die();
+		    // data
+		    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
+		    // https://www.goodnewsfromindonesia.id/email/articlereview.html
+		    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
+		    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
+		    $content = str_replace('{{user_link}}', $data['user_link'], $content);
+		    $content = str_replace('{{title}}', $data['title'], $content);
+		    $content = str_replace('{{link}}', $data['link'], $content);
+		    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
 
+		    $msg = "";
+		    $msg .= "--".$mime_boundary.$eol;
+		    $msg .= "Content-Type: text/html; charset=iso-8859-1".$eol;
+		    $msg .= "Content-Transfer-Encoding: 8bit".$eol;
+
+		    // content
+		    $message = $msg.$fin.$eol.$eol;
+		    $message .= "--".$mime_boundary."--".$eol.$eol;
+
+			ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
+			mail($to, $subject, $message, $headers, "-f" . $from);
+			ini_restore(sendmail_from); // restore setting
 			} 
 			$approvq = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die(mysqli_error($conn));
 			$approv_data = mysqli_fetch_array($approvq);
@@ -59,8 +83,35 @@ if(isset($_POST['btnUpload'])){
 									VALUES ('','".$approv_data['id_pegawai']."','$last_insert','barang',now(),0)";
 				
 					$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
-			
+			mail("email","subject","content"); 
+
+
+	// kirim email notifikasi
+	$to = $koor_data['nama_pegawai'] . '<'.$koor_data['email'].'>';
+    // data
+    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
+    // https://www.goodnewsfromindonesia.id/email/articlereview.html
+    $mailtemplate = file_get_contents("https://www.goodnewsfromindonesia.id/email/articlereview.html");
+    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
+    $content = str_replace('{{user_link}}', $data['user_link'], $content);
+    $content = str_replace('{{title}}', $data['title'], $content);
+    $content = str_replace('{{link}}', $data['link'], $content);
+    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
+
+    $msg = "";
+    $msg .= "--".$mime_boundary.$eol;
+    $msg .= "Content-Type: text/html; charset=iso-8859-1".$eol;
+    $msg .= "Content-Transfer-Encoding: 8bit".$eol;
+
+    // content
+    $message = $msg.$fin.$eol.$eol;
+    $message .= "--".$mime_boundary."--".$eol.$eol;
+
+	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
+	mail($to, $subject, $message, $headers, "-f" . $from);
+	ini_restore(sendmail_from); // restore setting
 			echo "<script> alert('Pengajuan anda Terkirim...!, Mohon Tunngu Konfirmasi')</script>";
+
 		} else{
 			echo '<script>alert("pengajuan anda gagal dikirim")</script>';
 	}
@@ -68,3 +119,4 @@ if(isset($_POST['btnUpload'])){
 }
 ?>
 <meta http-equiv="refresh" content="0;URL='../index.php'" />
+
