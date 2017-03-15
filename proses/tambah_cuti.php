@@ -49,7 +49,7 @@ if ($selisih <= $row['jatah_cuti']) {
 		    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
 		    // https://www.goodnewsfromindonesia.id/email/articlereview.html
 		    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
-		    $content = str_replace('{{user_name}}', $data['nama_pegawai'], $mailtemplate);
+		    $content = str_replace('{{user_name}}',$nama_pegawai, $mailtemplate);
 		    // $content = str_replace('{{user_link}}', $data['user_link'], $content);
 		    
 		    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);

@@ -8,6 +8,7 @@
 	$nama_barang = $_POST['nama_barang'];
 	$tgl_pengajuan = date('Y/m/d');
 	$alasan = $_POST['alasan'];
+	$nama_pegawai = $_SESSION['nama_pegawai'];
 	$grup = $_SESSION['grup'];
 	$eror		= false;
 $folder		= '../berkas/';
@@ -69,7 +70,7 @@ if(isset($_POST['btnUpload'])){
 			    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
 			    // https://www.goodnewsfromindonesia.id/email/articlereview.html
 			    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
-			    $content = str_replace('{{user_name}}', $_SESSION['username'], $mailtemplate);
+			    $content = str_replace('{{user_name}}',$nama_pegawai, $mailtemplate);
 			    // $content = str_replace('{{user_link}}', $data['user_link'], $content);
 			    
 			    $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
@@ -111,7 +112,7 @@ if(isset($_POST['btnUpload'])){
 		    $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
 		    // https://www.goodnewsfromindonesia.id/email/articlereview.html
 		    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
-		    $content = str_replace('{{user_name}}', $_SESSION['username'], $mailtemplate);
+		    $content = str_replace('{{user_name}}', $nama_pegawai, $mailtemplate);
 		    // $content = str_replace('{{user_link}}', $data['user_link'], $content);
 		    // $content = str_replace('{{title}}', $data['title'], $content);
 		    // $content = str_replace('{{link}}', $data['link'], $content);
