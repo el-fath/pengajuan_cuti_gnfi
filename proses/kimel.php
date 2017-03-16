@@ -29,15 +29,15 @@
     $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
     // https://www.goodnewsfromindonesia.id/email/articlereview.html
     $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailkeuangan.html");
-    $content = str_replace('{{user_name}}',$temp['nama_pegawai'], $mailtemplate);
-    $content = str_replace('{{divisi}}',$temp['jabatan'], $mailtemplate);
-    $content = str_replace('{{tgl_peng}}',$temp['tgl_pengajuan'], $mailtemplate);
-    $content = str_replace('{{nm_barang}}',$temp['nama_barang'], $mailtemplate);
-    $content = str_replace('{{berkas}}',$temp['berkas'], $mailtemplate);
-    $content = str_replace('{{alasan}}',$temp['alasan'], $mailtemplate);
-    $content = str_replace('{{status}}',$temp['status'], $mailtemplate);
-    $content = str_replace('{{tgl_sah}}',$temp['tgl_sah'], $mailtemplate);
-    $content = str_replace('{{disahkan}}',$temp['disahkan'], $mailtemplate);
+    $content = str_replace('{{user_name}}', $temp['nama_pegawai'], $mailtemplate);
+    $content = str_replace('{{divisi}}', $temp['jabatan'], $content);
+    $content = str_replace('{{tgl_peng}}', $temp['tgl_pengajuan'], $content);
+    $content = str_replace('{{nm_barang}}', $temp['nama_barang'], $content);
+    $content = str_replace('{{berkas}}', $temp['berkas'], $content);
+    $content = str_replace('{{alasan}}', $temp['alasan'], $content);
+    $content = str_replace('{{status}}', $temp['status'], $content);
+    $content = str_replace('{{tgl_sah}}', $temp['tgl_sah'], $content);
+    $content = str_replace('{{disahkan}}', $temp['disahkan'], $content);
     // $content = str_replace('{{user_link}}', $data['user_link'], $content);
     
     $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
