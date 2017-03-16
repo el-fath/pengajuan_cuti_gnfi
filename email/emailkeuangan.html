@@ -448,9 +448,9 @@
                          <td style="padding-left: 20px">{{nm_barang}}</td>
                      </tr>
                      <tr>
-                         <td><strong>Perincian Dalam File</strong></td>
-                         <td style="padding-left: 20px"><strong>:</strong></td>                                               
-                         <td style="padding-left: 20px">{{berkas}}</td>
+                         <td><strong>Perincian Download Disini</strong></td>
+                         <td style="padding-left: 20px"><strong>:</strong></td>                           
+                         <td style="padding-left: 20px"><a href="{{download_file}}">{{berkas}}</a></td>
                      </tr>
                      <tr>
                          <td><strong>Keperluan</strong></td>
@@ -463,7 +463,8 @@
                          <td style="padding-left: 20px">{{status}}</td>
                      </tr>
                  </table>
-                 <br>
+               <!--   <p style="font-size: 11px"><strong>NOTE :</strong> Click Name File To Download</p> -->
+
                   <p>Demikian surat pengajuan ini dibuat dan kami ucapkan terimakasih.</p>
                   <p><strong>Surabaya, {{tgl_sah}}</strong></p>
                   <table>
@@ -498,7 +499,6 @@
                     </tr>
                   </tbody>
                 </table>
-<a class="transparent-button" href="{{download_file}}" style="background-color: #B01817;color: #ffffff;padding: 11px 50px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;font-size: 12px;font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-weight: bold;letter-spacing: 1px;text-decoration: none;display: inline-block;text-transform: uppercase;text-align: left;mso-line-height-rule: exactly;" target="_blank">Download File</a>
               </td>
             </tr>
           </tbody></table>

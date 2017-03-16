@@ -18,14 +18,14 @@
 	$eol = "\r\n";
 	 
 	$headers = "From: Good News from Indonesia <" . $from . ">" . $eol;
-	$headers .= "Reply-To: ". $reply_to . $eol;
+    $headers .= "Reply-To: ". $reply_to . $eol;
+	$headers .= "Cc: aji@goodnews.id" . $eol;
 	$headers .= "X-Mailer: GNFIsystem v".phpversion() . $eol;
 	$headers .= "MIME-Version: 1.0" . $eol;
 	$headers .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
 
-	$to = $temp['nama_pegawai'] . '<'.'rochman003@gmail.com'.'>';
-	// var_dump($koor_data['email']);
-	// die();
+    $to = 'Endri Mulyanto <endrimediacitra@gmail.com>, Nofrilawati Panay <ilapanay@teknopreneur.com>';
+	// $to = 'Endri Mulyanto <rochman003@gmail.com>, Nofrilawati Panay <yuaneko95@gmail.com>';
     // data
     $subject = "Pengajuan untuk diulas: pengajuan dari " . $_SESSION['username'];
     // https://www.goodnewsfromindonesia.id/email/articlereview.html
@@ -39,7 +39,7 @@
     $content = str_replace('{{status}}', $temp['status'], $content);
     $content = str_replace('{{tgl_sah}}', date("d F Y", strtotime($tgl_sah)), $content);
     $content = str_replace('{{disahkan}}', $temp['disahkan'], $content);
-    $content = str_replace('{{download_file}}', '../berkas/'.$temp['berkas'], $content );
+    $content = str_replace('{{download_file}}','https://mis.goodnews.id/sitiar/berkas/'.$temp['berkas'], $content );
     // $content = str_replace('{{user_link}}', $data['user_link'], $content);
 
     $fin = str_replace('{{date}}', date("d-m-Y H:i:s"), $content);
