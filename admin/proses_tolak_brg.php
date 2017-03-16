@@ -41,7 +41,7 @@ $sql = "UPDATE pengadaan_barang SET status = 'ditolak', tgl_sah = '$tgl_sah' WHE
     $message .= "--".$mime_boundary."--".$eol.$eol;
 
 	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
-	mail($to, $subject, $message, $headers, "-f" . $from);
+	@mail($to, $subject, $message, $headers, "-f" . $from);
 	ini_restore(sendmail_from); // restore setting	
 $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 echo '<script>alert("pengajuan berhasil ditolak")</script>';

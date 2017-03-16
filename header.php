@@ -144,4 +144,14 @@
 </div>
   <?php }?>
  <!--END NAV SECTION -->
-    
+ <script type="text/javascript">
+    function validasi_input(form){
+       pola_username=/^[a-zA-Z0-9\_\-]{4,100}$/;
+       if (!pola_username.test(form.username.value)){
+          alert ('Username minimal 4 karakter dan hanya boleh Huruf atau Angka!');
+          form.username.focus();
+          return false;
+       }
+       return (true);
+    }
+    </script>    

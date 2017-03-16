@@ -156,13 +156,13 @@ $tgl_sah = $temp['tgl_sah'];
             <!--Body-->
             <div class="modal-body">
             <form action="proses/kimel.php" method="POST" enctype="multipart/form-data">
-            <h3><center>Apa Anda Yakin untuk mengirim Ke Keuangan</center></h3>
-            <input type="hidden" value="<?php echo $temp['id_pbarang']; ?>">
-            </div>
-            <div class="modal-footer" style="text-align:center;">
-              <button type="submit" class="btn btn-success">Yakin</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-            </div>
+              <h3><center>Apa Anda Yakin untuk mengirim Ke Keuangan</center></h3>
+              <input type="hidden" name="id_pbarang" value="<?php echo $temp['id_pbarang']; ?>">
+              </div>
+              <div class="modal-footer" style="text-align:center;">
+                <button type="submit" class="btn btn-success">Yakin</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+              </div>
             </form>
             <!--Footer-->
         </div>
