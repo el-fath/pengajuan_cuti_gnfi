@@ -61,8 +61,8 @@
                 while ($row = mysqli_fetch_assoc($s)) {
                 ?>
                 <div class="col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">
-                <h4>Welcome To Good News <?php echo $_SESSION['username']; ?></h4>
-                <h4>Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari</h4>
+                <h4><span class="label label-danger">Welcome To Good News <?php echo $_SESSION['username']; ?> </span></h4>
+                <h4><span class="label label-danger"> Sisa Cuti Anda <?php echo $row['jatah_cuti']; }?> Hari </span></h4>
                 </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image" data-toggle="modal" data-target=".ajukan_barang">
-                                    <img src="assets/img/x2.jpg" alt="">
+                                    <img src="assets/img/X2.jpg" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                                     </div>

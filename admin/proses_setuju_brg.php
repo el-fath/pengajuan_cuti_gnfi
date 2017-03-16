@@ -27,7 +27,7 @@ if ($b['sisa_approval'] == 1) {
 } elseif ($b['sisa_approval'] == 0 ) {
 	$l = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
 
-	$query_approv = mysqli_query($conn, 'SELECT * from pengadaan_barang INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai WHERE pengadaan_barang.id_pbarang = '$id_pbarang'') or die(mysqli_error($conn));
+	$query_approv = mysqli_query($conn, "SELECT * from pengadaan_barang INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai WHERE pengadaan_barang.id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
 	$email_approv = mysqli_fetch_assoc($query_approv);
 	mail("email","subject","content"); 
 	$from = "no-reply@goodnews.id"; 
@@ -45,7 +45,7 @@ if ($b['sisa_approval'] == 1) {
     // data
     $subject = "Pengajuan sudah dikonfirmasi: oleh " . $_SESSION['username'];
     // https://www.goodnewsfromindonesia.id/email/articlereview.html
-    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/emailtemplate.html");
+    $mailtemplate = file_get_contents("http://gnfi.hol.es/email/templateapprove.html");
     $content = str_replace('{{user_name}}', $nama_pegawai, $mailtemplate);
     // $content = str_replace('{{user_link}}', $data['user_link'], $content);
     // $content = str_replace('{{title}}', $data['title'], $content);
