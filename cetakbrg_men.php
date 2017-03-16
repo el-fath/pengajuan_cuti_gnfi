@@ -95,20 +95,21 @@ $tgl_sah = $temp['tgl_sah'];
               </div>
               </div>
               <div class="modal-footer">
-              <?php 
+                <?php 
                 $id_pegawai=$_SESSION['id_pegawai'];
                 $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
                 $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
                 while ($t = mysqli_fetch_assoc($a)) {
-                    if ($t['is_coordinator'] == '0') {
+                    if ($t['is_coordinator'] == '2') {
                 ?>
-                  <a href="index.php"><button type="button" class="btn btn-default">Kembali</button></a>
-                <button type="button" data-toggle="modal" data-target=".komen" class="btn btn-success">Approvel Note</button>
-                 <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
-                <?php }else{ ?>
                   <a href="approvel.php"><button type="button" class="btn btn-default">Kembali</button></a>
+                  <button type="button" data-toggle="modal" data-target=".komen" class="btn btn-success">Approvel Note</button>
                   <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
                   <button type="button" data-toggle="modal" data-target=".send" class="btn btn-success"> <i class="glyphicon glyphicon-envelope"></i> Kirim Ke Keuangan</button>
+                <?php }else{ ?>
+                  <a href="index.php"><button type="button" class="btn btn-default">Kembali</button></a>
+                  <button type="button" data-toggle="modal" data-target=".komen" class="btn btn-success">Approvel Note</button>
+                  <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
                 <?php }} ?>
               </div>
   <div class="modal fade komen" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
