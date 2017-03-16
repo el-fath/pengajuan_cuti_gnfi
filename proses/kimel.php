@@ -8,7 +8,7 @@
         AND pengadaan_barang.id_pbarang = '$id_pbarang'";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	$temp=mysqli_fetch_array($s);
-	$tgl_sah = $temp['tgl_sah'];
+	$tgl_sah = $_SESSION['tgl_sah'];
 
 	mail("email","subject","content");
 	$from = "no-reply@goodnews.id"; 
@@ -36,7 +36,7 @@
     $content = str_replace('{{berkas}}',$temp['berkas'], $content);
     $content = str_replace('{{alasan}}',$temp['alasan'], $content);
     $content = str_replace('{{status}}',$temp['status'], $content);
-    $content = str_replace('{{tgl_sah}}',$temp['tgl_sah'], $content);
+    $content = str_replace('{{tgl_sah}}',$tgl_sah, $content);
     $content = str_replace('{{disahkan}}',$temp['disahkan'], $content);
     // $content = str_replace('{{user_link}}', $data['user_link'], $content);
     
