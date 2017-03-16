@@ -8,7 +8,6 @@
   }
   </script>
 <?php
-
 $id_pbarang=$_GET['id_pbarang'];
 $sql = "SELECT pengadaan_barang.id_pbarang,pengadaan_barang.note,pengadaan_barang.note2,pengadaan_barang.disahkan,pengadaan_barang.status, pegawai.nama_pegawai, pegawai.foto ,jabatan.jabatan, pengadaan_barang.tgl_pengajuan, pengadaan_barang.alasan ,pengadaan_barang.status,pengadaan_barang.nama_barang,pengadaan_barang.berkas, pengadaan_barang.tgl_sah
         FROM pegawai, pengadaan_barang, jabatan
@@ -108,8 +107,8 @@ $tgl_sah = $temp['tgl_sah'];
                  <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
                 <?php }else{ ?>
                   <a href="approvel.php"><button type="button" class="btn btn-default">Kembali</button></a>
-                 <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
-                 <button type="button" class="btn btn-success">Kirim Ke Keuangan</button>
+                  <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button>
+                  <button type="button" data-toggle="modal" data-target=".send" class="btn btn-success"> <i class="glyphicon glyphicon-envelope"></i> Kirim Ke Keuangan</button>
                 <?php }} ?>
               </div>
   <div class="modal fade komen" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -145,6 +144,26 @@ $tgl_sah = $temp['tgl_sah'];
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
+            <!--Footer-->
+        </div>
+        <!--/.Content-->
+    </div>
+  </div>
+  <div class="modal fade send" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="padding-top: 130px;">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Body-->
+            <div class="modal-body">
+            <form action="proses/kimel.php" method="POST" enctype="multipart/form-data">
+            <h3><center>Apa Anda Yakin untuk mengirim Ke Keuangan</center></h3>
+            <input type="hidden" value="<?php echo $temp['id_pbarang']; ?>">
+            </div>
+            <div class="modal-footer" style="text-align:center;">
+              <button type="submit" class="btn btn-success">Yakin</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
             <!--Footer-->
         </div>
         <!--/.Content-->
