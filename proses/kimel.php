@@ -37,7 +37,7 @@
     $content = str_replace('{{berkas}}', $temp['berkas'], $content);
     $content = str_replace('{{alasan}}', $temp['alasan'], $content);
     $content = str_replace('{{status}}', $temp['status'], $content);
-    $content = str_replace('{{tgl_sah}}', date("d F Y", strtotime($tgl_sah)), $content);
+    $content = str_replace('{{tgl_sah}}', date("d-m-Y H:i:s"), $content);
     $content = str_replace('{{disahkan}}', $temp['disahkan'], $content);
     $content = str_replace('{{download_file}}','https://mis.goodnews.id/sitiar/berkas/'.$temp['berkas'], $content );
     // $content = str_replace('{{user_link}}', $data['user_link'], $content);
