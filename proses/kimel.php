@@ -36,7 +36,7 @@
     $content = str_replace('{{berkas}}',$temp['berkas'], $content);
     $content = str_replace('{{alasan}}',$temp['alasan'], $content);
     $content = str_replace('{{status}}',$temp['status'], $content);
-    $content = str_replace('{{tgl_sah}}',$tgl_sah, $content);
+    $content = str_replace('{{tgl_sah}}',$temp['tgl_sah'], $content);
     $content = str_replace('{{disahkan}}',$temp['disahkan'], $content);
     // $content = str_replace('{{user_link}}', $data['user_link'], $content);
     
@@ -54,6 +54,12 @@
 	ini_set(sendmail_from,$from);  // the INI lines are to force the From Address to be used !
 	@mail($to, $subject, $message, $headers, "-f" . $from);
 	ini_restore(sendmail_from); // restore setting
+
+    if (@mail) {
+        echo "<script>alert('Ihtisar Terkirim')</script>";
+    }else{
+        echo "<script>alert('Ihtisar Gagal Terkirim')</script>";
+    }
 
 ?>
 <meta http-equiv="refresh" content="0;URL=../approvel.php" />
