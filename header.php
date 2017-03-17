@@ -60,21 +60,21 @@
                           <img id="image-preview" class="form-control" style="width: 250px; height: 250px;" src="<?php echo'admin/img/'.$temp['foto']; ?>"><input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();"></td>
                     </tr>
                     <tr>
-                        <td>Nama Pegawai</td>
-                        <td>
+                        <th>Nama Pegawai</th>
+                        <th>
                           <input type="hidden" name="id_pegawai" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['id_pegawai']; ?>">
                           <input type="text" name="nama_pegawai" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['nama_pegawai']; ?>">
-                        </td>
+                        </th>
                     </tr>
                     <tr>
-                        <td>Username</td>
-                        <td>
+                        <th>Username</th>
+                        <th>
                         <input type="text" name="username" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['username']; ?>">
-                        </td>
+                        </th>
                     </tr>
                     <tr>
-                        <td>Jenis Kelamin</td>
-                        <td>
+                        <th>Jenis Kelamin</th>
+                        <th>
                           <div id="gender" class="btn-group" data-toggle="buttons">
                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                               <input type="radio" name="jenis_kelamin" value="Laki-Laki" <?php if ($temp['jenis_kelamin']=='Laki-Laki') {echo 'checked';} ?> /> &nbsp; Laki-laki &nbsp;
@@ -83,7 +83,7 @@
                               <input type="radio" name="jenis_kelamin" value="Perempuan" <?php if ($temp['jenis_kelamin']=='Perempuan') {echo 'checked';} ?>/> Perempuan
                             </label>
                           </div>
-                        </td>
+                        </th>
                     </tr>
                     <tr>
                         <th>Email</th>
