@@ -1,10 +1,10 @@
 <?php 
 	include '../koneksi.php';
 
-	$id_kategori = $_POST['id_kategori'];
+	// $id_kategori = $_POST['id_kategori'];
 	$kategori = $_POST['kategori'];
 
-	$sql = "INSERT INTO kategori_barang VALUES('$id_kategori','$kategori')";
+	$sql = "INSERT INTO kategori_barang VALUES('','$kategori')";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	if ($s) {
 		echo "<script>Alert('DATA BERHASIL DI TAMBAH :-)') location.replace('index.php')</script>";
