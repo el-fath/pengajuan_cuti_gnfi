@@ -57,5 +57,11 @@
 	@mail($to, $subject, $message, $headers, "-f" . $from);
 	ini_restore(sendmail_from); // restore setting
 
+    if (@mail) {
+        echo "<script> alert('Ihtisar Terkirim')</script>";
+    }else{
+        echo "<script> alert('Ihtisar Gagal Terkirim')</script>";
+    }
+
 ?>
 <meta http-equiv="refresh" content="0;URL=../approvel.php" />
