@@ -2,7 +2,6 @@
 session_start();
 include '../koneksi.php';
 $id_pegawai = $_SESSION['id_pegawai'];
-$id_jcuti = $_POST['id_jcuti'];
 $tgl_pengajuan = date('Y/m/d');
 // $lama_cuti = $_POST['lama_cuti'];
 $tgl_mulai_cuti = $_POST['tgl_mulai_cuti'];
