@@ -56,7 +56,7 @@
                 <div class="table-responsive">                    
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
-                        <td align="center" rowspan="7">Foto (Max:1mb)
+                        <td align="center" rowspan="8">Foto (Max:1mb)
                           <img id="image-preview" class="form-control" style="width: 250px; height: 250px;" src="<?php echo'admin/img/'.$temp['foto']; ?>"><input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();"></td>
                     </tr>
                     <tr>
@@ -70,6 +70,12 @@
                         <th>Username</th>
                         <th>
                         <input type="text" name="username" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['username']; ?>">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Lahir</th>
+                        <th>
+                        <input type="date" name="tgl_lahir" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['tgl_lahir']; ?>">
                         </th>
                     </tr>
                     <tr>

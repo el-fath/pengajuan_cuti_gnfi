@@ -6,7 +6,6 @@
 	$jenis_kelamin 	= $_POST['jenis_kelamin'];
 	$email 			= $_POST['email'];
 	$tgl_lahir      = $_POST['tgl_lahir'];
-	$tgl_bergabung  = $_POST['tgl_bergabung'];
 	$alamat_pegawai = $_POST['alamat_pegawai'];
 	$telpon_pegawai = $_POST['telpon_pegawai'];
 	$file 			= $_FILES["foto"]["name"];
@@ -15,8 +14,6 @@
   	$target_file 	= $target_dir . basename($_FILES["foto"]["name"]);
   	$uploadOk 		= 1;
   	$imageFileType 	= pathinfo($target_file,PATHINFO_EXTENSION);
-  	move_uploaded_file($pic_loc,$target_dir.$file);
-
 
 	// Periksa ukuran file================================================
 	if($_FILES["foto"]["name"] != ""){
@@ -30,15 +27,21 @@
 	if($_FILES["foto"]["name"] != ""){
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 		  	&& $imageFileType != "gif" && $imageFileType != "JPG" ) {
-			    echo "<script>alert('Maaf, hanya Format JPG, JPEG, PNG & GIF yang diperbolehkan....<br>')</script>";
+			    echo "<script>alert('Maaf, hanya Format JPG, JPEG, PNG & GIF yang diperbolehkan.')</script>";
 			    $uploadOk = 0;
+		}
+	}
+
+	if($_FILES["foto"]["name"] != ""){
+		if (move_uploaded_file($pic_loc,$target_dir.$file)) {
+		    echo "<script>alert('Upload Foto Berhasil')</script>";
 		}
 	}
 	
 	if ($_FILES["foto"]["name"] == "" || $uploadOk == '0'){
-	$a = "UPDATE pegawai SET nama_pegawai = '$nama_pegawai',username='$username', email = '$email',  tgl_lahir = '$tgl_lahir', tgl_bergabung = '$tgl_bergabung', jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai' WHERE id_pegawai = '$id_pegawai'";
+	$a = "UPDATE pegawai SET nama_pegawai = '$nama_pegawai',username='$username', email = '$email',  tgl_lahir = '$tgl_lahir', jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai' WHERE id_pegawai = '$id_pegawai'";
 	}else{
-	$a = "UPDATE pegawai SET nama_pegawai = '$nama_pegawai',username='$username', email = '$email', tgl_lahir = '$tgl_lahir', tgl_bergabung = '$tgl_bergabung' ,jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai', foto = '$file' WHERE id_pegawai = '$id_pegawai'";
+	$a = "UPDATE pegawai SET nama_pegawai = '$nama_pegawai',username='$username', email = '$email', tgl_lahir = '$tgl_lahir',jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai', foto = '$file' WHERE id_pegawai = '$id_pegawai'";
   	}
 	$b = mysqli_query($conn,$a) or die (mysqli_error());
 	if ($b == true && $uploadOk =='1'){
