@@ -46,7 +46,7 @@
 		$sql = "INSERT INTO pegawai VALUES('$id_pegawai','$nama_pegawai','$id_jabatan','$jenis_kelamin','$email','$tgl_lahir','$tgl_bergabung','$alamat_pegawai','$telpon_pegawai','$file','$username','$hash','14','pegawai')";
 	 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 		if ($s == true && $uploadOk =='1') {
-			$z = mysqli_query($conn,"INSERT INTO pegawai_group VALUES('','$id_pegawai','','')") or die(mysqli_error());
+			$z = mysqli_query($conn,"INSERT INTO pegawai_group VALUES('','$id_pegawai','','')") or die(mysqli_error($conn));
 			echo "<script>alert('DATA BERHASIL DI TAMBAH )</script>";
 		}else {
 			echo "<script>alert('DATA GAGAL MASUK )</script>";
@@ -55,4 +55,4 @@
 
 	
 ?>
-<meta http-equiv="refresh" content="0;URL=../list_pegawai.php" />
+<meta http-equiv="refresh" content="0;URL=../../login.php" />

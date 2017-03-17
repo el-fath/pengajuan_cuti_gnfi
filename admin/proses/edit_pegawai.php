@@ -44,7 +44,7 @@
 	}else{
 	$a = "UPDATE pegawai SET id_pegawai = '$id_pegawai', nama_pegawai = '$nama_pegawai',username='$username', id_jabatan = '$id_jabatan', email = '$email', tgl_lahir = '$tgl_lahir', tgl_bergabung = '$tgl_bergabung', jenis_kelamin = '$jenis_kelamin', alamat_pegawai = '$alamat_pegawai', telpon_pegawai = '$telpon_pegawai', status_pegawai = '$status_pegawai',foto = '$file' WHERE id_pegawai = '$id_pegawai'";
   	}
-	$b = mysqli_query($conn,$a) or die (mysqli_error());
+	$b = mysqli_query($conn,$a) or die (mysqli_error($conn));
 	if ($b == true && $uploadOk =='1'){
 		$z = mysqli_query($conn,"UPDATE pegawai_group SET grup='$group', is_coordinator='$is_coordinator' WHERE id_pegawai='$id_pegawai'") or die(mysqli_error($conn));
 	echo "<script>alert('Proses edit $nama_pegawai berhasil')</script>";
