@@ -46,6 +46,10 @@
     if(isset($_GET['id_pbarang'])){
     include "cetakbrg_men.php";
     }?>
+    <?php
+    if(isset($_GET['id_pcuti'])){
+    include "cetak_men.php";
+    }?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <!-- Nav tabs -->
@@ -68,7 +72,7 @@
               <th>ALASAN CUTI</th>
               <th>JENIS CUTI</th>
               <th>STATUS</th>
-              <th colspan="4"><center>ACTION</center></th>
+              <th colspan="5"><center>ACTION</center></th>
             </tr>
             <?php 
                 $limit = 10;  
@@ -110,6 +114,7 @@
                         <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
                     <?php } ?>
               </td>
+              <td align='center'><a href='?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>'><button class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
                 <?php 
                 $id_pegawai=$_SESSION['id_pegawai'];
                 $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
