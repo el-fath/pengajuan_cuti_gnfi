@@ -35,7 +35,7 @@
     </div>
 </div>
 <div class="modal fade edit_biodata" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
@@ -56,21 +56,25 @@
                 <div class="table-responsive">                    
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
-                        <th>Nama Pegawai</th>
-                        <th>
+                        <td align="center" rowspan="7">Foto (Max:1mb)
+                          <img id="image-preview" class="form-control" style="width: 250px; height: 250px;" src="<?php echo'admin/img/'.$temp['foto']; ?>"><input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();"></td>
+                    </tr>
+                    <tr>
+                        <td>Nama Pegawai</td>
+                        <td>
                           <input type="hidden" name="id_pegawai" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['id_pegawai']; ?>">
                           <input type="text" name="nama_pegawai" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['nama_pegawai']; ?>">
-                        </th>
+                        </td>
                     </tr>
                     <tr>
-                        <th>Username</th>
-                        <th>
+                        <td>Username</td>
+                        <td>
                         <input type="text" name="username" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['username']; ?>">
-                        </th>
+                        </td>
                     </tr>
                     <tr>
-                        <th>Jenis Kelamin</th>
-                        <th>
+                        <td>Jenis Kelamin</td>
+                        <td>
                           <div id="gender" class="btn-group" data-toggle="buttons">
                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                               <input type="radio" name="jenis_kelamin" value="Laki-Laki" <?php if ($temp['jenis_kelamin']=='Laki-Laki') {echo 'checked';} ?> /> &nbsp; Laki-laki &nbsp;
@@ -79,24 +83,19 @@
                               <input type="radio" name="jenis_kelamin" value="Perempuan" <?php if ($temp['jenis_kelamin']=='Perempuan') {echo 'checked';} ?>/> Perempuan
                             </label>
                           </div>
-                        </th>
+                        </td>
                     </tr>
                     <tr>
                         <th>Email</th>
                         <th><input class="form-control col-md-7 col-xs-12" type="email" name="email" value="<?php echo $temp['email']; ?>"></th>
                     </tr>
                     <tr>
-                        <th>Alamat</th>
-                        <th><input class="form-control col-md-7 col-xs-12" type="text" name="alamat_pegawai" value="<?php echo $temp['alamat_pegawai']; ?>"></th>
-                    </tr>
-                    <tr>
                         <th>Telpon</th>
                         <th><input class="form-control col-md-7 col-xs-12" type="tel" name="telpon_pegawai" value="<?php echo $temp['telpon_pegawai']; ?>"></th>
                     </tr>
                     <tr>
-                        <th>Foto (Max:1mb)</th>
-                        <th><input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();">
-                          <img id="image-preview" class="form-control" style="width: 200px; height: 200px;" src="<?php echo'admin/img/'.$temp['foto']; ?>"></th>
+                        <th>Alamat</th>
+                        <th><input class="form-control col-md-7 col-xs-12" type="text" name="alamat_pegawai" value="<?php echo $temp['alamat_pegawai']; ?>"></th>
                     </tr>
                 </table>
                 </div>
