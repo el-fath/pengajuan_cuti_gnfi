@@ -8,6 +8,7 @@ $tgl_mulai_cuti = $_POST['tgl_mulai_cuti'];
 $tgl_akhir_cuti = $_POST['tgl_akhir_cuti'];
 $alasan = $_POST['alasan'];
 $status = 'Belum dikonfirmasi';
+$id_jcuti = $_POST['id_jcuti'];
 $grup = $_SESSION['grup'];
 $nama_pegawai = $_SESSION['nama_pegawai'];
 $selisih = (strtotime($tgl_akhir_cuti) - strtotime($tgl_mulai_cuti))/(60*60*24);
