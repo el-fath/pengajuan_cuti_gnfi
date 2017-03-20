@@ -19,9 +19,9 @@
 				<?php  
 					session_start();
 					include 'admin/koneksi.php';
-					if ($_SESSION['status_pegawai'] == 'admin') {
-						header("location: admin/index.php");
-					} 
+					// if ($_SESSION['status_pegawai'] == 'admin') {
+					// 	header("location: admin/index.php");
+					// } 
 
 					
 					if (isset($_POST['login'])) {
