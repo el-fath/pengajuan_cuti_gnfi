@@ -8,6 +8,7 @@
 	$tgl_pengajuan = date('Y/m/d');
 	$alasan = $_POST['alasan'];
 	$nama_pegawai = $_SESSION['nama_pegawai'];
+	$id_pbarang = null;
 	$grup = $_SESSION['grup'];
 	$eror		= false;
 $folder		= '../berkas/';
@@ -41,13 +42,13 @@ if(isset($_POST['btnUpload'])){
 		//mulai memproses upload file
 		if(move_uploaded_file($_FILES['berkas']['tmp_name'], $folder.$file_name)){
 			//catat nama file ke database
-			$catat = mysqli_query($conn,'insert into pengadaan_barang values ("", "'.$id_pegawai.'", "'.$id_kategori.'" ,"'.$nama_barang.'", "'.$tgl_pengajuan.'", "'.$file_name.'" ,"'.$alasan.'","Belum dikonfirmasi","","","","")') or die(mysqli_error($conn));
+			$catat = mysqli_query($conn,'insert into pengadaan_barang values ("'.$id_pbarang.'", "'.$id_pegawai.'", "'.$id_kategori.'" ,"'.$nama_barang.'", "'.$tgl_pengajuan.'", "'.$file_name.'" ,"'.$alasan.'","Belum dikonfirmasi","","","","")') or die(mysqli_error($conn));
 			$last_insert = mysqli_insert_id($conn);
 			if($_SESSION['is_coordinator'] == 0){
 				$query = mysqli_query($conn,"SELECT p.id_pegawai,p.email,p.nama_pegawai FROM pegawai_group pg JOIN pegawai p ON p.id_pegawai = pg.id_pegawai   WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
 				$koor_data = mysqli_fetch_assoc($query);
 				$id_coordinator = $koor_data['id_pegawai'];
-				$a = "INSERT INTO pegawai_approval_list VALUES ('','$id_coordinator','$last_insert','barang', now(),0)";
+				$a = "INSERT INTO pegawai_approval_list VALUES ('$id_pbarang','$id_coordinator','$last_insert','barang', now(),0)";
 			
 				$insert = mysqli_query($conn,$a) or die (mysqli_error($conn));
 				mail("email","subject","content");
@@ -91,7 +92,7 @@ if(isset($_POST['btnUpload'])){
 			$approv_data = mysqli_fetch_array($approvq);
 				
 					$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
-									VALUES ('','".$approv_data['id_pegawai']."','$last_insert','barang',now(),0)";
+									VALUES ('$id_pbarang','".$approv_data['id_pegawai']."','$last_insert','barang',now(),0)";
 				
 					$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
 			mail("email","subject","content"); 

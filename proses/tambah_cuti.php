@@ -12,13 +12,13 @@ $id_jcuti = $_POST['id_jcuti'];
 $grup = $_SESSION['grup'];
 $nama_pegawai = $_SESSION['nama_pegawai'];
 $selisih = (strtotime($tgl_akhir_cuti) - strtotime($tgl_mulai_cuti))/(60*60*24);
-
+$id_pcuti=null;
 $sql1 = mysqli_query($conn, "SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'") or die(mysqli_error($conn));
 $row = mysqli_fetch_assoc($sql1);
 
 
 if ($selisih <= $row['jatah_cuti']) {
-	$sql = "INSERT INTO permohonan_cuti VALUES('','$id_pegawai','$id_jcuti', '$tgl_pengajuan','$selisih', '$tgl_mulai_cuti','$tgl_akhir_cuti','$alasan','$status','','','','')";
+	$sql = "INSERT INTO permohonan_cuti VALUES('$id_pcuti','$id_pegawai','$id_jcuti', '$tgl_pengajuan','$selisih', '$tgl_mulai_cuti','$tgl_akhir_cuti','$alasan','$status','','','','')";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	if ($s) {
 		$last_insert = mysqli_insert_id($conn);
@@ -71,7 +71,7 @@ if ($selisih <= $row['jatah_cuti']) {
 	$approvq = mysqli_query($conn,"SELECT * FROM pegawai_approval INNER JOIN Pegawai on pegawai.id_pegawai = pegawai_approval.id_pegawai") or die(mysqli_error($conn));
 	$approv_data = mysqli_fetch_array($approvq);
 			$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
-							VALUES ('','".$approv_data['id_pegawai']."','$last_insert','cuti',now(),0)";
+							VALUES ('$id_pcuti','".$approv_data['id_pegawai']."','$last_insert','cuti',now(),0)";
 		
 			$insq = mysqli_query($conn,$r) or die(mysqli_error($conn));
 	mail("email","subject","content"); 
