@@ -41,7 +41,7 @@ if(isset($_POST['btnUpload'])){
 		//mulai memproses upload file
 		if(move_uploaded_file($_FILES['berkas']['tmp_name'], $folder.$file_name)){
 			//catat nama file ke database
-			$catat = mysqli_query($conn,'insert into pengadaan_barang values ("'..'", "'.$id_pegawai.'", "'.$id_kategori.'" ,"'.$nama_barang.'", "'.$tgl_pengajuan.'", "'.$file_name.'" ,"'.$alasan.'","Belum dikonfirmasi","","","","")') or die(mysqli_error($conn));
+			$catat = mysqli_query($conn,'insert into pengadaan_barang values ("", "'.$id_pegawai.'", "'.$id_kategori.'" ,"'.$nama_barang.'", "'.$tgl_pengajuan.'", "'.$file_name.'" ,"'.$alasan.'","Belum dikonfirmasi","","","","")') or die(mysqli_error($conn));
 			$last_insert = mysqli_insert_id($conn);
 			if($_SESSION['is_coordinator'] == 0){
 				$query = mysqli_query($conn,"SELECT p.id_pegawai,p.email,p.nama_pegawai FROM pegawai_group pg JOIN pegawai p ON p.id_pegawai = pg.id_pegawai   WHERE is_coordinator = 1 AND grup='$grup' ") or die(mysqli_error($conn));
@@ -137,5 +137,5 @@ if(isset($_POST['btnUpload'])){
 }
 }
 ?>
-<meta http-equiv="refresh" content="0;URL='../index.php'" />
+<!-- <meta http-equiv="refresh" content="0;URL='../index.php'" /> -->
 

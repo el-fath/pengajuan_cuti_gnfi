@@ -4,7 +4,7 @@
 	$pass = "";
 	$db_name = "cuti_gnfi";
 	ini_set('display_errors',1);
-	error_reporting(E_ALL);
+	error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 	$conn=mysqli_connect($host, $user, $pass, $db_name);
 	if (mysqli_connect_errno()) {
 		# code...
