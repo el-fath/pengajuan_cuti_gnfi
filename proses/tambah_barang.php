@@ -88,7 +88,7 @@ if(isset($_POST['btnUpload'])){
 				@mail($to, $subject, $message, $headers, "-f" . $from);
 				ini_restore(sendmail_from); // restore setting
 			} 
-			$approvq = mysqli_query($conn,"SELECT * FROM pegawai_approval INNER JOIN Pegawai on pegawai.id_pegawai = pegawai_approval.id_pegawai") or die(mysqli_error($conn));
+			$approvq = mysqli_query($conn,"SELECT * FROM pegawai_approval INNER JOIN pegawai on pegawai.id_pegawai = pegawai_approval.id_pegawai") or die(mysqli_error($conn));
 			$approv_data = mysqli_fetch_array($approvq);
 				
 					$r = "INSERT INTO pegawai_approval_list (id,approval_id,object_id,type,created,is_approval) 
