@@ -47,6 +47,8 @@
                               WHERE pegawai.id_pegawai='$id_pegawai'";
                         $query=mysqli_query($conn,$sql) or die (mysqli_error($conn));
                         $temp=mysqli_fetch_assoc($query);
+                        var_dump($temp);
+                        die();
                     ?>
                     <form action="proses/edit_pegawai.php" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return validasi_input(this)">
 
