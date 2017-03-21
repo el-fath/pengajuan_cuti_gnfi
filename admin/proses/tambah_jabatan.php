@@ -1,7 +1,7 @@
 <?php 
 	include '../koneksi.php';
 
-	$id_jabatan = null;
+	$id_jabatan = $_POST['id_jabatan'];
 	$jabatan = $_POST['jabatan'];
 
 	$sql = "INSERT INTO jabatan VALUES('$id_jabatan','$jabatan')";
