@@ -18,7 +18,7 @@ $row = mysqli_fetch_assoc($sql1);
 
 
 if ($selisih <= $row['jatah_cuti']) {
-	$sql = "INSERT INTO permohonan_cuti VALUES(NULL,'$id_pegawai','$id_jcuti', '$tgl_pengajuan','$selisih', '$tgl_mulai_cuti','$tgl_akhir_cuti','$alasan','$status','','','','')";
+	$sql = "INSERT INTO permohonan_cuti VALUES(NULL,'$id_pegawai','$id_jcuti', '$tgl_pengajuan','$selisih', '$tgl_mulai_cuti','$tgl_akhir_cuti','$alasan','$status',NULL,NULL,NULL,NULL)";
 	$s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 	if ($s) {
 		$last_insert = mysqli_insert_id($conn);
