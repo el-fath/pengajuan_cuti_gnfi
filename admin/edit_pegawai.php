@@ -44,7 +44,7 @@
                         $sql="SELECT * FROM pegawai 
                               INNER JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan
                               INNER JOIN pegawai_group ON pegawai_group.id_pegawai = pegawai.id_pegawai
-                              WHERE pegawai_group.id_pegawai='$id_pegawai'";
+                              WHERE pegawai.id_pegawai='$id_pegawai'";
                         $query=mysqli_query($conn,$sql) or die (mysqli_error($conn));
                         $temp=mysqli_fetch_assoc($query);
                     ?>
