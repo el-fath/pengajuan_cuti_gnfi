@@ -43,10 +43,12 @@
                         $id_pegawai=$_GET['id_pegawai'];
                         $sql="SELECT * FROM pegawai 
                               INNER JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan
-                              LEFT JOIN pegawai_group ON pegawai_group.id_pegawai = pegawai.id_pegawai
+                              CROSS JOIN pegawai_group ON pegawai_group.id_pegawai = pegawai.id_pegawai
                               WHERE pegawai.id_pegawai='$id_pegawai'";
                         $query=mysqli_query($conn,$sql) or die (mysqli_error($conn));
                         $temp=mysqli_fetch_assoc($query);
+                        var_dump($temp);
+                        die();
                     ?>
                     <form action="proses/edit_pegawai.php" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return validasi_input(this)">
 
@@ -54,7 +56,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">ID PEGAWAI <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="id_pegawai" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['id_pegawai']; ?>"><?php echo ['id_pegawai']; ?>
+                          <input type="text" name="id_pegawai" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $temp['id_pegawai']; ?>">
                         </div>
                       </div>
                       <div class="form-group">
