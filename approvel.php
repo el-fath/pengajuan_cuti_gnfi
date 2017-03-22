@@ -170,7 +170,7 @@
               
               <th><strong>ALASAN</strong></th>
               <th><strong>STATUS</strong></th>
-              <th colspan="5"><center>ACTION</center></th>
+              <th colspan="4"><center>ACTION</center></th>
             </tr>
             <?php 
                $no=0; 
@@ -226,9 +226,6 @@
               <td align="center">
                   <a href="#" class="btn btn-danger btn-xs open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
               </td>
-              <td align="center">
-                  <a href="#" class="btn btn-xs btn-primary notebrg" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
-                </td>
               <td align="center"> 
                    <a href="#" class="btn btn-danger btn-xs <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
               </td>
@@ -242,9 +239,6 @@
               <td align="center">
                   <a href="#" class="btn btn-danger btn-xs open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
               </td>
-              <td align="center">
-                  <a href="#" class="btn btn-xs btn-primary notebrg2" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
-                </td>
               <td align="center"> 
                    <a href="#" class="btn btn-danger btn-xs <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
               </td>
