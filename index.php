@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                             </a>
-                                <h5>FORM APPROVEL</h5>
+                                <h5>FORM APPROVAL</h5>
                             </div>
                         </div>
                         </div>

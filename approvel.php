@@ -40,7 +40,7 @@
     <!--HOME SECTION-->
 
 <div class="container">
-    <h2 style="padding-top: 80px;"><center>Approvel Page</center></h2>
+    <h2 style="padding-top: 80px;"><center>Approval Page</center></h2>
     <!-- Nav tabs -->
     <?php
     if(isset($_GET['id_pbarang'])){
@@ -72,7 +72,7 @@
               <th>ALASAN CUTI</th>
               <th>JENIS CUTI</th>
               <th>STATUS</th>
-              <th colspan="5"><center>ACTION</center></th>
+              <th colspan="4"><center>ACTION</center></th>
             </tr>
             <?php 
                 $limit = 10;  
@@ -109,7 +109,7 @@
                     <?php } elseif ($tmp['status'] == 'ditolak') { ?>
                         <span class="label label-danger" style="font-size: 12px;">ditolak</span>
                     <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
-                        <span class="label label-warning" style="font-size: 12px;">Belum dikonfirmasi</span>
+                        <span class="label label-warning label-lg" style="font-size: 12px;">Belum dikonfirmasi</span>
                     <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
                         <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
                     <?php } ?>
@@ -128,9 +128,6 @@
                 <td align="center">
                     <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
                 </td>
-                <td align="center">
-                  <a href="#" class="btn btn-xs btn-primary note" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
-                </td>
                 <td align="center"> 
                      <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
@@ -143,9 +140,7 @@
                 <td align="center">
                     <a href="#" class="btn btn-xs btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
                 </td>
-                <td align="center">
-                  <a href="#" class="btn btn-xs btn-primary note2" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-pencil"></i></a>
-                </td><td align="center"> 
+                <td align="center"> 
                      <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
               <?php 

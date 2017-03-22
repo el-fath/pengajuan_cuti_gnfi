@@ -3,7 +3,13 @@ session_start();
 include 'koneksi.php';
 $id_pcuti = $_POST['id_pcuti'];
 $tgl_sah = date('Y/m/d');
-$sql = "UPDATE permohonan_cuti SET status = 'ditolak', tgl_sah = '$tgl_sah' WHERE id_pcuti = '$id_pcuti'";
+if ($_SESSION['is_coordinator'] == '1'){
+	$note = $_POST['catatan'];
+	$sql = "UPDATE permohonan_cuti SET status = 'ditolak', tgl_sah = '$tgl_sah', note = '$note' WHERE id_pcuti = '$id_pcuti'";
+}else{
+	$note2 = $_POST['catatan'];
+	$sql = "UPDATE permohonan_cuti SET status = 'ditolak', tgl_sah = '$tgl_sah', note2 = '$note2' WHERE id_pcuti = '$id_pcuti'";
+}
 	$query_approv = mysqli_query($conn, "SELECT * from permohonan_cuti INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai WHERE permohonan_cuti.id_pcuti = '$id_pcuti' ") or die(mysqli_error($conn));
 	$email_approv = mysqli_fetch_assoc($query_approv);
 		

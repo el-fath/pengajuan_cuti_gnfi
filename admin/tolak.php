@@ -11,7 +11,8 @@
           	<form role="form" action="admin/proses_tolak_jon.php" enctype="multipart/form-data" method="POST">
                 <div class="form-group">
                   	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menolak....!</h1>
-                  	<input type="hidden" name="id_pcuti"  class="form-control" value="<?php echo $r['id_pcuti']; ?>" />
+                    <input type="text" name="catatan" placeholder="tulis catatan untuk yang bersangkutan" class="form-control"/>
+                  	<input type="hidden" name="id_pcuti" class="form-control" value="<?php echo $r['id_pcuti']; ?>" />
                 </div>
                 <div class="modal-footer">
                   <input class="btn btn-success" value="yakin" type="submit" />
