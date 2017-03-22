@@ -2,9 +2,9 @@
     include "koneksi.php";
   $id_pegawai=$_GET['id_pegawai'];
   
-  $modal=mysqli_query($conn,"SELECT * FROM pegawai 
-                            INNER JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan
-                            INNER JOIN pegawai_group ON pegawai_group.id_pegawai = pegawai.id_pegawai
+  $modal=mysqli_query($conn,"SELECT * FROM pegawai
+                            LEFT JOIN jabatan ON jabatan.id_jabatan = pegawai.id_jabatan
+                            LEFT JOIN pegawai_group ON pegawai_group.id_pegawai = pegawai.id_pegawai
                             WHERE pegawai.id_pegawai='$id_pegawai' ");
   while($r=mysqli_fetch_array($modal)){
 ?>
