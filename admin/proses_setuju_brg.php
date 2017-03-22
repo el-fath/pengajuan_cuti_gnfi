@@ -9,9 +9,11 @@ $id_pegawai = $_SESSION['id_pegawai'];
 $nama_pegawai = $_SESSION['nama_pegawai'];
 
 if ($_SESSION['is_coordinator'] == 1 ) {
+	$note = $_POST['catatan'];
 	$l =mysqli_query($conn,"UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND type = 'barang' AND object_id ='$id_pbarang'") or die(mysqli_error($conn));
 	// $sql = "UPDATE pengadaan_barang SET disahkan = '$id_pegawai'" 
 } else {
+	$note2 = $_POST['catatan'];
 	$approve = mysqli_query($conn,"SELECT id_pegawai FROM pegawai_approval") or die (mysqli_error($conn));
 	$approve_user = mysqli_fetch_array($approve);
 	$sql = "UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '".$approve_user['id_pegawai']."'AND type = 'barang' AND object_id ='$id_pbarang'";
@@ -22,10 +24,19 @@ $a = mysqli_query($conn,"SELECT COUNT(*) AS sisa_approval FROM pegawai_approval_
 $b = mysqli_fetch_assoc($a);
 
 if ($b['sisa_approval'] == 1) {
-	$c = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui 1 approvel', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
+	if ($_SESSION['is_coordinator'] == 1 ) {
+	$c = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui 1 approvel',note='$note', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
+	}else{
+	$c = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui 1 approvel',note2='$note2', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
+	}
+	echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 	
 } elseif ($b['sisa_approval'] == 0 ) {
-	$l = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
+	if ($_SESSION['is_coordinator'] == 1 ) {
+	$l = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui',note='$note', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
+	}else{
+	$l = mysqli_query($conn,"UPDATE pengadaan_barang SET status = 'disetujui',note2='$note2', tgl_sah = '$tgl_sah', disahkan = '$username' WHERE id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
+	}
 
 	$query_approv = mysqli_query($conn, "SELECT * from pengadaan_barang INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai WHERE pengadaan_barang.id_pbarang = '$id_pbarang'") or die(mysqli_error($conn));
 	$email_approv = mysqli_fetch_assoc($query_approv);
@@ -66,10 +77,7 @@ if ($b['sisa_approval'] == 1) {
 	ini_restore(sendmail_from); // restore setting	
 	echo "<script>alert('Penyetujuan Berhasil disetujui')</script>";
 	
-}else{
-	echo "<script>alert('Penyetujuan Berhasil Tapi Mohon Tunggu Approvel lain untuk menyetujui')</script>";
 }
-
 
 ?>
 <meta http-equiv="refresh" content="0;URL='../approvel.php'" />

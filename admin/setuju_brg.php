@@ -11,6 +11,7 @@
           	<form role="form" action="admin/proses_setuju_brg.php" enctype="multipart/form-data" method="POST">
                 <div class="form-group">
                   	<h1 class="modal-title" id="myModalLabel">Apa Anda yakin Untuk Menyetujui </h1>
+                    <input type="text" name="catatan" placeholder="tulis catatan untuk yang bersangkutan" class="form-control"/>
                   	<input type="hidden" name="id_pbarang"  class="form-control" value="<?php echo $r['id_pbarang']; ?>" />
                 </div>
                 <div class="modal-footer">

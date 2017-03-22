@@ -4,7 +4,13 @@ include 'koneksi.php';
 $id_pbarang = $_POST['id_pbarang'];
 $nama_pegawai = $_SESSION['nama_pegawai'];
 $tgl_sah = date('Y/m/d');
-$sql = "UPDATE pengadaan_barang SET status = 'ditolak', tgl_sah = '$tgl_sah' WHERE id_pbarang = '$id_pbarang'";
+if ($_SESSION['is_coordinator'] == '1'){
+	$note = $_POST['catatan'];
+	$sql = "UPDATE pengadaan_barang SET status = 'ditolak', tgl_sah = '$tgl_sah',note = '$note' WHERE id_pbarang = '$id_pbarang'";
+}else{
+	$note2 = $_POST['catatan'];
+	$sql = "UPDATE pengadaan_barang SET status = 'ditolak', tgl_sah = '$tgl_sah',note2 = '$note2' WHERE id_pbarang = '$id_pbarang'";
+}
 	$query_approv = mysqli_query($conn, "SELECT * from pengadaan_barang INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai WHERE pengadaan_barang.id_pbarang = '$id_pbarang' ") or die(mysqli_error($conn));
 	$email_approv = mysqli_fetch_assoc($query_approv);
 		
