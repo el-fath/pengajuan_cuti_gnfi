@@ -150,7 +150,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image" data-toggle="modal" data-target=".data_cuti">
-                                    <img src="assets/img/datacuti.png" alt="">
+                                    <img src="assets/img/datacuti.jpg" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
@@ -167,7 +167,7 @@
                         <div class="portfolio-item">
                             <div class="item-main">
                                 <div class="portfolio-image" data-toggle="modal" data-target=".data_barang">
-                                    <img src="assets/img/OIUH600.png" alt="">
+                                    <img src="assets/img/OIUH600.jpg" alt="">
                                     <div class="overlay">
                                         <button class="preview btn btn-success" ><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </div>
@@ -181,7 +181,7 @@
        </div>
    </section>
 
-   <h2>Good Luck</h2>
+   <!-- <h2>Good Luck</h2> -->
      <!-- END PORTFOLIO SECTION-->
 
 <!-- Large modal -->
