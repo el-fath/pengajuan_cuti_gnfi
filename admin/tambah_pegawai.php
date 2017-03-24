@@ -55,7 +55,7 @@
                 
                   <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                   	<label>NAMA PEGAWAI</label>
-                    <input type="text" name="id_pegawai" value="<?php echo "$kode_otomatis"; ?>" placeholder="" >
+                    <input type="text" name="id_pegawai" value="<?php echo "$kode_otomatis"; ?>" placeholder="" hidden>
                     <input type="text" placeholder="" class="form-control" name="nama_pegawai">
                     <br>
                     <label>TGL LAHIR</label>
