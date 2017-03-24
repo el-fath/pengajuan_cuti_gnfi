@@ -64,7 +64,7 @@
       if(isset($_GET['id_pcuti'])){
       include "cetak_men.php";
       }?>
-  <div class="panel panel-default" style="height: 525px;">
+  <div class="panel panel-default">
       <div class="panel-heading">
           <!-- Nav tabs -->
           <ul class="nav nav-tabs nav-justified" role="tablist">
