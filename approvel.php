@@ -38,9 +38,22 @@
     <?php include 'header.php'; ?>
     <?php include 'koneksi.php'; ?>
     <!--HOME SECTION-->
-
+<div id="home-sec">
+    <div class="container" >
+        <div class="row text-center">
+            <div  class="col-md-12 col-sm-12" >
+                <div class="col-md-12">
+                <!-- <img src="assets/img/gnfi.png" style="width: 350px; height: 110px;" alt="">                    -->
+                </div>
+            </div>
+                <div class="col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">
+                <h1><span class="label label-danger">Approval Page</span></h1>
+                </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
-    <h2 style="padding-top: 80px;"><center>Approval Page</center></h2>
+    <h2 style="padding-top: 0px;"><center></center></h2>
     <!-- Nav tabs -->
     <?php
     if(isset($_GET['id_pbarang'])){
