@@ -1,87 +1,68 @@
 <!DOCTYPE html>
- <html>
- <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title></title>
-   <link rel="stylesheet" href="">
-   <link rel="shortcut icon" type="image/x-icon" href="../1487735199.ico">
-   <link href="vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-     
-    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="vendors/bootstrap/dist/css/styles.css">
+</head>
+<body>
+	<?php 
+      include 'koneksi.php'; 
+      $carikode = mysqli_query($conn, "SELECT max(id_pegawai) FROM pegawai") or die (mysqli_error($conn));
+      // menjadikannya array
+      $datakode = mysqli_fetch_array($carikode);
+      // jika $datakode
+      if ($datakode) {
+       $nilaikode = substr($datakode[0], 1);
+       // menjadikan $nilaikode ( int )
+       $kode = (int) $nilaikode;
+       // setiap $kode di tambah 1
+       $kode = $kode + 1;
+       $kode_otomatis = "P".str_pad($kode, 4, "0", STR_PAD_LEFT);
+      } else {
+       $kode_otomatis = "P0001";
+      }
 
-    <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
- </head>
- <body>
-   
-   <?php include 'koneksi.php'; ?>
-   <div class="container body" >
+  ?>
+	<div class="container body" >
      <div class="main_container">
-               <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title" style="padding-top: 50px;  ">
-            <div class="clearfix"></div>
-            <div class="row" >
-              <div class="col-sm-2"></div>
-              <div class="col-sm-8">
-                <div class="x_panel" style=" box-shadow:  30px 10px 15px #888888;">
-                  <div class="x_title">
-                    <h1 align="center">Form Register Pegawai</h1>
-                   
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br />
-                    <form action="proses/tambah_pegawai.php" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return validasi_input(this)">
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">ID PEGAWAI <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="id_pegawai" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">NAMA PEGAWAI <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="nama_pegawai" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">TGL LAHIR<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="date" name="tgl_lahir" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">TGL BERGABUNG<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="date" name="tgl_bergabung" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <!-- <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">STATUS <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="status_pegawai" value="admin"> &nbsp; Admin &nbsp;
-                            </label>
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="status_pegawai" value="pegawai"> Pegawai
-                            </label>
-                          </div>
-                        </div>
-                      </div> -->
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">JABATAN <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select name="id_jabatan" class="form-control">
+     	<div class="row">
+     		<div class="x_panel">
+              <div class="x_title">
+                <h2>Register Pegawai <small>form input </small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                
+              </div>
+              <form action="proses/tambah_pegawai.php" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-vertical form-label-left" onsubmit="return validasi_input(this)">
+              <div class="x_content">
+              <div class="row">
+                
+                  <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                  	<label>NAMA PEGAWAI</label>
+                    <input type="text" name="" value="<?php echo "$kode_otomatis"; ?>" placeholder="" hidden>
+                    <input type="text" placeholder="" class="form-control" name="nama_pegawai">
+                    <br>
+                    <label>TGL LAHIR</label>
+                    <input type="date" placeholder="" class="form-control" name="tgl_lahir">
+                    <br>
+                     <label>JABATAN</label>
+                    <select name="id_jabatan" class="form-control">
                           <?php  
                              $sql = "SELECT * FROM jabatan ORDER BY jabatan ASC";
                              $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
@@ -90,91 +71,62 @@
                             <option value="<?php echo $tmp['id_jabatan']; ?>"><?php echo $tmp['jabatan']; ?></option>
                             <?php } ?>
                           </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">JENIS KELAMIN <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="jenis_kelamin" value="Laki-Laki"> &nbsp; Laki-laki &nbsp;
-                            </label>
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="jenis_kelamin" value="Perempuan"> Perempuan
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">EMAIL <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control col-md-7 col-xs-12" type="email" name="email">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">ALAMAT PEGAWAI</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control col-md-7 col-xs-12" type="text" name="alamat_pegawai">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">TELPON PEGAWAI</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control col-md-7 col-xs-12" type="tel" name="telpon_pegawai">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">FOTO (Max:1mb)<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control col-md-7 col-xs-12" type="file" name="foto" id="image-source" onchange="previewImage();">
-                          <br>
-                          <br>
-                          <br>
-
-                          <img id="image-preview" class="form-control" style="width: 200px; height: 200px;">
-                        </div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">USERNAME <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control col-md-7 col-xs-12" type="text" name="username" placeholder="min 4 karakter tidak boleh ada spasi" required oninvalid="this.setCustomValidity('input hanya boleh a-z A-Z 1-9 tanpa spasi')" oninput="setCustomValidity('')">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">PASSWORD <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input class="form-control col-md-7 col-xs-12" type="password" name="password" required>
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="reset" class="btn btn-primary">Cancel</button>
-                          <!-- <input type="submit"  class="btn btn-success" value="submit"> -->
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
-
-                    </form>
+                    <br>
+                    <label>ALAMAT PEGAWAI</label>
+                    <input type="text" placeholder="" class="form-control" name="alamat_pegawai">
+                    <br>
+                    <label>Email address</label>
+                      <input type="email" placeholder="" class="form-control" name="email">
                   </div>
-                </div>
+
+                  <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                  	<label>TELPON PEGAWAI</label>
+                    <input type="number" placeholder="" class="form-control" name="telpon_pegawai">
+                    <br>
+                    <label>PASSWORD</label>
+                      <input type="password" placeholder="" class="form-control" name="password">
+                      <br>
+                      <label>USERNAME</label>
+                      <input type="text" placeholder="" class="form-control" name="username" placeholder="min 4 karakter tidak boleh ada spasi" required oninvalid="this.setCustomValidity('input hanya boleh a-z A-Z 1-9 tanpa spasi')" oninput="setCustomValidity('')">
+                      <br>
+                      <label>JENIS KELAMIN</label><br>
+                     <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                          <input type="radio" name="jenis_kelamin" value="Laki-Laki" <?php if ($temp['jenis_kelamin']=='Laki-Laki') {echo 'checked';} ?> /> &nbsp; Laki-laki &nbsp;
+                        </label>
+                        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                          <input type="radio" name="jenis_kelamin" value="Perempuan" <?php if ($temp['jenis_kelamin']=='Perempuan') {echo 'checked';} ?>/> Perempuan
+                        </label>
+                        <br>
+                        <br>
+                      <label>TGL BERGABUNG</label>
+                      <input type="date" placeholder="" class="form-control" name="tgl_bergabung">
+                      <br>
+                     
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>  
+                     
+                      
+                  </div>  
+                   <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                      <label class="control-label">FOTO (Max:1mb)</label>
+                      <input class="form-control " type="file" name="foto" id="image-source" onchange="previewImage();">
+                      <br>
+                      <br>
+                      <img src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="100%" id="image-preview" class="img-rounded img-responsive" style=" width: 100%; height: 300px">
+                   </div>
+                     <!-- <img id="image-preview" class="img-rounded img-responsive col-xs-6 col-md-5" > -->
+                
+                </div> <!-- row in form -->
               </div>
-              <div class="col-sm-2"></div>
+              </form>
             </div>
-
-
      </div>
-   </div>
-  <script src="vendors/jquery/dist/jquery.min.js"></script>
+    </div><!-- /.row -->	
+
+ <script src="vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-   
-    <script src=".vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="build/js/custom.min.js"></script>
-    <script>
+	<script>
     function previewImage() {
         document.getElementById("image-preview").style.display = "block";
         var oFReader = new FileReader();
@@ -196,5 +148,5 @@
        return (true);
     }
     </script>
-  </body>
-  </html>
+</body>
+</html>
