@@ -38,12 +38,12 @@
     <?php include 'header.php'; ?>
     <?php include 'koneksi.php'; ?>
     <!--HOME SECTION-->
-<div id="home-sec">
+<!-- <div id="home-sec">
     <div class="container" >
         <div class="row text-center">
             <div  class="col-md-12 col-sm-12" >
                 <div class="col-md-12">
-                <!-- <img src="assets/img/gnfi.png" style="width: 350px; height: 110px;" alt="">                    -->
+                <img src="assets/img/gnfi.png" style="width: 350px; height: 110px;" alt="">                   
                 </div>
             </div>
                 <div class="col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">
@@ -51,226 +51,229 @@
                 </div>
         </div>
     </div>
-</div>
-<div class="container-fluid">
-    <h2 style="padding-top: 0px;"><center></center></h2>
-    <!-- Nav tabs -->
-    <?php
-    if(isset($_GET['id_pbarang'])){
-    include "cetakbrg_men.php";
-    }?>
-    <?php
-    if(isset($_GET['id_pcuti'])){
-    include "cetak_men.php";
-    }?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="active"><a href="#home" role="tab" data-toggle="tab">Pengajuan Cuti Team</a></li>
-            <li><a href="#profile" role="tab" data-toggle="tab">Pengajuan Barang Team</a></li>
-        </ul>
-    </div>
-    <!-- Tab panes + Panel body -->
-    <div class="panel-body tab-content">
-        <div class="tab-pane active" id="home">
-          <div class="table-responsive">
-        <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
-            <tr>
-              <th>NO</th>
-              <th>NAMA</th>
-              <th>TGL PENGAJUAN</th>
-              <th>MULAI CUTI</th>
-              <th>AKHIR CUTI</th>
-              <th>ALASAN CUTI</th>
-              <th>JENIS CUTI</th>
-              <th>STATUS</th>
-              <th colspan="4"><center>ACTION</center></th>
-            </tr>
-            <?php 
-                $limit = 10;  
+</div> -->
+<!-- <div class="container" style="min-height: 550px;"> -->
+  <div class="container-fluid" style="min-height: 550px;">
+      <h2 style="padding-top: 70px;"><center></center></h2>
+      <!-- Nav tabs -->
+      <?php
+      if(isset($_GET['id_pbarang'])){
+      include "cetakbrg_men.php";
+      }?>
+      <?php
+      if(isset($_GET['id_pcuti'])){
+      include "cetak_men.php";
+      }?>
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li class="active"><a href="#home" role="tab" data-toggle="tab">Pengajuan Cuti Team</a></li>
+              <li><a href="#profile" role="tab" data-toggle="tab">Pengajuan Barang Team</a></li>
+          </ul>
+      </div>
+      <!-- Tab panes + Panel body -->
+      <div class="panel-body tab-content">
+          <div class="tab-pane active" id="home">
+            <div class="table-responsive">
+          <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
+              <tr>
+                <th>NO</th>
+                <th>NAMA</th>
+                <th>TGL PENGAJUAN</th>
+                <th>MULAI CUTI</th>
+                <th>AKHIR CUTI</th>
+                <th>ALASAN CUTI</th>
+                <th>JENIS CUTI</th>
+                <th>STATUS</th>
+                <th colspan="4"><center>ACTION</center></th>
+              </tr>
+              <?php 
+                  $limit = 10;  
 
-                if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
-                $start_from = ($page-1) * $limit; 
-                $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti,     alasan , jatah_cuti, lama_cuti ,grup
-                        FROM permohonan_cuti 
-                        INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
-                        INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
-                        -- INNER JOIN pegawai_approval_list ON pegawai.id_pegawai = pegawai_approval_list.approval_id
-                        INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
-                        ORDER BY tgl_pengajuan DESC";
-                
-                $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
-                $num_rows = mysqli_num_rows($s);
-                if (!empty($num_rows)) {
-                while ($tmp = mysqli_fetch_assoc($s)) {  
-                  $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pcuti']."'AND type = 'cuti'") or die(mysqli_error($conn));
-                  $data = mysqli_fetch_array($l);
-                $no++
-            ?>
-            <tr>
-              <td align="center"><?php echo $no; ?></td>
-              <td><?php echo $tmp['nama_pegawai']; ?></td>
-              <td><?php echo $tmp['tgl_pengajuan']; ?></td>
-              <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
-              <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
-              <td><?php echo $tmp['alasan']; ?></td>
-              <td><?php echo $tmp['nama_cuti']; ?></td>
-              <td>
-                    <?php if ($tmp['status']=='disetujui'){ ?>
-                        <span class="label label-success" style="font-size: 12px;">disetujui</span>
-                    <?php } elseif ($tmp['status'] == 'ditolak') { ?>
-                        <span class="label label-danger" style="font-size: 12px;">ditolak</span>
-                    <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
-                        <span class="label label-warning label-lg" style="font-size: 12px;">Belum dikonfirmasi</span>
-                    <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
-                        <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
-                    <?php } ?>
-              </td>
-              <td align='center'><a href='?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>'><button class='btn btn-primary btn-sm'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
+                  if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+                  $start_from = ($page-1) * $limit; 
+                  $sql = "SELECT id_pcuti,nama_pegawai, nama_cuti, tgl_pengajuan, lama_cuti,status, tgl_mulai_cuti,tgl_akhir_cuti,     alasan , jatah_cuti, lama_cuti ,grup
+                          FROM permohonan_cuti 
+                          INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai
+                          INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
+                          -- INNER JOIN pegawai_approval_list ON pegawai.id_pegawai = pegawai_approval_list.approval_id
+                          INNER JOIN jenis_cuti ON jenis_cuti.id_jcuti = permohonan_cuti.id_jcuti
+                          ORDER BY tgl_pengajuan DESC";
+                  
+                  $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
+                  $num_rows = mysqli_num_rows($s);
+                  if (!empty($num_rows)) {
+                  while ($tmp = mysqli_fetch_assoc($s)) {  
+                    $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pcuti']."'AND type = 'cuti'") or die(mysqli_error($conn));
+                    $data = mysqli_fetch_array($l);
+                  $no++
+              ?>
+              <tr>
+                <td align="center"><?php echo $no; ?></td>
+                <td><?php echo $tmp['nama_pegawai']; ?></td>
+                <td><?php echo $tmp['tgl_pengajuan']; ?></td>
+                <td><?php echo $tmp['tgl_mulai_cuti']; ?></td>
+                <td><?php echo $tmp['tgl_akhir_cuti']; ?></td>
+                <td><?php echo $tmp['alasan']; ?></td>
+                <td><?php echo $tmp['nama_cuti']; ?></td>
+                <td>
+                      <?php if ($tmp['status']=='disetujui'){ ?>
+                          <span class="label label-success" style="font-size: 12px;">disetujui</span>
+                      <?php } elseif ($tmp['status'] == 'ditolak') { ?>
+                          <span class="label label-danger" style="font-size: 12px;">ditolak</span>
+                      <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
+                          <span class="label label-warning label-lg" style="font-size: 12px;">Belum dikonfirmasi</span>
+                      <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
+                          <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
+                      <?php } ?>
+                </td>
+                <td align='center'><a href='?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>'><button class='btn btn-primary btn-sm'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
+                  <?php 
+                  $id_pegawai=$_SESSION['id_pegawai'];
+                  $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
+                  $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
+                  while ($t = mysqli_fetch_assoc($a)) {
+                  if ($t['is_coordinator'] == '1') {
+                  ?>
+              <td align="center">
+                      <a href="#" class="btn btn-sm btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+                  </td>
+                  <td align="center">
+                      <a href="#" class="btn btn-sm btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+                  </td>
+                  <td align="center"> 
+                       <a href="#" class="btn btn-sm btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+                  </td>
+                  <?php 
+                  }else{
+                  ?>
+                  <td align="center">
+                      <a href="#" class="btn btn-sm btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+                  </td>
+                  <td align="center">
+                      <a href="#" class="btn btn-sm btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+                  </td>
+                  <td align="center"> 
+                       <a href="#" class="btn btn-sm btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+                  </td>
                 <?php 
-                $id_pegawai=$_SESSION['id_pegawai'];
-                $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
-                $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
-                while ($t = mysqli_fetch_assoc($a)) {
-                if ($t['is_coordinator'] == '1') {
+                }}
                 ?>
-            <td align="center">
-                    <a href="#" class="btn btn-sm btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+              </tr>
+              <?php }}else{ ?>
+              <tr>
+                  <td align="center" colspan="9">Data Belum Tersedia</td>
+              </tr>
+              <?php } ?>
+          </table>
+          
+          </div>
+
+          </div>
+          <div class="tab-pane" id="profile">
+            <div class="table-responsive">
+          <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
+              <tr>
+                <th><strong>NO</strong></th>
+                <th><strong>NAMA PEGAWAI</strong></th>
+                <th><strong>TGL PENGAJUAN</strong></th>
+                <!-- <th><strong>LAMA CUTI</strong></th> -->
+                <th><strong>KATEGORI BARANG</strong></th>
+                <th><strong>NAMA BARANG</strong></th>
+                <th><strong>BERKAS</strong></th>
+                
+                <th><strong>ALASAN</strong></th>
+                <th><strong>STATUS</strong></th>
+                <th colspan="4"><center>ACTION</center></th>
+              </tr>
+              <?php 
+                 $no=0; 
+                  $limit = 10;  
+                  if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+                  $start_from = ($page-1) * $limit; 
+                  $sql = "SELECT id_pbarang,status,nama_pegawai,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan, grup 
+                          FROM pengadaan_barang
+                          INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
+                          INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
+                          INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
+                          ORDER BY tgl_pengajuan DESC
+                          LIMIT $start_from, $limit
+                          ";
+                  $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
+                  $num_rows = mysqli_num_rows($s);
+                  if (!empty($num_rows)) {
+                  while ($tmp = mysqli_fetch_assoc($s)) {  
+                    $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pbarang']."'AND type = 'barang'") or die(mysqli_error($conn));
+                    $data = mysqli_fetch_array($l);
+                  $no++
+              ?>
+              <tr>
+                <td align="center"><?php echo $no; ?></td>
+                <td><?php echo $tmp['nama_pegawai']; ?></td>
+                <td><?php echo $tmp['tgl_pengajuan']; ?></td>
+                <td><?php echo $tmp['kategori']; ?></td>
+                <td><?php echo $tmp['nama_barang'] ?></td>
+                <td><a href="<?php echo'berkas/'.$tmp['berkas']; ?>" ><?php echo $tmp['berkas'];  ?></a></td>
+                <td><?php echo $tmp['alasan']; ?></td>
+                <td>
+                      <?php if ($tmp['status']=='disetujui'){ ?>
+                          <span class="label label-success" style="font-size: 12px;">disetujui</span>
+                      <?php } elseif ($tmp['status'] == 'ditolak') { ?>
+                          <span class="label label-danger" style="font-size: 12px;">ditolak</span>
+                      <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
+                          <span class="label label-warning" style="font-size: 12px;">Belum dikonfirmasi</span>
+                      <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
+                          <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
+                      <?php } ?>
+                </td>
+                <td align='center'><a href='?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>'><button class='btn btn-primary btn-sm'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
+                  <?php 
+                  $id_pegawai=$_SESSION['id_pegawai'];
+                  $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
+                  $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
+                  while ($t = mysqli_fetch_assoc($a)) {
+                      if ($t['is_coordinator'] == '1') {
+                  ?>
+                <td align="center">
+                    <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-sm btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
                 </td>
                 <td align="center"> 
-                     <a href="#" class="btn btn-sm btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+                     <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
                 <?php 
                 }else{
-                ?>
+                 ?>
+
                 <td align="center">
-                    <a href="#" class="btn btn-sm btn-success open_modal <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>" ><i class="glyphicon glyphicon-check"></i></a>
+                    <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
                 </td>
                 <td align="center">
-                    <a href="#" class="btn btn-sm btn-danger open_jon <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pcuti'];?>"><i class="glyphicon glyphicon-remove"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
                 </td>
                 <td align="center"> 
-                     <a href="#" class="btn btn-sm btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
+                     <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
-              <?php 
-              }}
-              ?>
-            </tr>
-            <?php }}else{ ?>
-            <tr>
-                <td align="center" colspan="9">Data Belum Tersedia</td>
-            </tr>
-            <?php } ?>
-        </table>
-        </div>
-
-        </div>
-        <div class="tab-pane" id="profile">
-          <div class="table-responsive">
-        <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
-            <tr>
-              <th><strong>NO</strong></th>
-              <th><strong>NAMA PEGAWAI</strong></th>
-              <th><strong>TGL PENGAJUAN</strong></th>
-              <!-- <th><strong>LAMA CUTI</strong></th> -->
-              <th><strong>KATEGORI BARANG</strong></th>
-              <th><strong>NAMA BARANG</strong></th>
-              <th><strong>BERKAS</strong></th>
-              
-              <th><strong>ALASAN</strong></th>
-              <th><strong>STATUS</strong></th>
-              <th colspan="4"><center>ACTION</center></th>
-            </tr>
-            <?php 
-               $no=0; 
-                $limit = 10;  
-                if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
-                $start_from = ($page-1) * $limit; 
-                $sql = "SELECT id_pbarang,status,nama_pegawai,kategori,nama_barang ,tgl_pengajuan,berkas ,alasan, grup 
-                        FROM pengadaan_barang
-                        INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
-                        INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
-                        INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
-                        ORDER BY tgl_pengajuan DESC
-                        LIMIT $start_from, $limit
-                        ";
-                $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
-                $num_rows = mysqli_num_rows($s);
-                if (!empty($num_rows)) {
-                while ($tmp = mysqli_fetch_assoc($s)) {  
-                  $l = mysqli_query($conn,"SELECT * FROM pegawai_approval_list WHERE object_id = '".$tmp['id_pbarang']."'AND type = 'barang'") or die(mysqli_error($conn));
-                  $data = mysqli_fetch_array($l);
-                $no++
-            ?>
-            <tr>
-              <td align="center"><?php echo $no; ?></td>
-              <td><?php echo $tmp['nama_pegawai']; ?></td>
-              <td><?php echo $tmp['tgl_pengajuan']; ?></td>
-              <td><?php echo $tmp['kategori']; ?></td>
-              <td><?php echo $tmp['nama_barang'] ?></td>
-              <td><a href="<?php echo'berkas/'.$tmp['berkas']; ?>" ><?php echo $tmp['berkas'];  ?></a></td>
-              <td><?php echo $tmp['alasan']; ?></td>
-              <td>
-                    <?php if ($tmp['status']=='disetujui'){ ?>
-                        <span class="label label-success" style="font-size: 12px;">disetujui</span>
-                    <?php } elseif ($tmp['status'] == 'ditolak') { ?>
-                        <span class="label label-danger" style="font-size: 12px;">ditolak</span>
-                    <?php } elseif ($tmp['status'] == 'Belum dikonfirmasi') { ?>
-                        <span class="label label-warning" style="font-size: 12px;">Belum dikonfirmasi</span>
-                    <?php } elseif ($tmp['status'] == 'disetujui 1 approvel') { ?>
-                        <span class="label label-warning" style="font-size: 12px;">Disetujui 1 Approvel</span>
-                    <?php } ?>
-              </td>
-              <td align='center'><a href='?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>'><button class='btn btn-primary btn-sm'><i class="glyphicon glyphicon-eye-open"></i></button></a></td>
                 <?php 
-                $id_pegawai=$_SESSION['id_pegawai'];
-                $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
-                $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
-                while ($t = mysqli_fetch_assoc($a)) {
-                    if ($t['is_coordinator'] == '1') {
+                }}
                 ?>
-              <td align="center">
-                  <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
-              </td>
-              <td align="center">
-                  <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
-              </td>
-              <td align="center"> 
-                   <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
-              </td>
-              <?php 
-              }else{
-               ?>
+              </tr>
+              <?php }}else{ ?>
+              <tr>
+                  <td align="center" colspan="9">Data Belum Tersedia</td>
+              </tr>
+              <?php } ?>
+          </table>
+          </div>
+          </div>
+      </div>
+  </div>
 
-              <td align="center">
-                  <a href="#" class="btn btn-success btn-sm open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i></a>
-              </td>
-              <td align="center">
-                  <a href="#" class="btn btn-danger btn-sm open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i></a>
-              </td>
-              <td align="center"> 
-                   <a href="#" class="btn btn-danger btn-sm <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i></a>
-              </td>
-              <?php 
-              }}
-              ?>
-            </tr>
-            <?php }}else{ ?>
-            <tr>
-                <td align="center" colspan="9">Data Belum Tersedia</td>
-            </tr>
-            <?php } ?>
-        </table>
-        </div>
-        </div>
-    </div>
-</div>
-</div>
-
+  </div>
+<!-- </div> -->
 
             <!-- modal setuju brg-->
         <div id="modalsetujubrg" class="modal fade" role="dialog" style="margin-top:100px;">
