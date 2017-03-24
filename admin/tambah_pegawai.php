@@ -31,7 +31,7 @@
      	<div class="row">
      		<div class="x_panel">
               <div class="x_title">
-                <h2>Register Pegawai <small>form input </small></h2>
+                <h2><center>Register Pegawai</center></h2>
                 <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                   </li>
@@ -55,7 +55,7 @@
                 
                   <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                   	<label>NAMA PEGAWAI</label>
-                    <input type="text" name="" value="<?php echo "$kode_otomatis"; ?>" placeholder="" hidden>
+                    <input type="text" name="id_pegawai" value="<?php echo "$kode_otomatis"; ?>" placeholder="" >
                     <input type="text" placeholder="" class="form-control" name="nama_pegawai">
                     <br>
                     <label>TGL LAHIR</label>
@@ -101,22 +101,23 @@
                       <label>TGL BERGABUNG</label>
                       <input type="date" placeholder="" class="form-control" name="tgl_bergabung">
                       <br>
-                     
-                        <button type="reset" class="btn btn-danger">Cancel</button>
-                        <button type="submit" class="btn btn-success">Submit</button>  
-                     
-                      
+                      <br><br>
                   </div>  
-                   <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                  <div class="col-md-4 col-sm-12 col-xs-12 form-group" style="margin-top:-60px ">
                       <label class="control-label">FOTO (Max:1mb)</label>
                       <input class="form-control " type="file" name="foto" id="image-source" onchange="previewImage();">
                       <br>
                       <br>
                       <img src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="100%" id="image-preview" class="img-rounded img-responsive" style=" width: 100%; height: 300px">
+
                    </div>
                      <!-- <img id="image-preview" class="img-rounded img-responsive col-xs-6 col-md-5" > -->
-                
+                       
                 </div> <!-- row in form -->
+                <div align="center">
+                  <button type="reset" class="btn btn-lg btn-danger">Cancel</button>
+                  <button type="submit" class="btn btn-lg btn-success">Submit</button> 
+                </div>
               </div>
               </form>
             </div>
