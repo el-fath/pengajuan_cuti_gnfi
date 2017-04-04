@@ -7,7 +7,7 @@ $id_pcuti = $_POST['id_pcuti'];
 $tgl_sah = date('Y/m/d');
 $id_jcuti = $_POST['id_jcuti'];
 	
-if ($_POST['id_jcuti'] != '2' ) {
+if ($_POST['id_jcuti'] == '3' ) {
 	if ($_SESSION['is_coordinator'] == '1'){
 		$note = $_POST['catatan'];
 		$l =mysqli_query($conn,"UPDATE pegawai_approval_list SET is_approval = '1' WHERE approval_id = '$id_pegawai' AND type = 'cuti' AND object_id ='$id_pcuti'") or die(mysqli_error($conn));
@@ -98,11 +98,11 @@ if ($_POST['id_jcuti'] != '2' ) {
 		if ($_SESSION['is_coordinator'] == '1'){
 		$l = mysqli_query($conn,"UPDATE pegawai
 		INNER JOIN permohonan_cuti ON permohonan_cuti.id_pegawai = pegawai.id_pegawai
-		SET jatah_cuti = jatah_cuti - lama_cuti,STATUS = 'disetujui', tgl_sah = '$tgl_sah',note='$note', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
+		SET jatah_cuti = jatah_cuti - lama_cuti ,STATUS = 'sip men', tgl_sah = '$tgl_sah',note='$note', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		}else{
 			$l = mysqli_query($conn,"UPDATE pegawai
 		INNER JOIN permohonan_cuti ON permohonan_cuti.id_pegawai = pegawai.id_pegawai
-		SET jatah_cuti = jatah_cuti - lama_cuti,STATUS = 'disetujui', tgl_sah = '$tgl_sah',note2='$note2', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
+		SET jatah_cuti = jatah_cuti - lama_cuti ,STATUS = 'joss', tgl_sah = '$tgl_sah',note2='$note2', disahkan = '$username'  WHERE id_pcuti = '$id_pcuti'") or die(mysqli_error($conn));
 		}
 		$query_approv = mysqli_query($conn, "SELECT * from permohonan_cuti INNER JOIN pegawai ON pegawai.id_pegawai = permohonan_cuti.id_pegawai WHERE permohonan_cuti.id_pcuti = '$id_pcuti' ") or die(mysqli_error($conn));
 		$email_approv = mysqli_fetch_assoc($query_approv);
