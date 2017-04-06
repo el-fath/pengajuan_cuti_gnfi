@@ -3,6 +3,3 @@
 	<center><i class="glyphicon glyphicon-fire"></i> Good News From Indonesia <i class="glyphicon glyphicon-fire"></i></center>
 </div>
 
-<!-- <footer id="footer" style="text-align: center;">
-	<i class="glyphicon glyphicon-fire"></i> Good News From Indonesia <i class="glyphicon glyphicon-fire"></i>
-</footer>

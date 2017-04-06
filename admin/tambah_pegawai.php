@@ -108,7 +108,7 @@
                       <input class="form-control " type="file" name="foto" id="image-source" onchange="previewImage();">
                       <br>
                       <br>
-                      <img src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="100%" id="image-preview" class="img-rounded img-responsive" style=" width: 100%; height: 300px">
+                      <img src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="100%" id="image-preview" class="img-rounded img-responsive" style=" width: 100%; height: 300px; margin-top: -16px">
 
                    </div>
                      <!-- <img id="image-preview" class="img-rounded img-responsive col-xs-6 col-md-5" > -->
