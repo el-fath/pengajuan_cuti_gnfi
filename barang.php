@@ -40,29 +40,15 @@
      <div class="container">
       <div class="row" style="padding-top: 120px">
         <div class="col-md-4"></div>
-         <!-- <div class="form-group"> -->
-            <!-- <div class="col-md-6 ">
-              <div id="gender" class="btn-group" data-toggle="buttons">
-                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="padding-left: 50px;padding-right: 50px;">
-                  <input type="radio" name="cuti" value="admin" onclick="document.getElementById('cuti').src='approvel.php'" checked> &nbsp; Cuti &nbsp;
-                </label>
-                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="padding-left: 50px;padding-right: 50px;">
-                  <input type="radio" name="barang" value="pegawai" onclick="document.getElementById('barang').src='barang.php'" > Barang
-                </label>
-              </div>
-            </div> -->
-            <div class="btn-group col-md-8" role="group" aria-label="...">
+            <!-- <div class="btn-group col-md-8" role="group" aria-label="...">
               <a href="approvel.php"><button type="button" class="btn btn-default btn-lg" style="padding-left: 60px; padding-right: 60px">cuti</button></a>
               <a href="barang.php"><button type="button" class="btn btn-default btn-lg" style="padding-left: 50px; padding-right: 50px; background-color: #0df5d2">barang</button></a>
-              
-            </div>
-          <!-- </div> -->
-        <!-- <div class="col-sm-4"></div> -->
+            </div> -->
       </div>  
     </div>
-<div class="container"><!-- start of approval barang -->
+  <div class="container"><!-- start of approval barang -->
     
-        <h2 ><center>Form Approvel Pengajuan Barang</center></h2>
+        <h2 ><center>DATA BARANG <?php echo strtoupper($_SESSION['username']) ?></center></h2>
         <div class="table-responsive">
         <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
             <tr>
@@ -121,32 +107,15 @@
                 $q = "SELECT * FROM pegawai_group WHERE id_pegawai='$id_pegawai'";
                 $a = mysqli_query($conn, $q) or die (mysqli_error($conn));
                 while ($t = mysqli_fetch_assoc($a)) {
-                    if ($t['is_coordinator'] == '1') {
                 ?>
-            <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
-                </td>
                 <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' && $tmp['grup'] == $_SESSION['grup'] && $data['is_approval'] != 1 ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
+                    <a href="#" class="btn btn-xs btn-warning open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-pencil"></i> EDIT</a>
                 </td>
                 <td align="center"> 
                      <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
                 </td>
                 <?php 
-                }else{
-                 ?>
-
-                <td align="center">
-                    <a href="#" class="btn btn-xs btn-success open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-check"></i> setujui</a>
-                </td>
-                <td align="center">
-                    <a href="#" class="btn btn-xs btn-danger open_jonbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
-                </td>
-                <td align="center"> 
-                     <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
-                </td>
-                <?php 
-                }}
+                }
                 ?>
             </tr>
             <?php }}else{ ?>
@@ -163,35 +132,12 @@
                 $row = mysqli_fetch_row($rs_result);  
                 $total_records = $row[0];  
                 $total_pages = ceil($total_records / $limit);  
-                $pagLink = "<ul class='pagination' style='margin-left=116px'>";  
+                $pagLink = "<ul class='pagination' style='margin-left:105px'>";  
                 for ($i=1; $i<=$total_pages; $i++) {  
                              $pagLink .= "<li><a href='barang.php?page=".$i."'>".$i."</a></li>";  
                 };  
                 echo $pagLink . "</ul";  
                 ?>
-          <h2></h2>
-          <h2>Thanks For Approvel</h2>
-            <!-- modal setuju brg-->
-        <div id="modalsetujubrg" class="modal fade" role="dialog" style="margin-top:100px;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="fetched-data"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end of modal setuju brg-->
-        <!-- modal tolak brg-->
-        <div id="modaltolakbrg" class="modal fade" role="dialog" style="margin-top:100px;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="fetched-data"></div>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- end of modal tolak brg-->
         <div class="modal fade" id="modal_deletebrg" style="margin-top: 150px">
             <div class="modal-dialog">
@@ -208,46 +154,33 @@
                 </div>
             </div>
         </div>
-    <?php include 'footer.php'; ?>
 
-     <script type="text/javascript">
-        function confirmdel(delete_url) {
-          $('#modal_deletebrg').modal('show', {backdrop:'static'});
-          document.getElementById('delete_link').setAttribute('href', delete_url);
-        }
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-       $(".open_modalbrg").click(function(e) {
-          var m = $(this).attr("id");
-          $.ajax({
-            url: "admin/setuju_brg.php",
-            type: "get",
-            data : {id_pbarang: m,},
-            success: function (ajaxData){
-              $("#modalsetujubrg").html(ajaxData);
-              $("#modalsetujubrg").modal('show',{backdrop: 'true'});
-               }
-             });
-          });
-        });
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-       $(".open_jonbrg").click(function(e) {
-          var m = $(this).attr("id");
-          $.ajax({
-            url: "admin/tolak_brg.php",
-            type: "get",
-            data : {id_pbarang: m,},
-            success: function (ajaxData){
-              $("#modaltolakbrg").html(ajaxData);
-              $("#modaltolakbrg").modal('show',{backdrop: 'true'});
-               }
-             });
-          });
-        });
-    </script>
-    
+        <div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div> 
+    <?php include 'footer.php'; ?>
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="assets/plugins/bootstrap.min.js"></script>  
+
+    <script type="text/javascript">
+      function confirmdel(delete_url) {
+        $('#modal_deletebrg').modal('show', {backdrop:'static'});
+        document.getElementById('delete_link').setAttribute('href', delete_url);
+      }
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(".open_modalbrg").click(function(e) {
+          var m = $(this).attr("id");
+          $.ajax({
+            url: "modaledit_barang.php",
+            type: "get",
+            data : {id_pbarang: m,},
+            success: function (ajaxData){
+              $("#ModalEdit").html(ajaxData);
+              $("#ModalEdit").modal('show',{backdrop: 'true'});
+            }
+          });
+        });
+    });
+    </script>
 </html>

@@ -68,41 +68,35 @@
 						<a style="font-size: 14px" href="#" class="btn btn-xs btn-primary " ><i class="glyphicon glyphicon-list"></i> detail</a>
 					</td>
 					<td align="center"> 
-						<a style="font-size: 14px" href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
+						<a style="font-size: 14px" href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
 					</td>
 				</tr>
 				<?php 
 				}}
 				?>
 			</table>
-		</div>	
-		<div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div> 
+			</div>	
+			<div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div> 
 	</div>
 	<?php include 'footer.php'; ?>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <!-- BOOTSTRAP CORE SCRIPT   -->
-    <script src="assets/plugins/bootstrap.min.js"></script>  
-     <!-- ISOTOPE SCRIPT   -->
-  <!--   <script src="assets/plugins/jquery.isotope.min.js"></script> -->
-    <!-- PRETTY PHOTO SCRIPT   -->
-    <script src="assets/plugins/jquery.prettyPhoto.js"></script>    
-    <!-- CUSTOM SCRIPTS -->
-   <!--  <script src="assets/js/custom.js"></script> -->
- <script type="text/javascript">
-    $(document).ready(function () {
-       $(".open_modal").click(function(e) {
-          var m = $(this).attr("id");
-          $.ajax({
-            url: "modaledit_datacuti.php",
-            type: "GET",
-            data : {id_pcuti: m,},
-            success: function (ajaxData){
-              $("#ModalEdit").html(ajaxData);
-              $("#ModalEdit").modal('show',{backdrop: 'true'});
-               }
-             });
-          });
-        });
-  </script>
+<script src="assets/plugins/bootstrap.min.js"></script>  
+<script src="assets/plugins/jquery.prettyPhoto.js"></script>    
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".open_modal").click(function(e) {
+		var m = $(this).attr("id");
+			$.ajax({
+				url: "modaledit_datacuti.php",
+				type: "GET",
+				data : {id_pcuti: m,},
+				success: function (ajaxData){
+					$("#ModalEdit").html(ajaxData);
+					$("#ModalEdit").modal('show',{backdrop: 'true'});
+				}
+			});
+		});
+	});
+</script>
 </html>
