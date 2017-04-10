@@ -65,7 +65,8 @@
               <th colspan="3"><center>ACTION</center></th>
             </tr>
             <?php 
-               $no=0; 
+                $id_pegawai=$_SESSION['id_pegawai'];
+                $no=0; 
                 $limit = 10;  
                 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
                 $start_from = ($page-1) * $limit; 
@@ -74,8 +75,9 @@
                         INNER JOIN pegawai ON pegawai.id_pegawai = pengadaan_barang.id_pegawai
                         INNER JOIN pegawai_group ON pegawai.id_pegawai = pegawai_group.id_pegawai
                         INNER JOIN kategori_barang ON kategori_barang.id_kategori=pengadaan_barang.id_kategori
-                        ORDER BY tgl_pengajuan DESC
-                        LIMIT $start_from, $limit
+                        WHERE pengadaan_barang.id_pegawai = '$id_pegawai' 
+                        ORDER BY tgl_pengajuan DESC 
+                        LIMIT $start_from, $limit 
                         ";
                 $s = mysqli_query($conn, $sql) or die (mysqli_error($conn));
                 $num_rows = mysqli_num_rows($s);
