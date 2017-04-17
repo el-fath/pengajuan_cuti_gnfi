@@ -102,7 +102,7 @@ $tgl_sah = $temp['tgl_sah'];
                 while ($t = mysqli_fetch_assoc($a)) {
                     if ($t['is_coordinator'] == '0') {
                 ?>
-                  <a href="index.php"><button type="button" class="btn btn-default">Kembali</button></a>
+                  <a href="barang.php"><button type="button" class="btn btn-default">Kembali</button></a>
                   <button type="button" data-toggle="modal" data-target=".komen" class="btn btn-success">Approvel Note</button>
                   <button type="button" onclick="printContent('p1')" class="btn btn-primary">Print</button> 
                 <?php }else{ ?>

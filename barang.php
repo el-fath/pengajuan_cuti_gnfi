@@ -46,10 +46,14 @@
             </div> -->
       </div>  
     </div>
-  <div class="container"><!-- start of approval barang -->
+  <div class="container-fluid"><!-- start of approval barang -->
     
-        <h2 ><center>DATA BARANG <?php echo strtoupper($_SESSION['username']) ?></center></h2>
+        <h1><center>DATA BARANG <?php echo strtoupper($_SESSION['username']) ?></center></h1>
         <div class="table-responsive">
+        <?php
+        if(isset($_GET['id_pbarang'])){
+        include "cetakbrg_men.php";
+        }?>
         <table border="2" align="center" class="table table-bordered" style="font-size: 15px;">
             <tr>
               <th><strong>NO</strong></th>
@@ -112,6 +116,9 @@
                 ?>
                 <td align="center">
                     <a href="#" class="btn btn-xs btn-warning open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-pencil"></i> EDIT</a>
+                </td>
+                <td align="center"> 
+                <a style="font-size: 14px" href="barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>" class="btn btn-xs btn-primary " ><i class="glyphicon glyphicon-list"></i> detail</a>
                 </td>
                 <td align="center"> 
                      <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>

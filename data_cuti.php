@@ -24,6 +24,10 @@
 	<h1 style="margin-top: 100px">DATA CUTI <?php echo strtoupper($_SESSION['username']) ; ?></h1>
 	<div class="container-fluid">
 		<div class="table-responsive">
+        <?php
+        if(isset($_GET['id_pcuti'])){
+        include "cetak_men.php";
+        }?>
 			<table class="table table-bordered">
 				<tr> </center>
 					<th><center><strong>NO</strong></center></th>
@@ -65,7 +69,7 @@
 					</td>
 
 					<td align="center"> 
-						<a style="font-size: 14px" href="#" class="btn btn-xs btn-primary " ><i class="glyphicon glyphicon-list"></i> detail</a>
+						<a style="font-size: 14px" href="data_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>" class="btn btn-xs btn-primary " ><i class="glyphicon glyphicon-list"></i> detail</a>
 					</td>
 					<td align="center"> 
 						<a style="font-size: 14px" href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_cuti.php?&id_pcuti=<?php echo $tmp['id_pcuti']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
