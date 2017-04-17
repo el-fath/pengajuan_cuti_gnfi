@@ -118,7 +118,7 @@
                     <a href="#" class="btn btn-xs btn-warning open_modalbrg <?=$tmp['status'] != 'disetujui' && $tmp['status'] != 'ditolak' ? '' : 'disabled'?>" id="<?php echo $tmp['id_pbarang'];?>" ><i class="glyphicon glyphicon-pencil"></i> EDIT</a>
                 </td>
                 <td align="center"> 
-                <a style="font-size: 14px" href="barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>" class="btn btn-xs btn-primary " ><i class="glyphicon glyphicon-list"></i> detail</a>
+                <a href="barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>" class="btn btn-xs btn-primary " ><i class="glyphicon glyphicon-list"></i> detail</a>
                 </td>
                 <td align="center"> 
                      <a href="#" class="btn btn-xs btn-danger <?=$tmp['status'] != 'Belum dikonfirmasi' ? '' : 'disabled'?>" onclick="confirmdel('admin/proses/hapus_barang.php?&id_pbarang=<?php echo $tmp['id_pbarang']; ?>');"><i class="glyphicon glyphicon-trash"></i> hapus</a>
